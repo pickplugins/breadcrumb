@@ -58,10 +58,7 @@ class BreadcrumbMain{
 
 	
 	public function breadcrumb_front_scripts(){
-		//wp_enqueue_script('jquery');
-		//wp_enqueue_script('breadcrumb_js', plugins_url( 'assets/front/js/scripts.js' , __FILE__ ) , array( 'jquery' ));
 		wp_enqueue_style('breadcrumb_style', breadcrumb_plugin_url.'assets/front/css/style.css');
-	
 	}
 	
 	
