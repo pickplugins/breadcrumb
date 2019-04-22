@@ -1,9 +1,9 @@
 === Breadcrumb ===
-	Contributors: pickplugins
-	Donate link: http://pickplugins.com/
+	Contributors: PickPlugins
+	Donate link: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org
 	Tags: breadcrumb, breadcrumbs
 	Requires at least: 3.8
-	Tested up to: 4.8
+	Tested up to: 5.1
 	Stable tag: 1.5.0
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,10 +14,13 @@
 
 Breadcrumb is awesome feature for visitors keep track thier location, by this plugin you can display Breadcrumb navigation anywhere your website via short-codes.
 
+
+
 ### Breadcrumb by http://pickplugins.com
-* [Buy Premium &raquo;](http://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/)
-* [Live Demo &raquo;](http://www.pickplugins.com/demo/breadcrumb/breadcrumb-themes/)
-* [Support &raquo;](https://www.pickplugins.com/support/)
+* [Buy Premium &raquo;](https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org)
+* [Live Demo &raquo;](https://www.pickplugins.com/demo/breadcrumb/?ref=wordpress.org)
+* [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
+* [Documentation &raquo;](https://www.pickplugins.com/documentation/breadcrumb/?ref=wordpress.org)
 
 
 <strong>Plugin Features</strong><br />

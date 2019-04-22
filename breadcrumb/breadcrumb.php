@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Breadcrumb
-Plugin URI: http://pickplugins.com
+Plugin URI: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashboard
 Description: Awesome Breadcrumb for wordpress.
 Version: 1.5.0
-Author: pickplugins
+Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: breadcrumb
 License: GPLv2 or later
@@ -21,9 +21,9 @@ class BreadcrumbMain{
 		define('breadcrumb_plugin_url', plugins_url('/', __FILE__)  );
 		define('breadcrumb_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('breadcrumb_wp_url', 'https://wordpress.org/plugins/breadcrumb/' );
-		define('breadcrumb_wp_reviews', 'https://wordpress.org/support/plugin/breadcrumb/reviews/' );
-		define('breadcrumb_pro_url','http://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/' );
-		define('breadcrumb_demo_url', 'http://pickplugins.com' );
+		define('breadcrumb_wp_reviews', 'https://wordpress.org/plugins/breadcrumb/#reviews' );
+		define('breadcrumb_pro_url','https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashboard' );
+		define('breadcrumb_demo_url', 'https://www.pickplugins.com/demo/breadcrumb/' );
 		define('breadcrumb_conatct_url', 'http://pickplugins.com/contact/' );
 		define('breadcrumb_qa_url', 'https://www.pickplugins.com/support/' );
 		define('breadcrumb_plugin_name', 'Breadcrumb' );

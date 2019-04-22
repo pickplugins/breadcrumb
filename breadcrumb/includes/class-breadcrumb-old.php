@@ -104,7 +104,7 @@ class breadcrumb
 				$html.= '<ul itemtype="http://schema.org/BreadcrumbList" itemscope="">';		
 				
 				if(!empty($breadcrumb_text)){
-					$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="#"><span>'.$breadcrumb_text.'</span></a></li>';
+					$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="#"><span itemprop="name">'.$breadcrumb_text.'</span></a><meta itemprop="position" content="1" /></li>';
 					}
 				
 					
@@ -112,7 +112,7 @@ class breadcrumb
 					{
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="#">'.__('Home','breadcrumb').'</a><span>'.$breadcrumb_separator.'</span></li>';	
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="#">'.__('Home','breadcrumb').'</a><span>'.$breadcrumb_separator.'</span><meta itemprop="position" content="1" /></li>';
 							}
 						
 						
@@ -122,14 +122,14 @@ class breadcrumb
 					{
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="#">'.__('Home','breadcrumb').'</a><span>'.$breadcrumb_separator.'</span></li>';	
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="#">'.__('Home','breadcrumb').'</a><span>'.$breadcrumb_separator.'</span><meta itemprop="position" content="1" /></li>';
 							}	
 					}	
 					
 				elseif( is_home())
 					{
 					
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="#">'.get_page(get_option('page_for_posts'))->post_title.'</a><span class="separator">'.$breadcrumb_separator.'</span></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="#">'.get_page(get_option('page_for_posts'))->post_title.'</a><span class="separator">'.$breadcrumb_separator.'</span><meta itemprop="position" content="1" /></li>';
 								
 								
 					}					
@@ -145,12 +145,12 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
 						
 						
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="'.$current_attachment_link.'">'.get_the_title().'</a><span>'.$breadcrumb_separator.'</span></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="'.$current_attachment_link.'">'.get_the_title().'</a><span>'.$breadcrumb_separator.'</span><meta itemprop="position" content="2" /></li>';
 						
 						
 						
@@ -168,7 +168,7 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
 					
@@ -211,23 +211,23 @@ class breadcrumb
 								if(!empty($permalink_structure) && get_post_type()=='post'){
 									
 									if(in_array('%year%',$permalink_items)){
-										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$get_year_link.'">'.breadcrumb_shorten_string($post_date_year,$breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a></li>';
+										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$get_year_link.'">'.breadcrumb_shorten_string($post_date_year,$breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a><meta itemprop="position" content="2" /></li>';
 
 										}
 
 									if(in_array('%monthnum%',$permalink_items)){
-										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$get_month_link.'">'.breadcrumb_shorten_string($post_date_month, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a></li>';
+										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$get_month_link.'">'.breadcrumb_shorten_string($post_date_month, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a><meta itemprop="position" content="2" /></li>';
 
 										}										
 										
 									if(in_array('%author%',$permalink_items)){
-										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$author_posts_url.'">'.breadcrumb_shorten_string($author_name, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a></li>';
+										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$author_posts_url.'">'.breadcrumb_shorten_string($author_name, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a><meta itemprop="position" content="2" /></li>';
 
 										}										
 										
 										
 									if(in_array('%day%',$permalink_items)){
-										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$get_day_link.'">'.breadcrumb_shorten_string($post_date_day, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a></li>';
+										$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="'.$get_day_link.'">'.breadcrumb_shorten_string($post_date_day, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a><meta itemprop="position" content="2" /></li>';
 
 										}
 																				
@@ -245,7 +245,7 @@ class breadcrumb
 
 										foreach($parent_cat_links as $link)
 											{
-											$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span>'.$link.'</li>';
+											$html_permalink .= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span>'.$link.'<meta itemprop="position" content="2" /></li>';
 											}
 									
 
@@ -255,7 +255,7 @@ class breadcrumb
 									$html.= $html_permalink;
 									}
 
-								$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="#">'.breadcrumb_shorten_string(get_the_title(),$breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a><span class="separator">'.$breadcrumb_separator.'</span></li>';
+								$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span  class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" title="'.get_the_title().'" href="#">'.breadcrumb_shorten_string(get_the_title(),$breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end).'</a><span class="separator">'.$breadcrumb_separator.'</span><meta itemprop="position" content="2" /></li>';
 								
 								
 							
@@ -278,13 +278,13 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
 						
 						foreach($parent_cat_links as $link)
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span>'.$link.'</li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span>'.$link.'<meta itemprop="position" content="2" /></li>';
 							}
 	
 					
@@ -302,10 +302,10 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><span class="separator">'.$breadcrumb_separator.'</span></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /><span class="separator">'.$breadcrumb_separator.'</span></li>';
 							}
 									
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.$current_tag_link.'">'.$current_tag_name.'</a><span class="separator">'.$breadcrumb_separator.'</span></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.$current_tag_link.'">'.$current_tag_name.'</a><span class="separator">'.$breadcrumb_separator.'</span><meta itemprop="position" content="1" /></li>';
 	
 						
 					
@@ -316,10 +316,10 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="'.esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ).'">'.get_the_author().'</a></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="'.esc_url( get_author_posts_url( get_the_author_meta( "ID" ) ) ).'">'.get_the_author().'</a><meta itemprop="position" content="2" /></li>';
 					
 						
 					
@@ -332,7 +332,7 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
 						
@@ -344,7 +344,7 @@ class breadcrumb
 							{
 								$current_query = __('Search:','breadcrumb').' '.$current_query;
 							}
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">'.$current_query.'</a><span class="separator">'.$breadcrumb_separator.'</span></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">'.$current_query.'</a><span class="separator">'.$breadcrumb_separator.'</span><meta itemprop="position" content="2" /></li>';
 					
 						
 					}			
@@ -367,10 +367,10 @@ class breadcrumb
 
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">'.get_the_date('F').'</a></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">'.get_the_date('F').'</a><meta itemprop="position" content="2" /></li>';
 
 					}					
 					
@@ -380,10 +380,10 @@ class breadcrumb
 
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">'.get_the_date().'</a></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">'.get_the_date().'</a><meta itemprop="position" content="2" /></li>';
 
 					}
 
@@ -393,10 +393,10 @@ class breadcrumb
 						
 						if($breadcrumb_display_home == 'yes')
 							{
-							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a></li>';
+							$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" title="'.__('Home','breadcrumb').'" href="'.get_bloginfo('url').'">'.__('Home','breadcrumb').'</a><meta itemprop="position" content="1" /></li>';
 							}
 						
-						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">404</a></li>';
+						$html.= '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span class="separator">'.$breadcrumb_separator.'</span><a itemprop="item" href="#">404</a><meta itemprop="position" content="1" /></li>';
 	
 					}
 					
