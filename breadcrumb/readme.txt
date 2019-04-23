@@ -1,10 +1,10 @@
 === Breadcrumb ===
-	Contributors: PickPlugins
-	Donate link: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org
+	Contributors: paratheme
+	Donate link: http://paratheme.com/donate-us/
 	Tags: breadcrumb, breadcrumbs
 	Requires at least: 3.8
-	Tested up to: 5.1
-	Stable tag: 1.5.0
+	Tested up to: 4.9
+	Stable tag: 2.0.6
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,11 +16,11 @@ Breadcrumb is awesome feature for visitors keep track thier location, by this pl
 
 
 
-### Breadcrumb by http://pickplugins.com
-* [Buy Premium &raquo;](https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org)
-* [Live Demo &raquo;](https://www.pickplugins.com/demo/breadcrumb/?ref=wordpress.org)
-* [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
-* [Documentation &raquo;](https://www.pickplugins.com/documentation/breadcrumb/?ref=wordpress.org)
+### Breadcrumb by http://paratheme.com
+* [Buy Premium!&raquo;](http://paratheme.com/items/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/)
+* [Live Demo!&raquo;](http://www.pickplugins.com/demo/breadcrumb/breadcrumb-themes/)
+
+<br />
 
 
 <strong>Plugin Features</strong><br />
@@ -28,21 +28,12 @@ Breadcrumb is awesome feature for visitors keep track thier location, by this pl
 * Use via short-codes.
 * Custom Separator text.
 * Custom text in-front of Breadcrumb.
-* Breadcrumb display on home page, any post type, page, parent pages, author page, archive page, tag page, custom taxonomy page, search page. 
+* Breadcrumb display on home page, any post type, page, parent pages, author page, archive page, tag page, custom taxonomy page, search page, 404 error page, 
 
 
 
 
 
-
-
-<strong>Translation</strong>
-
-Plugin is translation ready defult default-en.po file inlcuded under following directory
-
-breadcrumb\languages\
-
-you can add your own translation , if you need some help please feel free to contact.
 
 
 == Installation ==
@@ -77,20 +68,55 @@ use this short-code any where to display breadcrumb
 == Changelog ==
 
 
-	= 1.5.0 =
-    * 18/10/2017 - update - Support link added.
 
-	= 1.5 =
-    * 03/03/2016 - 03/03/2016 - update - admin settings UI update.
-	* 03/03/2016 - add - breadcrumb for date, year, month archives.
-	* 03/03/2016 - add - breadcrumb single post permalink structure for author.
+	= 2.0.6 =
+    * 09/04/2018 - fix - Woocommerce conflict issue.
+
+	= 2.0.4 =
+    * 28/10/2016 - add - Custom text for Home
 	
-	= 1.4 =
-    * 17/10/2015 - http://schema.org - implemented.
-	
-	= 1.3 =
+	= 2.0.3 =
+    * 03/03/2016 - update - admin settigns UI update.
+    * 03/03/2016 - add - breadcrumb for date, year, month archives.
+    * 03/03/2016 - add - breadcrumb single post update for author.	
+
+	= 2.0.2 =
+    * 09/11/2015 - fix - Rich Snippest data.
+    * 09/11/2015 - fix - Follow Permalink structure for Post.	
+
+	= 2.0.1 =
     * 17/10/2015 - fix - SSL issue fixed.
 	
+	= 2.0.0 =
+    * 15/08/2015 - add - Hide on page by ID.
+
+	= 1.9 =
+    * 29/05/2015 - add - hide breadcrumb for home pages.
+	
+	= 1.8 =
+    * 29/05/2015 - add - A static page - Posts page detection.
+	
+	= 1.7 =
+    * 25/05/2015 - add - Display/hide "Home" on breadcrumb.
+    * 25/05/2015 - fix - static page issue fixed.
+
+	= 1.6 =
+    * 05/05/2015 - add - Custom length of post/page title on breadcrumb.
+    * 05/05/2015 - add - Custom length of post/page title by character/word selection.
+    * 05/05/2015 - add - Custom text of title ending.
+
+	= 1.5 =
+    * 21/04/2015 - add - Custom background color for breadcrumbs trails.
+	
+	= 1.4 =
+    * 21/04/2015 - fix - some minor issue fixed.
+
+	= 1.3 =
+    * 12/04/2015 - add - New theme right arrow.
+    * 12/04/2015 - add - Links for child taxonomy.
+    * 12/04/2015 - fix - Empty search query.
+    * 12/04/2015 - fix - category child issue.
+
 	= 1.2 =
     * 03/04/2015 - add - unlimited depth parent page link on breadcrumb.
 	

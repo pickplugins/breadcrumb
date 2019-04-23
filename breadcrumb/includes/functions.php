@@ -2,13 +2,16 @@
 
 
 
-	if ( ! defined('ABSPATH')) exit;  // if direct access 
 
+if ( ! defined('ABSPATH')) exit;  // if direct access 
 
 
 
 
 function breadcrumb_trail_array_list(){
+
+    $breadcrumb_home_text = get_option('breadcrumb_home_text', __('Home','breadcrumb'));
+    $home_url = get_bloginfo('url');
 
     $array_list = array();
     $active_plugins = get_option('active_plugins');
@@ -17,29 +20,29 @@ function breadcrumb_trail_array_list(){
 
         $array_list[0] = array(
 
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_front_page is_home',
 
         );
 
     }elseif( is_front_page()){
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_front_page',
         );
 
     }elseif( is_home()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_home',
         );
 
         $array_list[1] = array(
-            'link'=> get_bloginfo('url'),
+            'link'=> $home_url,
             'title' => __('Blog'),
             'location' => 'is_home',
         );
@@ -51,8 +54,8 @@ function breadcrumb_trail_array_list(){
         $current_attachment_link = get_attachment_link($current_attachment_id);
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_home',
         );
 
@@ -67,8 +70,8 @@ function breadcrumb_trail_array_list(){
         $shop_page_id = wc_get_page_id('shop');
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_page',
         );
 
@@ -83,8 +86,8 @@ function breadcrumb_trail_array_list(){
     else if(is_page()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_page',
         );
 
@@ -152,8 +155,8 @@ function breadcrumb_trail_array_list(){
 
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_singular',
         );
 
@@ -276,6 +279,126 @@ function breadcrumb_trail_array_list(){
             }
 
         }
+        elseif(get_post_type()=='product'){
+
+            $shop_page_id = wc_get_page_id('shop');
+            $woocommerce_permalinks = get_option('woocommerce_permalinks', '');
+            $product_base = $woocommerce_permalinks['product_base'];
+            $permalink_items = array_filter(explode('/',$product_base));
+
+            if(in_array('shop',$permalink_items)){
+
+                $array_list[1] = array(
+                    'link'=> get_permalink($shop_page_id),
+                    'title' => get_the_title($shop_page_id),
+                    'location' => 'product',
+                );
+
+
+            }
+            if(in_array('%product_cat%',$permalink_items)){
+
+                $category_string = get_query_var('product_cat');
+
+                //$category_string = get_query_var('category_name');
+                $category_arr = array();
+                $taxonomy = 'product_cat';
+                if(strpos( $category_string, '/' )){
+
+                    $category_arr = explode('/', $category_string);
+                    $category_count = count($category_arr);
+                    $last_cat = $category_arr[($category_count-1)];
+
+                    $term_data = get_term_by('slug',$last_cat, $taxonomy);
+
+                    $term_id = $term_data->term_id;
+                    $term_name = $term_data->name;
+                    $term_link = get_term_link( $term_id , $taxonomy);
+
+
+                    $parents_id  = get_ancestors( $term_id, $taxonomy );
+
+                    $parents_id = array_reverse($parents_id);
+
+                    $i = 2;
+                    foreach($parents_id as $id){
+
+                        $parent_term_link = get_term_link( $id , $taxonomy);
+                        $paren_term_name = get_term_by('id', $id, $taxonomy);
+
+                        $array_list[$i] = array(
+                            'link'=> $parent_term_link,
+                            'title' => $paren_term_name->name,
+                            'location' => 'is_singular',
+                        );
+
+
+                        $i++;
+                    }
+
+                    $array_list[$i] = array(
+                        'link'=> $term_link,
+                        'title' => $term_name,
+                        'location' => 'is_singular',
+                    );
+
+            }else{
+
+                    $term_data = get_term_by('slug',$category_string, $taxonomy);
+
+                    $term_id = $term_data->term_id;
+                    $term_name = $term_data->name;
+                    $term_link = get_term_link( $term_id , $taxonomy);
+
+                    $array_list[2] = array(
+                        'link'=> $term_link,
+                        'title' => $term_name,
+                        'location' => 'is_singular',
+                    );
+
+                    $array_list[3] = array(
+                        'link'=>get_permalink($post->ID),
+                        'title' => get_the_title($post->ID),
+                        'location' => 'is_singular',
+                    );
+
+
+                }
+
+
+            }
+
+            $array_list_count = count($array_list);
+            $array_list[$array_list_count] = array(
+                'link'=>get_permalink($post->ID),
+                'title' => get_the_title($post->ID),
+                'location' => 'is_singular',
+            );
+
+
+
+//            $array_list[3] = array(
+//                'link'=>get_permalink($post->ID),
+//                'title' => get_the_title($post->ID),
+//                'location' => 'is_singular',
+//            );
+
+
+        }
+        else{
+
+            $array_list[1] = array(
+                'link'=> '#',
+                'title' => get_post_type(),
+                'location' => 'is_singular',
+            );
+
+            $array_list[2] = array(
+                'link'=>get_permalink($post->ID),
+                'title' => get_the_title($post->ID),
+                'location' => 'is_singular',
+            );
+        }
 
 
 
@@ -299,8 +422,8 @@ function breadcrumb_trail_array_list(){
         $parents_id = array_reverse($parents_id);
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_tax',
         );
 
@@ -345,8 +468,8 @@ function breadcrumb_trail_array_list(){
         $parents_id = array_reverse($parents_id);
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_category',
         );
 
@@ -396,8 +519,8 @@ function breadcrumb_trail_array_list(){
         $current_tag_link = get_tag_link($current_tag_id);;
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_tag',
         );
 
@@ -420,8 +543,8 @@ function breadcrumb_trail_array_list(){
     else if(is_author()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_author',
         );
 
@@ -446,8 +569,8 @@ function breadcrumb_trail_array_list(){
 
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_search',
         );
 
@@ -467,15 +590,15 @@ function breadcrumb_trail_array_list(){
     }else if(is_year()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
-            'location' => 'is_search',
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
+            'location' => 'is_year',
         );
 
         $array_list[1] = array(
             'link'=> '#',
             'title' => __('Year'),
-            'location' => 'is_search',
+            'location' => 'is_year',
         );
 
         $array_list[2] = array(
@@ -487,55 +610,55 @@ function breadcrumb_trail_array_list(){
     }else if(is_month()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
-            'location' => 'is_search',
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
+            'location' => 'is_month',
         );
         $array_list[1] = array(
             'link'=> '#',
             'title' => __('Month'),
-            'location' => 'is_search',
+            'location' => 'is_month',
         );
 
 
         $array_list[2] = array(
             'link'=>  '#',
             'title' => get_the_date('F'),
-            'location' => 'is_search',
+            'location' => 'is_month',
         );
 
     }
     else if(is_date()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
-            'location' => 'is_search',
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
+            'location' => 'is_date',
         );
 
         $array_list[1] = array(
             'link'=> '#',
             'title' => __('Date'),
-            'location' => 'is_search',
+            'location' => 'is_date',
         );
 
         $array_list[2] = array(
             'link'=>  '#',
             'title' => get_the_date(),
-            'location' => 'is_search',
+            'location' => 'is_date',
         );
     }
     elseif(is_404()){
 
         $array_list[0] = array(
-            'link'=> get_bloginfo('url'),
-            'title' => __('Home'),
+            'link'=> $home_url,
+            'title' => $breadcrumb_home_text,
             'location' => 'is_404',
         );
 
         $array_list[1] = array(
             'link'=>  '#',
-            'title' => '404',
+            'title' => __('404', 'breadcrumb'),
             'location' => 'is_404',
         );
 
@@ -568,12 +691,6 @@ function breadcrumb_trail_array_list(){
     return $array_list;
 
 }
-
-
-
-
-
-
 
 
 
