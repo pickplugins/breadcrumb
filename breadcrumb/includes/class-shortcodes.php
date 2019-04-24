@@ -35,26 +35,25 @@ class class_breadcrumb_shortcodes  {
 
         $breadcrumb_hide_on_pages = get_option( 'breadcrumb_hide_on_pages' );
         $breadcrumb_hide_on_page_by_id = get_option( 'breadcrumb_hide_on_page_by_id' );
-        $breadcrumb_themes = get_option( 'breadcrumb_themes', 'theme1' );
+        $breadcrumb_themes = get_option( 'breadcrumb_themes', 'theme5' );
 
 
-        $breadcrumb_text = get_option('breadcrumb_text');
+        $breadcrumb_text = get_option('breadcrumb_text', __('You are here','breadcrumb'));
 
-        $breadcrumb_separator = get_option('breadcrumb_separator');
+        $breadcrumb_separator = get_option('breadcrumb_separator','&raquo;');
         $breadcrumb_display_last_separator = get_option('breadcrumb_display_last_separator');
 
         $breadcrumb_font_size = get_option('breadcrumb_font_size');
-        $breadcrumb_link_color = get_option('breadcrumb_link_color');
+        $breadcrumb_link_color = get_option('breadcrumb_link_color','#fff');
         $breadcrumb_separator_color = get_option('breadcrumb_separator_color');
-        $breadcrumb_bg_color = get_option('breadcrumb_bg_color');
+        $breadcrumb_bg_color = get_option('breadcrumb_bg_color','#278df4');
         $breadcrumb_padding = get_option('breadcrumb_padding');
         $breadcrumb_margin = get_option('breadcrumb_margin');
 
-        $breadcrumb_themes = get_option('breadcrumb_themes');
+
         $breadcrumb_word_char = get_option('breadcrumb_word_char');
         $breadcrumb_word_char_count = get_option('breadcrumb_word_char_count');
         $breadcrumb_word_char_end = get_option('breadcrumb_word_char_end');
-        $breadcrumb_word_char = get_option('breadcrumb_word_char');
 
         $breadcrumb_display_home = get_option('breadcrumb_display_home');
         $breadcrumb_home_text = get_option('breadcrumb_home_text');
@@ -70,7 +69,7 @@ class class_breadcrumb_shortcodes  {
 
 
 
-
+        //var_dump($breadcrumb_display_home);
 
 
 

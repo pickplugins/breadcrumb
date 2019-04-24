@@ -95,6 +95,9 @@ class settings_tabs_field{
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
+
         $default			= isset( $option['default'] ) ? $option['default'] : '';
         $value			= isset( $option['value'] ) ? $option['value'] : '';
         $value          = !empty($value) ?  $value : $default;
@@ -169,7 +172,8 @@ class settings_tabs_field{
         $remove_text 	= isset( $option['remove_text'] ) ? $option['remove_text'] : '<i class="fas fa-times"></i>';
         $limit 	        = isset( $option['limit'] ) ? $option['limit'] : '';
 
-
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
         $title			= isset( $option['title'] ) ? $option['title'] : "";
@@ -353,11 +357,17 @@ class settings_tabs_field{
         $multiple 	= isset( $option['multiple'] ) ? $option['multiple'] : false;
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
 
-
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
 
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
+
+        if($is_pro == true){
+            $details = '<span class="pro-feature">'.$pro_text.'</span> '.$details;
+        }
+
 
         if($multiple){
             $value 	= isset( $option['value'] ) ? $option['value'] : array();
@@ -410,6 +420,9 @@ class settings_tabs_field{
         $args 	= isset( $option['args'] ) ? $option['args'] : array();
         $multiple 	= isset( $option['multiple'] ) ? $option['multiple'] : "";
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         if($multiple){
             $value 	= isset( $option['value'] ) ? $option['value'] : array();
@@ -476,11 +489,17 @@ class settings_tabs_field{
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $value = !empty($value) ? $value : $default;
 
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
+
+        if($is_pro == true){
+            $details = '<span class="pro-feature">'.$pro_text.'</span> '.$details;
+        }
 
         $field_name = !empty($parent) ? $parent.'['.$id.']' : $id;
 
@@ -508,6 +527,9 @@ class settings_tabs_field{
         $value 	= isset( $option['value'] ) ? $option['value'] : '';
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
@@ -564,6 +586,9 @@ class settings_tabs_field{
         $css_id 			= isset( $option['css_id'] ) ? $option['css_id'] : $id;
         $parent 			= isset( $option['parent'] ) ? $option['parent'] : "";
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $value 	= isset( $option['value'] ) ? $option['value'] : '';
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
@@ -627,6 +652,9 @@ class settings_tabs_field{
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
         $value = !empty($value) ? $value : $default;
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
+
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
 
@@ -662,6 +690,8 @@ class settings_tabs_field{
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
         $value = !empty($value) ? $value : $default;
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
@@ -702,6 +732,9 @@ class settings_tabs_field{
         $value 	= isset( $option['value'] ) ? $option['value'] : '';
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
         $value = !empty($value) ? $value : $default;
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 		= isset( $option['details'] ) ? $option['details'] : "";
@@ -762,6 +795,9 @@ class settings_tabs_field{
         $for 		= isset( $option['for'] ) ? $option['for'] : "";
         $args			= isset( $option['args'] ) ? $option['args'] : array();
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
+
         $option_value 	= isset( $option['value'] ) ? $option['value'] : '';
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
         $option_value = !empty($option_value) ? $option_value : $default;
@@ -801,6 +837,9 @@ class settings_tabs_field{
         $option_value 	= isset( $option['value'] ) ? $option['value'] : '';
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
+
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";
         $width 			= isset( $option['width'] ) ? $option['width'] : "250px";
@@ -821,17 +860,21 @@ class settings_tabs_field{
 
                 $name = $value['name'];
                 $thumb = $value['thumb'];
-
+                $disabled = isset($value['disabled']) ? $value['disabled'] : '';
+                $pro_msg = isset($value['pro_msg']) ? $value['pro_msg'] : '';
 
                 $checked = ($key == $option_value) ? "checked" : "";
 
                 //var_dump($checked);
 
                 ?>
-                <label title="<?php echo $name; ?>" class="<?php if($checked =='checked') echo 'active';?>">
-                    <input name="<?php echo $field_name; ?>" type="radio" id="<?php echo $css_id; ?>-<?php echo $key; ?>" value="<?php echo $key; ?>"  <?php echo $checked; ?>>
+                <label title="<?php echo $name; ?>" class="<?php if($checked =='checked') echo 'active';?> <?php if($disabled == true) echo 'disabled';?>">
+                    <input <?php if($disabled) echo 'disabled'; ?>  name="<?php echo $field_name; ?>" type="radio" id="<?php echo $css_id; ?>-<?php echo $key; ?>" value="<?php echo $key; ?>"  <?php echo $checked; ?>>
                     <?php // echo $name; ?>
                     <img alt="<?php echo $name; ?>" src="<?php echo $thumb; ?>">
+                    <?php if($disabled == true):?>
+                    <span class="pro-msg"><?php echo $pro_msg; ?></span>
+                    <?php endif; ?>
                 </label>
             <?php
 
@@ -841,8 +884,13 @@ class settings_tabs_field{
         <script>
             jQuery(document).ready(function($){
                 $(document).on("click", ".radio-img label", function () {
+                    if($(this).hasClass('disabled')){
+                        return;
+                    }
+
                     $(this).parent().children("label").removeClass("active");
                     $(this).addClass("active");
+
                 })
             })
         </script>
@@ -855,11 +903,32 @@ class settings_tabs_field{
                 margin: 5px;
                 padding: 2px;
                 background: #eee;
+                position: relative;
             }
 
             .radio-img label.active{
                 background: #fd730d;
             }
+
+            .radio-img label.disabled{
+                background: #e2e2e2;
+
+            }
+            .radio-img label.disabled img{
+                background: #e2e2e2;
+                opacity: .3;
+            }
+
+            .radio-img label.disabled .pro-msg{
+                background: #ffd87f;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                padding: 0 10px;
+
+            }
+
 
             .radio-img input[type=radio]{
                 display: none;
@@ -890,6 +959,9 @@ class settings_tabs_field{
         $parent 			= isset( $option['parent'] ) ? $option['parent'] : "";
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
         $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $value 	= isset( $option['value'] ) ? $option['value'] : '';
         $default 	= isset( $option['default'] ) ? $option['default'] : '';
@@ -924,6 +996,8 @@ class settings_tabs_field{
         $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template();
         $html 	= isset( $option['html'] ) ? $option['html'] : "";
 
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 			= isset( $option['details'] ) ? $option['details'] : "";

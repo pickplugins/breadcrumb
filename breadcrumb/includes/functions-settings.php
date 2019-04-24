@@ -12,7 +12,6 @@ function breadcrumb_settings_tabs_content_options(){
     $breadcrumb_text = get_option( 'breadcrumb_text' );
     $breadcrumb_separator = get_option( 'breadcrumb_separator' );
     $breadcrumb_display_last_separator = get_option( 'breadcrumb_display_last_separator' );
-    $breadcrumb_font_size = get_option( 'breadcrumb_font_size' );
     $breadcrumb_word_char = get_option( 'breadcrumb_word_char' );
     $breadcrumb_word_char_count = get_option( 'breadcrumb_word_char_count' );
     $breadcrumb_word_char_end = get_option( 'breadcrumb_word_char_end' );
@@ -40,9 +39,9 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_text',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb front text','testimonial'),
-            'details'	=> __('Display custom text before breadcrumb.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb front text','breadcrumb'),
+            'details'	=> __('Display custom text before breadcrumb.','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_text,
             'default'		=> __('You are here', 'breadcrumb'),
@@ -53,9 +52,9 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_separator',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb separator text','testimonial'),
-            'details'	=> __('You can display custom separator. ex: <code>&raquo;</code>','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb separator text','breadcrumb'),
+            'details'	=> __('You can display custom separator. ex: <code>&raquo;</code>','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_separator,
             'default'		=> '&raquo;',
@@ -69,15 +68,15 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_display_last_separator',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Display last separator','testimonial'),
-            'details'	=> __('Display or hide last separator.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Display last separator','breadcrumb'),
+            'details'	=> __('Display or hide last separator.','breadcrumb'),
             'type'		=> 'select',
             'value'		=> $breadcrumb_display_last_separator,
             'default'		=> 'no',
             'args'		=> array(
-                'no'=>__('No','testimonial'),
-                'yes'=>__('Yes','testimonial'),
+                'no'=>__('No','breadcrumb'),
+                'yes'=>__('Yes','breadcrumb'),
 
 
 
@@ -88,35 +87,17 @@ function breadcrumb_settings_tabs_content_options(){
 
 
 
-
-
-        $args = array(
-            'id'		=> 'breadcrumb_font_size',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb font size','testimonial'),
-            'details'	=> __('Set custom font size','testimonial'),
-            'type'		=> 'text',
-            'value'		=> $breadcrumb_font_size,
-            'default'		=> '14px',
-        );
-
-        $settings_tabs_field->generate_field($args);
-
-
-
-
-
         $args = array(
             'id'		=> 'breadcrumb_word_char',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb link text limit by?','testimonial'),
-            'details'	=> __('You can limit link text by word or character','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb link text limit by?','breadcrumb'),
+            'details'	=> __('You can limit link text by word or character','breadcrumb'),
             'type'		=> 'select',
             'value'		=> $breadcrumb_word_char,
             'default'		=> 'word',
             'args'		=> array(
-                'word'=>__('Word','testimonial'),
-                'character'=>__('Character','testimonial'),
+                'word'=>__('Word','breadcrumb'),
+                'character'=>__('Character','breadcrumb'),
 
 
 
@@ -128,9 +109,9 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_word_char_count',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Limit count','testimonial'),
-            'details'	=> __('Set custom limit value, number only.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Limit count','breadcrumb'),
+            'details'	=> __('Set custom limit value, number only.','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_word_char_count,
             'default'		=> '5',
@@ -140,9 +121,9 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_word_char_end',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Ending character','testimonial'),
-            'details'	=> __('Set custom Ending character, ex: ...','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Ending character','breadcrumb'),
+            'details'	=> __('Set custom Ending character, ex: ...','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_word_char_end,
             'default'		=> '...',
@@ -153,15 +134,15 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_display_home',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Display "Home" on breadcrumb?','testimonial'),
-            'details'	=> __('You can hide or display Home on breadcrumb.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Display "Home" on breadcrumb?','breadcrumb'),
+            'details'	=> __('You can hide or display Home on breadcrumb.','breadcrumb'),
             'type'		=> 'select',
             'value'		=> $breadcrumb_word_char,
             'default'		=> 'no',
             'args'		=> array(
-                'no'=>__('No','testimonial'),
-                'yes'=>__('Yes','testimonial'),
+                'no'=>__('No','breadcrumb'),
+                'yes'=>__('Yes','breadcrumb'),
 
 
 
@@ -174,9 +155,9 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_home_text',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Ending character','testimonial'),
-            'details'	=> __('Set custom Ending character, ex: ...','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Custom home text','breadcrumb'),
+            'details'	=> __('You can set custom text for "Home"','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_home_text,
             'default'		=> __('Home','breadcrumb'),
@@ -189,18 +170,19 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_hide_on_pages',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Hide breadcrumb on these pages','testimonial'),
-            'details'	=> __('You can hide breadcrumb on these pages.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Hide breadcrumb on these pages','breadcrumb'),
+            'details'	=> __('You can hide breadcrumb on these pages.','breadcrumb'),
             'type'		=> 'select',
             'multiple'		=> true,
             'value'		=> $breadcrumb_hide_on_pages,
             'default'		=> array(),
-
+            'is_pro'=>true,
+            'pro_text'=>'Only in pro',
             'args'		=> array(
-                'home'=>__('Homepage','testimonial'),
-                'front_page'=>__('Front page','testimonial'),
-                'blog_front_page'=>__('Posts page','testimonial'),
+                'home'=>__('Homepage','breadcrumb'),
+                'front_page'=>__('Front page','breadcrumb'),
+                'blog_front_page'=>__('Posts page','breadcrumb'),
 
 
             ),
@@ -211,10 +193,12 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_hide_on_page_by_id',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Hide on page by ID','testimonial'),
-            'details'	=> __('Page ids, use comma separate. ex: 12,15','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Hide on page by ID','breadcrumb'),
+            'details'	=> __('Page ids, use comma separate. ex: 12,15','breadcrumb'),
             'type'		=> 'text',
+            'is_pro'=>true,
+            'pro_text'=>'Only in pro',
             'value'		=> $breadcrumb_hide_on_page_by_id,
             'default'		=> '',
         );
@@ -223,9 +207,9 @@ function breadcrumb_settings_tabs_content_options(){
 
         $args = array(
             'id'		=> 'breadcrumb_url_hash',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Current URL hash','testimonial'),
-            'details'	=> __('If you want to keep # on current url, otherwise keep empty','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Current URL hash','breadcrumb'),
+            'details'	=> __('If you want to keep # on current url, otherwise keep empty','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_url_hash,
             'default'		=> '#',
@@ -261,6 +245,7 @@ function breadcrumb_settings_tabs_content_style(){
     $breadcrumb_margin = get_option( 'breadcrumb_margin' );
     $breadcrumb_bg_color = get_option( 'breadcrumb_bg_color' );
     $breadcrumb_link_color = get_option( 'breadcrumb_link_color' );
+    $breadcrumb_font_size = get_option( 'breadcrumb_font_size' );
 
     $breadcrumb_themes = get_option( 'breadcrumb_themes' );
     $breadcrumb_separator_color = get_option( 'breadcrumb_separator_color' );
@@ -278,9 +263,9 @@ function breadcrumb_settings_tabs_content_style(){
 
         $args = array(
             'id'		=> 'breadcrumb_themes',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb Themes','testimonial'),
-            'details'	=> __('Choose breadcrumb theme','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb Themes','breadcrumb'),
+            'details'	=> __('Choose breadcrumb theme','breadcrumb'),
             'type'		=> 'radio_image',
             'value'		=> $breadcrumb_themes,
             'default'		=> 'theme1',
@@ -294,17 +279,17 @@ function breadcrumb_settings_tabs_content_style(){
                 'theme4'=>array('name'=>'theme1','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme4.png'),
 
                 'theme5'=>array('name'=>'theme5','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme5.png'),
-                'theme6'=>array('name'=>'theme6','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme6.png'),
+                'theme6'=>array('name'=>'theme6','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme6.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
 
-                'theme7'=>array('name'=>'theme7','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme7.png'),
-                'theme8'=>array('name'=>'theme8','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme8.png'),
-                'theme9'=>array('name'=>'theme9','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme9.png'),
-                'theme10'=>array('name'=>'theme10','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme10.png'),
-                'theme11'=>array('name'=>'theme11','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme11.png'),
-                'theme12'=>array('name'=>'theme12','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme12.png'),
-                'theme13'=>array('name'=>'theme13','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme13.png'),
-                'theme14'=>array('name'=>'theme14','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme14.png'),
-                'theme15'=>array('name'=>'theme15','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme15.png'),
+                'theme7'=>array('name'=>'theme7','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme7.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme8'=>array('name'=>'theme8','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme8.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme9'=>array('name'=>'theme9','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme9.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme10'=>array('name'=>'theme10','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme10.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme11'=>array('name'=>'theme11','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme11.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme12'=>array('name'=>'theme12','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme12.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme13'=>array('name'=>'theme13','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme13.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme14'=>array('name'=>'theme14','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme14.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
+                'theme15'=>array('name'=>'theme15','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme15.png', 'disabled'=>true, 'pro_msg'=>'Only in pro'),
 
 
 
@@ -314,13 +299,23 @@ function breadcrumb_settings_tabs_content_style(){
 
         $settings_tabs_field->generate_field($args);
 
+        $args = array(
+            'id'		=> 'breadcrumb_font_size',
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb font size','breadcrumb'),
+            'details'	=> __('Set custom font size','breadcrumb'),
+            'type'		=> 'text',
+            'value'		=> $breadcrumb_font_size,
+            'default'		=> '14px',
+        );
 
+        $settings_tabs_field->generate_field($args);
 
         $args = array(
             'id'		=> 'breadcrumb_padding',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb container padding','testimonial'),
-            'details'	=> __('Put custom padding size for breadcrumb container.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb container padding','breadcrumb'),
+            'details'	=> __('Put custom padding size for breadcrumb container.','breadcrumb'),
             'type'		=> 'text',
             'placeholder'		=> '10px',
             'value'		=> $breadcrumb_padding,
@@ -333,9 +328,9 @@ function breadcrumb_settings_tabs_content_style(){
 
         $args = array(
             'id'		=> 'breadcrumb_margin',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb container margin','testimonial'),
-            'details'	=> __('Put custom margin size for breadcrumb container.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb container margin','breadcrumb'),
+            'details'	=> __('Put custom margin size for breadcrumb container.','breadcrumb'),
             'type'		=> 'text',
             'placeholder'		=> '10px',
             'value'		=> $breadcrumb_margin,
@@ -346,9 +341,9 @@ function breadcrumb_settings_tabs_content_style(){
 
         $args = array(
             'id'		=> 'breadcrumb_bg_color',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb background Color','testimonial'),
-            'details'	=> __('Choose custom background color','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb lin background color','breadcrumb'),
+            'details'	=> __('Choose custom background color for links','breadcrumb'),
             'type'		=> 'colorpicker',
             'value'		=> $breadcrumb_bg_color,
             'default'		=> '#727272',
@@ -358,9 +353,9 @@ function breadcrumb_settings_tabs_content_style(){
 
         $args = array(
             'id'		=> 'breadcrumb_link_color',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb link color','testimonial'),
-            'details'	=> __('Choose custom link color','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb link color','breadcrumb'),
+            'details'	=> __('Choose custom link color','breadcrumb'),
             'type'		=> 'colorpicker',
             'value'		=> $breadcrumb_link_color,
             'default'		=> '#727272',
@@ -371,9 +366,9 @@ function breadcrumb_settings_tabs_content_style(){
 
         $args = array(
             'id'		=> 'breadcrumb_separator_color',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Breadcrumb separator color','testimonial'),
-            'details'	=> __('Choose custom separator color','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Breadcrumb separator color','breadcrumb'),
+            'details'	=> __('Choose custom separator color','breadcrumb'),
             'type'		=> 'colorpicker',
             'value'		=> $breadcrumb_separator_color,
             'default'		=> '#727272',
@@ -446,8 +441,8 @@ function breadcrumb_settings_tabs_content_shortcodes(){
         <?php
         $html = ob_get_clean();
         $args = array(
-            'id' => 'testimonial_shortcodes',
-            'title' => __('Get shortcode', 'testimonial'),
+            'id' => 'breadcrumb_shortcodes',
+            'title' => __('Get shortcode', 'breadcrumb'),
             'details' => '',
             'type' => 'custom_html',
             'html' => $html,
@@ -496,12 +491,12 @@ function breadcrumb_settings_tabs_content_custom_css(){
 
         $args = array(
             'id'		=> 'breadcrumb_custom_css',
-            //'parent' => 'testimonial_options',
-            'title'		=> __('Custom CSS','testimonial'),
-            'details'	=> __('Add your own CSS.','testimonial'),
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Custom CSS','breadcrumb'),
+            'details'	=> __('Add your own CSS.','breadcrumb'),
             'type'		=> 'scripts_css',
             'value'		=> $breadcrumb_custom_css,
-            'default'		=> '.testimonial-container #testimonial-133{}&#10; ',
+            'default'		=> '.breadcrumb-container{}&#10;.breadcrumb-container ul{}&#10;.breadcrumb-container li{}&#10;.breadcrumb-container a{}&#10;.breadcrumb-container .separator{}&#10;',
         );
 
         $settings_tabs_field->generate_field($args);

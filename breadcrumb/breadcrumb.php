@@ -68,24 +68,18 @@ class BreadcrumbMain{
 	
 	public function breadcrumb_admin_scripts(){
 
-
-
-		//ParaAdmin
-		//wp_enqueue_style('ParaAdmin', breadcrumb_plugin_url.'assets/admin/ParaAdmin/css/ParaAdmin.css');
-		//wp_enqueue_script('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));
-		
-		//wp_enqueue_style( 'wp-color-picker' );
-		//wp_enqueue_script( 'breadcrumb_color_picker', plugins_url('/assets/admin/js/color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
-
-
         $screen = get_current_screen();
 
         if (  $screen->base == 'toplevel_page_breadcrumb_settings' ){
 
+            wp_enqueue_script('wp-color-picker');
+            wp_enqueue_style( 'wp-color-picker' );
+            wp_enqueue_script('codemirror', plugins_url( 'assets/admin/js/codemirror.js' , __FILE__ ) , array( 'jquery' ));
+            wp_enqueue_style('codemirror', breadcrumb_plugin_url.'assets/admin/css/codemirror.css');
+
             wp_enqueue_script('settings-tabs', plugins_url( 'assets/admin/js/settings-tabs.js' , __FILE__ ) , array( 'jquery' ));
             wp_enqueue_style('settings-tabs', breadcrumb_plugin_url.'assets/admin/css/settings-tabs.css');
 
-            //wp_enqueue_script( 'bridge_script' );
         }
 
 

@@ -109,62 +109,48 @@ else
 
 
 
-$testimonial_settings_tab = array();
+$breadcrumb_settings_tab = array();
 
 
-$testimonial_settings_tab[] = array(
+$breadcrumb_settings_tab[] = array(
     'id' => 'options',
-    'title' => __('<i class="fas fa-laptop-code"></i> Options','testimonial'),
+    'title' => __('<i class="fas fa-laptop-code"></i> Options','breadcrumb'),
     'priority' => 1,
-    'active' => false,
-);
-
-$testimonial_settings_tab[] = array(
-    'id' => 'style',
-    'title' => __('<i class="fas fa-palette"></i> Style','testimonial'),
-    'priority' => 2,
     'active' => true,
 );
 
-$testimonial_settings_tab[] = array(
+$breadcrumb_settings_tab[] = array(
+    'id' => 'style',
+    'title' => __('<i class="fas fa-palette"></i> Style','breadcrumb'),
+    'priority' => 2,
+    'active' => false,
+);
+
+$breadcrumb_settings_tab[] = array(
     'id' => 'shortcodes',
-    'title' => __('<i class="fas fa-qrcode"></i> Shortcodes','testimonial'),
+    'title' => __('<i class="fas fa-qrcode"></i> Shortcodes','breadcrumb'),
     'priority' => 3,
     'active' => false,
 );
 
-$testimonial_settings_tab[] = array(
+$breadcrumb_settings_tab[] = array(
     'id' => 'custom_css',
-    'title' => __('<i class="fas fa-map"></i> Custom CSS','testimonial'),
+    'title' => __('<i class="fas fa-map"></i> Custom CSS','breadcrumb'),
     'priority' => 4,
     'active' => false,
 );
 
-//    $testimonial_settings_tab[] = array(
-//        'id' => 'grid_settings',
-//        'title' => __('<i class="fas fa-th-large"></i> Grid Settings','testimonial'),
-//        'priority' => 4,
-//        'active' => false,
-//    );
-
-
-
-//    $testimonial_settings_tab[] = array(
-//        'id' => 'custom_scripts',
-//        'title' => __('<i class="far fa-file-code"></i> Custom CSS','testimonial'),
-//        'priority' => 6,
-//        'active' => false,
-//    );
 
 
 
 
-$testimonial_settings_tabs = apply_filters('breadcrumb_settings_tabs', $testimonial_settings_tab);
+
+$breadcrumb_settings_tabs = apply_filters('breadcrumb_settings_tabs', $breadcrumb_settings_tab);
 
 
 $tabs_sorted = array();
-foreach ($testimonial_settings_tabs as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
-array_multisort($tabs_sorted, SORT_ASC, $testimonial_settings_tabs);
+foreach ($breadcrumb_settings_tabs as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
+array_multisort($tabs_sorted, SORT_ASC, $breadcrumb_settings_tabs);
 
 
 ?>
@@ -184,7 +170,7 @@ array_multisort($tabs_sorted, SORT_ASC, $testimonial_settings_tabs);
             <div class="settings-tabs vertical">
                 <ul class="tab-navs">
                     <?php
-                    foreach ($testimonial_settings_tabs as $tab){
+                    foreach ($breadcrumb_settings_tabs as $tab){
                         $id = $tab['id'];
                         $title = $tab['title'];
                         $active = $tab['active'];
@@ -197,7 +183,7 @@ array_multisort($tabs_sorted, SORT_ASC, $testimonial_settings_tabs);
                     ?>
                 </ul>
                 <?php
-                foreach ($testimonial_settings_tabs as $tab){
+                foreach ($breadcrumb_settings_tabs as $tab){
                     $id = $tab['id'];
                     $title = $tab['title'];
                     $active = $tab['active'];
