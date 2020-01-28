@@ -3,7 +3,7 @@
 Plugin Name: Breadcrumb
 Plugin URI: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/
 Description: Awesome Breadcrumb for wordpress.
-Version: 1.5.3
+Version: 1.5.4
 WC requires at least: 3.0.0
 WC tested up to: 3.6
 Author: PickPlugins
@@ -23,23 +23,23 @@ class BreadcrumbMain{
 		define('breadcrumb_plugin_url', plugins_url('/', __FILE__)  );
 		define('breadcrumb_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('breadcrumb_plugin_name', 'Breadcrumb' );
-		define('breadcrumb_plugin_version', '1.5.3' );
+		define('breadcrumb_plugin_version', '1.5.4' );
 		define('breadcrumb_customer_type', 'free' );	 // pro & free
 
 
-        require_once( plugin_dir_path( __FILE__ ) . 'includes/class-settings-tabs.php');
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/functions.php');
-        require_once( plugin_dir_path( __FILE__ ) . 'includes/functions-settings.php');
+        require_once( breadcrumb_plugin_dir . 'includes/class-settings-tabs.php');
+		require_once( breadcrumb_plugin_dir . 'includes/functions.php');
+        require_once( breadcrumb_plugin_dir . 'includes/functions-settings.php');
 
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/themes-css.php');
+		require_once( breadcrumb_plugin_dir . 'includes/themes-css.php');
 		
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-breadcrumb.php');
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-shortcodes.php');		
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/class-settings.php');		
+		require_once( breadcrumb_plugin_dir . 'includes/class-breadcrumb.php');
+		require_once( breadcrumb_plugin_dir . 'includes/class-shortcodes.php');
+		require_once( breadcrumb_plugin_dir . 'includes/class-settings.php');
 		
 		
-		add_action( 'wp_enqueue_scripts', array( $this, 'breadcrumb_front_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'breadcrumb_admin_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, '_front_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, '_admin_scripts' ) );
 		add_filter('widget_text', 'do_shortcode');
 		add_action( 'plugins_loaded', array( $this, 'breadcrumb_load_textdomain' ));
 		
@@ -58,36 +58,30 @@ class BreadcrumbMain{
 		}
 		
 	
-	public function breadcrumb_front_scripts(){
-		//wp_enqueue_script('jquery');
-		//wp_enqueue_script('breadcrumb_js', plugins_url( 'assets/front/js/scripts.js' , __FILE__ ) , array( 'jquery' ));
-		//wp_enqueue_style('breadcrumb_style', breadcrumb_plugin_url.'assets/front/css/style.css');
+	public function _front_scripts(){
+
+
 	
 	}
 	
 	
-	public function breadcrumb_admin_scripts(){
+	public function _admin_scripts(){
 
-        $screen = get_current_screen();
+        wp_register_style('codemirror', breadcrumb_plugin_url.'assets/admin/css/codemirror.css');
+        wp_register_script('codemirror', plugins_url( 'assets/admin/js/codemirror.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_script('codemirror_css', plugins_url( 'assets/admin/js/css.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_script('codemirror_javascript', plugins_url( 'assets/admin/js/javascript.js' , __FILE__ ) , array( 'jquery' ));
 
-        if (  $screen->base == 'toplevel_page_breadcrumb_settings' ){
+        wp_register_script('settings-tabs', plugins_url( 'assets/admin/js/settings-tabs.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_style('settings-tabs', breadcrumb_plugin_url.'assets/admin/css/settings-tabs.css');
+        wp_register_style('font-awesome-5', breadcrumb_plugin_url.'assets/admin/css/fontawesome.css');
 
-            wp_enqueue_script('wp-color-picker');
-            wp_enqueue_style( 'wp-color-picker' );
-            wp_enqueue_script('codemirror', plugins_url( 'assets/admin/js/codemirror.js' , __FILE__ ) , array( 'jquery' ));
-            wp_enqueue_style('codemirror', breadcrumb_plugin_url.'assets/admin/css/codemirror.css');
+        $cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
 
-            wp_enqueue_script('settings-tabs', plugins_url( 'assets/admin/js/settings-tabs.js' , __FILE__ ) , array( 'jquery' ));
-            wp_enqueue_style('settings-tabs', breadcrumb_plugin_url.'assets/admin/css/settings-tabs.css');
+        wp_localize_script('jquery', 'cm_settings', $cm_settings);
 
-        }
-
-
-
-
-
-
-
+        wp_enqueue_script('wp-theme-plugin-editor');
+        wp_enqueue_style('wp-codemirror');
 
 
 	}

@@ -124,19 +124,6 @@ function breadcrumb_trail_array_list(){
             'location' => 'is_page',
         );
 
-//        if(is_woocommerce()){
-//
-//            $array_list[10] = array(
-//                'link'=>get_permalink($post->ID),
-//                'title' => get_the_title($post->ID),
-//                'location' => 'is_woocommerce',
-//            );
-//
-//        }
-
-
-
-
     }
 
     else if(is_singular()){
@@ -182,7 +169,7 @@ function breadcrumb_trail_array_list(){
             );
 
 
-        echo '<pre>'.var_export($permalink_items, true).'</pre>';
+        //echo '<pre>'.var_export($permalink_items, true).'</pre>';
 
         if(!empty($permalink_structure) && get_post_type()=='post'){
 
@@ -240,18 +227,13 @@ function breadcrumb_trail_array_list(){
                         'title' => 'Archives',
                         'location' => 'is_singular',
                     );
-                }
-
-
-                elseif ($item == '%category%'){
-
+                }elseif ($item == '%category%'){
 
                     $category_string = get_query_var('category_name');
                     $category_arr = array();
                     $taxonomy = 'category';
 
                     //echo '<pre>'.var_export($category_string, true).'</pre>';
-
 
                     if(strpos( $category_string, '/' )){
 
@@ -285,9 +267,6 @@ function breadcrumb_trail_array_list(){
 
                             $i++;
                         }
-
-
-
                     }else{
 
                         $term_data = get_term_by('slug',$category_string, $taxonomy);
@@ -298,13 +277,11 @@ function breadcrumb_trail_array_list(){
                         if(!empty($term_id)):
                             $term_link = get_term_link( $term_id , $taxonomy);
 
-                            $array_list[1] = array(
+                            $array_list[$item_count] = array(
                                 'link'=> $term_link,
                                 'title' => $term_name,
                                 'location' => 'is_singular',
                             );
-
-
                         endif;
 
                     }
@@ -323,9 +300,7 @@ function breadcrumb_trail_array_list(){
 
 
 
-        }
-        elseif(get_post_type()=='product'){
-
+        }elseif(get_post_type()=='product'){
 
             $shop_page_id = wc_get_page_id('shop');
             $woocommerce_permalinks = get_option('woocommerce_permalinks', '');
@@ -342,6 +317,7 @@ function breadcrumb_trail_array_list(){
 
 
             }
+
             if(in_array('%product_cat%',$permalink_items)){
 
                 $category_string = get_query_var('product_cat');
@@ -434,8 +410,7 @@ function breadcrumb_trail_array_list(){
 //            );
 
 
-        }
-        else{
+        }else{
 
             $array_list[1] = array(
                 'link'=> '#',
@@ -449,17 +424,7 @@ function breadcrumb_trail_array_list(){
                 'location' => 'is_singular',
             );
         }
-
-
-
-
-
-    }
-
-
-
-
-    else if( is_tax()){
+    }else if( is_tax()){
 
         $queried_object = get_queried_object();
         $term_name = $queried_object->name;

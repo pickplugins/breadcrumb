@@ -104,7 +104,7 @@ else
 
 
 
-
+$current_tab = isset($_POST['tab']) ? $_POST['tab'] : 'options';
 
 
 
@@ -114,40 +114,40 @@ $breadcrumb_settings_tab = array();
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'options',
-    'title' => __('<i class="fas fa-laptop-code"></i> Options','breadcrumb'),
+    'title' => sprintf(__('%s Options','related-post'),'<i class="fas fa-laptop-code"></i>'),
     'priority' => 1,
-    'active' => true,
+    'active' => ($current_tab == 'options') ? true : false,
 );
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'style',
-    'title' => __('<i class="fas fa-palette"></i> Style','breadcrumb'),
+    'title' => sprintf(__('%s Style','related-post'),'<i class="fas fa-palette"></i>'),
     'priority' => 2,
-    'active' => false,
+    'active' => ($current_tab == 'style') ? true : false,
 );
 
 $breadcrumb_settings_tab[] = array(
-    'id' => 'shortcodes',
-    'title' => __('<i class="fas fa-qrcode"></i> Shortcodes','breadcrumb'),
-    'priority' => 3,
-    'active' => false,
-);
-
-$breadcrumb_settings_tab[] = array(
-    'id' => 'custom_css',
-    'title' => __('<i class="fas fa-map"></i> Custom CSS','breadcrumb'),
+    'id' => 'custom_scripts',
+    'title' => sprintf(__('%s Custom Scripts','related-post'),'<i class="fas fa-code"></i>'),
     'priority' => 4,
-    'active' => false,
+    'active' => ($current_tab == 'custom_scripts') ? true : false,
 );
+
+$breadcrumb_settings_tab[] = array(
+    'id' => 'help_support',
+    'title' => sprintf(__('%s Help & Support','related-post'),'<i class="fas fa-hands-helping"></i>'),
+    'priority' => 5,
+    'active' => ($current_tab == 'help_support') ? true : false,
+);
+
+
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'buy_pro',
-    'title' => __('<i class="fas fa-map"></i> Help & Support','breadcrumb'),
-    'priority' => 5,
-    'active' => false,
+    'title' => sprintf(__('%s Buy Pro','related-post'),'<i class="fas fa-store"></i>'),
+    'priority' => 8,
+    'active' => ($current_tab == 'buy_pro') ? true : false,
 );
-
-
 
 
 $breadcrumb_settings_tabs = apply_filters('breadcrumb_settings_tabs', $breadcrumb_settings_tab);
@@ -156,6 +156,18 @@ $breadcrumb_settings_tabs = apply_filters('breadcrumb_settings_tabs', $breadcrum
 $tabs_sorted = array();
 foreach ($breadcrumb_settings_tabs as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
 array_multisort($tabs_sorted, SORT_ASC, $breadcrumb_settings_tabs);
+
+
+wp_enqueue_script('jquery');
+wp_enqueue_script('jquery-ui-sortable');
+wp_enqueue_script( 'jquery-ui-core' );
+wp_enqueue_script('jquery-ui-accordion');
+wp_enqueue_style( 'wp-color-picker' );
+wp_enqueue_script('wp-color-picker');
+wp_enqueue_style('font-awesome-5');
+wp_enqueue_style('settings-tabs');
+wp_enqueue_script('settings-tabs');
+
 
 
 ?>
@@ -169,10 +181,11 @@ array_multisort($tabs_sorted, SORT_ASC, $breadcrumb_settings_tabs);
 	<div id="icon-tools" class="icon32"><br></div><?php echo "<h2>".sprintf(__('%s Settings'), breadcrumb_plugin_name )."</h2>";?>
 		<form  method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
 	    <input type="hidden" name="breadcrumb_hidden" value="Y">
+            <input type="hidden" name="tab" value="<?php echo $current_tab; ?>">
 
 
 
-            <div class="settings-tabs vertical">
+            <div class="settings-tabs vertical has-right-panel">
                 <ul class="tab-navs">
                     <?php
                     foreach ($breadcrumb_settings_tabs as $tab){
@@ -187,6 +200,27 @@ array_multisort($tabs_sorted, SORT_ASC, $breadcrumb_settings_tabs);
                     }
                     ?>
                 </ul>
+
+                <div class="settings-tabs-right-panel">
+                    <?php
+                    foreach ($breadcrumb_settings_tabs as $tab) {
+                        $id = $tab['id'];
+                        $active = $tab['active'];
+
+                        ?>
+                        <div class="right-panel-content <?php if($active) echo 'active';?> right-panel-content-<?php echo $id; ?>">
+                            <?php
+
+                            do_action('breadcrumb_settings_tabs_right_panel_'.$id);
+                            ?>
+
+                        </div>
+                        <?php
+
+                    }
+                    ?>
+                </div>
+
                 <?php
                 foreach ($breadcrumb_settings_tabs as $tab){
                     $id = $tab['id'];

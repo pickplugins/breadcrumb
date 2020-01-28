@@ -14,11 +14,47 @@ class class_breadcrumb_shortcodes  {
     public function __construct(){
 
 		add_shortcode( 'breadcrumb', array( $this, 'breadcrumb_display' ) );
+        add_shortcode( 'breadcrumb_new', array( $this, 'breadcrumb_new_display' ) );
+
+
 
     }
-	
 
-	
+
+    public function breadcrumb_new_display($atts, $content = null ){
+
+        $atts = shortcode_atts(
+            array(
+                'themes' => '',
+
+            ), $atts);
+
+        $html = '';
+
+        $themes = isset($atts['themes']) ? $atts['themes'] : '';
+        $breadcrumb_themes = get_option( 'breadcrumb_themes', 'theme5' );
+
+        $breadcrumb_themes = !empty($themes) ? $themes : $breadcrumb_themes;
+
+        include( breadcrumb_plugin_dir . 'templates/breadcrumb/breadcrumb-hook.php');
+
+
+        ob_start();
+
+        ?>
+        <div class="breadcrumb-container <?php echo $breadcrumb_themes; ?>">
+            <?php
+
+            do_action('breadcrumb_main', $atts);
+
+            ?>
+        </div>
+        <?php
+
+
+        return ob_get_clean();
+
+    }
 	
 	public function breadcrumb_display($atts, $content = null ) {
 

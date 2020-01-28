@@ -4,7 +4,7 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.5.3
+	Stable tag: 1.5.4
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,9 @@ use this short-code any where to display breadcrumb
 
 
 == Changelog ==
+
+	= 1.5.4 =
+    * 2020-01-28 - fix - single post permlaink issue fixed
 
 	= 1.5.3 =
     * 03/07/2019 - add - Default text for empty title.

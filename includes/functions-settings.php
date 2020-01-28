@@ -383,105 +383,23 @@ function breadcrumb_settings_tabs_content_style(){
 
 
 
-add_action('breadcrumb_settings_tabs_content_shortcodes','breadcrumb_settings_tabs_content_shortcodes');
-
-function breadcrumb_settings_tabs_content_shortcodes(){
-
-    $settings_tabs_field = new settings_tabs_field();
-
-
-    ?>
-    <div class="section">
-        <div class="section-title">Shortcodes</div>
-        <p class="description section-description">Simply copy these shortcode and user under post or page content</p>
-
-
-        <?php
-        ob_start();
-        ?>
-
-        <div class="copy-to-clipboard">
-            <input type="text" value="[breadcrumb]"> <span class="copied">Copied</span>
-            <p class="description">You can use this shortcode under post content</p>
-        </div>
-
-
-        <div class="copy-to-clipboard">
-            <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[breadcrumb'; echo "]"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
-            <p class="description">PHP Code, you can use under theme .php files.</p>
-        </div>
-
-
-
-        <style type="text/css">
-             .copy-to-clipboard {
-            }
-
-             .copy-to-clipboard .copied {
-                display: none;
-                background: #e5e5e5;
-                padding: 4px 10px;
-                line-height: normal;
-            }
-        </style>
-
-        <script>
-            jQuery(document).ready(function ($) {
-                $(document).on('click', '.copy-to-clipboard input, .copy-to-clipboard textarea', function () {
-                    $(this).focus();
-                    $(this).select();
-                    document.execCommand('copy');
-                    $(this).parent().children('.copied').fadeIn().fadeOut(2000);
-                })
-            })
-        </script>
-        <?php
-        $html = ob_get_clean();
-        $args = array(
-            'id' => 'breadcrumb_shortcodes',
-            'title' => __('Get shortcode', 'breadcrumb'),
-            'details' => '',
-            'type' => 'custom_html',
-            'html' => $html,
-        );
-        $settings_tabs_field->generate_field($args);
 
 
 
 
+add_action('breadcrumb_settings_tabs_content_custom_scripts','breadcrumb_settings_tabs_content_custom_scripts');
 
-
-
-
-
-
-
-
-
-
-
-
-        ?>
-    </div>
-    <?php
-
-}
-
-
-
-
-add_action('breadcrumb_settings_tabs_content_custom_css','breadcrumb_settings_tabs_content_custom_css');
-
-function breadcrumb_settings_tabs_content_custom_css(){
+function breadcrumb_settings_tabs_content_custom_scripts(){
 
     $settings_tabs_field = new settings_tabs_field();
 
     $breadcrumb_custom_css = get_option( 'breadcrumb_custom_css' );
+    $breadcrumb_custom_js = get_option( 'breadcrumb_custom_js' );
 
 
     ?>
     <div class="section">
-        <div class="section-title">Custom CSS</div>
+        <div class="section-title">Custom scripts</div>
         <p class="description section-description">Add your own scripts and style css.</p>
 
         <?php
@@ -499,11 +417,17 @@ function breadcrumb_settings_tabs_content_custom_css(){
         $settings_tabs_field->generate_field($args);
 
 
+        $args = array(
+            'id'		=> 'breadcrumb_custom_js',
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Custom JS','breadcrumb'),
+            'details'	=> __('Add your own JS.','breadcrumb'),
+            'type'		=> 'scripts_js',
+            'value'		=> $breadcrumb_custom_js,
+            'default'		=> '',
+        );
 
-
-
-
-
+        $settings_tabs_field->generate_field($args);
 
 
         ?>
@@ -519,79 +443,383 @@ function breadcrumb_settings_tabs_content_custom_css(){
 
 
 
-add_action('breadcrumb_settings_tabs_content_buy_pro','breadcrumb_settings_tabs_content_buy_pro');
-
-function breadcrumb_settings_tabs_content_buy_pro(){
-
-    $settings_tabs_field = new settings_tabs_field();
-
-    $breadcrumb_custom_css = get_option( 'breadcrumb_custom_css' );
 
 
-    ?>
-    <div class="section">
-        <div class="section-title">Try our premium version</div>
-        <p class="description section-description">If you love our plugin and need some extra feature please buy our pro version.</p>
+add_action('breadcrumb_settings_tabs_content_help_support', 'breadcrumb_settings_tabs_content_help_support');
 
+if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
+    function breadcrumb_settings_tabs_content_help_support($tab){
 
-
-        <?php
-
-        ob_start();
-        ?>
-
-        <h3>Try Pro features</h3>
-        <a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashboard" target="_blank">Buy Now</a>
-        <p class="description"></p>
-
-
-
-        <?php
-
-        $html = ob_get_clean();
-        $args = array(
-            'id' => 'breadcrumb_buy',
-            'title' => __('Buy Premium', 'breadcrumb'),
-            'details' => '',
-            'type' => 'custom_html',
-            'html' => $html,
-        );
-        $settings_tabs_field->generate_field($args);
+        $settings_tabs_field = new settings_tabs_field();
 
         ?>
+        <div class="section">
+            <div class="section-title"><?php echo __('Get support', 'related-post'); ?></div>
+            <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'related-post'); ?></p>
+
+            <?php
 
 
+            ob_start();
+            ?>
+
+            <p><?php echo __('Shortcode for php file', 'related-post'); ?></p>
+            <textarea onclick="this.select()">&#60;?php echo do_shortcode( '&#91;breadcrumb&#93;' ); ?&#62;</textarea>
+            <p class="description" ><?php echo __('Shortcode inside loop by dynamic post id you can use anywhere inside loop on .php files.', 'related-post'); ?></p>
+
+            <p><?php echo __('Short-code for content', 'related-post'); ?></p>
+            <textarea onclick="this.select()">[breadcrumb]</textarea>
+
+            <p class="description"><?php echo __('Short-code inside content for fixed post id you can use anywhere inside content.', 'related-post'); ?></p>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'shortcodes',
+                'parent'		=> 'related_post_settings',
+                'title'		=> __('Shortcodes','related-post'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+            ob_start();
+            ?>
+
+            <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'related-post'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'related-post'); ?></a>
+
+            <p><?php echo __('Read our documentation before asking your question.', 'related-post'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/"><?php echo __('Documentation', 'related-post'); ?></a>
+
+            <p><?php echo __('Watch video tutorials.', 'related-post'); ?></p>
+            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'related-post'); ?></a>
+
+            <ul>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>
+
+            </ul>
+
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'get_support',
+                'parent'		=> 'related_post_settings',
+                'title'		=> __('Ask question','related-post'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ob_start();
+            ?>
+
+            <p class="">We wish your 2 minutes to write your feedback about plugin. give us <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+
+            <a target="_blank" href="https://wordpress.org/support/plugin/breadcrumb/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'reviews',
+                'parent'		=> 'related_post_settings',
+                'title'		=> __('Submit reviews','related-post'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+
+        </div>
         <?php
 
-        ob_start();
-        ?>
 
-        <h3>Documentation</h3>
-        <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/?ref=dashboard" target="_blank">Documentation</a><p class="description">Before asking, submitting reviews please take a look on our documentation, may help your issue fast.</p>
-
-        <h3>Looking for support?</h3>
-        <a class="button" href="https://www.pickplugins.com/forum/?ref=dashboard" target="_blank">Ask Question</a><p class="description">Its free and you can ask any question about our plugins and get support fast.</p>
-
-        <h3>Provide your feedback</h3>
-
-        <a class="button" href="https://wordpress.org/support/plugin/breadcrumb/reviews/?filter=5" target="_blank">Submit Reviews</a> <a class="button" href="https://wordpress.org/support/plugin/breadcrumb/#new-topic-0" target="_blank">Ask wordpress.org</a><p>We spent thousand+ hours to development on this plugin, please submit your reviews wisely.</p><p>If you have any issue with this plugin please submit our forums or contact our support first.</p><p class="description">Your feedback and reviews are most important things to keep our development on track. If you have time please submit us five star <span style="color: orange"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> reviews.</p>
-
-        <?php
-
-        $html = ob_get_clean();
-        $args = array(
-            'id' => 'breadcrumb_support',
-            'title' => __('Get support', 'breadcrumb'),
-            'details' => '',
-            'type' => 'custom_html',
-            'html' => $html,
-        );
-        $settings_tabs_field->generate_field($args);
-
-        ?>
-
-
-    </div>
-    <?php
-
+    }
 }
+
+
+
+
+add_action('breadcrumb_settings_tabs_content_buy_pro', 'breadcrumb_settings_tabs_content_buy_pro');
+
+if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
+    function breadcrumb_settings_tabs_content_buy_pro($tab){
+
+        $settings_tabs_field = new settings_tabs_field();
+
+
+        ?>
+        <div class="section">
+            <div class="section-title"><?php echo __('Get Premium', 'related-post'); ?></div>
+            <p class="description section-description"><?php echo __('Thansk for using our plugin, if you looking for some advance feature please buy premium version.', 'related-post'); ?></p>
+
+            <?php
+
+
+            ob_start();
+            ?>
+
+            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'related-post'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'related-post'); ?></a>
+
+            <h2>See the differences</h2>
+
+            <table class="pro-features">
+                <thead>
+                <tr>
+                    <th class="col-features">Features</th>
+                    <th class="col-free">Free</th>
+                    <th class="col-pro">Premium</th>
+                </tr>
+                </thead>
+
+                <tr>
+                    <td class="col-features">Hide on page by ID</td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Extra ready 10 themes</td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features">Breadcrumb front text</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Breadcrumb separator text</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Display or hide last separator</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Breadcrumb link text limit</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Ending character</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Display "Home" on breadcrumb</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Custom home text</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="col-features">Breadcrumb text font size</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features">Breadcrumb link background color</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features">Breadcrumb link color</td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features">Breadcrumb separator color
+
+                    </td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <th class="col-features">Features</th>
+                    <th class="col-free">Free</th>
+                    <th class="col-pro">Premium</th>
+                </tr>
+                <tr>
+                    <td class="col-features">Buy now</td>
+                    <td> </td>
+                    <td><a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'related-post'); ?></a></td>
+                </tr>
+
+            </table>
+
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'get_pro',
+                'parent'		=> 'related_post_settings',
+                'title'		=> __('Get pro version','related-post'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ?>
+
+
+        </div>
+
+        <style type="text/css">
+            .pro-features{
+                margin: 30px 0;
+                border-collapse: collapse;
+                border: 1px solid #ddd;
+            }
+            .pro-features th{
+                width: 120px;
+                background: #ddd;
+                padding: 10px;
+            }
+            .pro-features tr{
+            }
+            .pro-features td{
+                border-bottom: 1px solid #ddd;
+                padding: 10px 10px;
+                text-align: center;
+            }
+            .pro-features .col-features{
+                width: 230px;
+                text-align: left;
+            }
+
+            .pro-features .col-free{
+            }
+            .pro-features .col-pro{
+            }
+
+            .pro-features i.fas.fa-check {
+                color: #139e3e;
+                font-size: 16px;
+            }
+            .pro-features i.fas.fa-times {
+                color: #f00;
+                font-size: 17px;
+            }
+        </style>
+        <?php
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('breadcrumb_settings_tabs_right_panel_options', 'breadcrumb_settings_tabs_right_panel_options');
+add_action('breadcrumb_settings_tabs_right_panel_style', 'breadcrumb_settings_tabs_right_panel_options');
+add_action('breadcrumb_settings_tabs_right_panel_custom_scripts', 'breadcrumb_settings_tabs_right_panel_options');
+add_action('breadcrumb_settings_tabs_right_panel_help_support', 'breadcrumb_settings_tabs_right_panel_options');
+add_action('breadcrumb_settings_tabs_right_panel_buy_pro', 'breadcrumb_settings_tabs_right_panel_options');
+
+
+
+if(!function_exists('breadcrumb_settings_tabs_right_panel_options')) {
+    function breadcrumb_settings_tabs_right_panel_options($tab){
+
+        ?>
+        <h3>Help & Support</h3>
+        <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'related-post'); ?></p>
+        <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'related-post'); ?></a>
+
+        <p><?php echo __('Read our documentation before asking your question.', 'related-post'); ?></p>
+        <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/"><?php echo __('Documentation', 'related-post'); ?></a>
+
+        <p><?php echo __('Watch video tutorials.', 'related-post'); ?></p>
+        <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'related-post'); ?></a>
+
+        <ul>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>
+
+        </ul>
+
+        <h3>Submit reviews</h3>
+
+        <p class="">We wish your 2 minutes to write your feedback about plugin. give us <br/><span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+
+        <a target="_blank" href="https://wordpress.org/support/plugin/breadcrumb/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
+
+        <?php
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
