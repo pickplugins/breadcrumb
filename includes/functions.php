@@ -694,60 +694,45 @@ function breadcrumb_trail_array_list(){
 
 
 
+add_filter('breadcrumb_link_text', 'breadcrumb_link_text_limit');
+
+function breadcrumb_link_text_limit($string){
+    $breadcrumb_word_char = get_option('breadcrumb_word_char');
+    $breadcrumb_word_char_count = get_option('breadcrumb_word_char_count');
+    $breadcrumb_word_char_end = get_option('breadcrumb_word_char_end');
+
+    $limit_count = !empty($breadcrumb_word_char_count) ? (int) $breadcrumb_word_char_count : 5;
+    $limit_by = $breadcrumb_word_char;
+    $ending= $breadcrumb_word_char_end;
+
+    $string_length = (int) strlen($string);
 
 
+    if($limit_by == 'character'){
 
+        if ($limit_count < $string_length){
+            $string = mb_substr($string, 0, $limit_count);
 
-
-function breadcrumb_shorten_string($string, $limit_by='word', $limit_count = 4, $ending='...'){
-	
-	if(empty($limit_count)){
-		
-		$limit_count = 4;
-		}
-	
-	
-
-		if($limit_by == 'character'){
-
-            if (strlen($string) > $limit_count){
-
-                $stringCut = substr($string, 0, $limit_count);
-                $string = substr($stringCut, 0, strrpos($stringCut, ' '));
-
-                return $string.$ending;
-
-            }
-            else{
-
-                return $string;
-
-            }
-		}else{
-
-            $retval = $string;  //    Just in case of a problem
-            $array = explode(" ", $string);
-            if (count($array)<=$limit_count) {
-                $retval = $string;
-            }
-            else{
-                array_splice($array, $limit_count);
-                $retval = implode(" ", $array).$ending;
-            }
-
-            return $retval;
-
-
+            return $string.$ending;
         }
-		
+        else{
+            return $string;
+        }
+    }elseif($limit_by == 'word'){
 
-		
+        $string = wp_trim_words($string, $limit_count, $ending);
+        return $string;
+    }else{
+        return $string;
     }
-	
-	
 
-	
-	
+
+}
+
+
+
+
+
 	
 	
 	

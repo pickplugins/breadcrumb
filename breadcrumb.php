@@ -3,7 +3,7 @@
 Plugin Name: Breadcrumb
 Plugin URI: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/
 Description: Awesome Breadcrumb for wordpress.
-Version: 1.5.4
+Version: 1.5.5
 WC requires at least: 3.0.0
 WC tested up to: 3.6
 Author: PickPlugins
@@ -23,7 +23,7 @@ class BreadcrumbMain{
 		define('breadcrumb_plugin_url', plugins_url('/', __FILE__)  );
 		define('breadcrumb_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('breadcrumb_plugin_name', 'Breadcrumb' );
-		define('breadcrumb_plugin_version', '1.5.4' );
+		define('breadcrumb_plugin_version', '1.5.5' );
 		define('breadcrumb_customer_type', 'free' );	 // pro & free
 
 
@@ -65,11 +65,6 @@ class BreadcrumbMain{
 	
 	
 	public function _admin_scripts(){
-
-        wp_register_style('codemirror', breadcrumb_plugin_url.'assets/admin/css/codemirror.css');
-        wp_register_script('codemirror', plugins_url( 'assets/admin/js/codemirror.js' , __FILE__ ) , array( 'jquery' ));
-        wp_register_script('codemirror_css', plugins_url( 'assets/admin/js/css.js' , __FILE__ ) , array( 'jquery' ));
-        wp_register_script('codemirror_javascript', plugins_url( 'assets/admin/js/javascript.js' , __FILE__ ) , array( 'jquery' ));
 
         wp_register_script('settings-tabs', plugins_url( 'assets/admin/js/settings-tabs.js' , __FILE__ ) , array( 'jquery' ));
         wp_register_style('settings-tabs', breadcrumb_plugin_url.'assets/admin/css/settings-tabs.css');

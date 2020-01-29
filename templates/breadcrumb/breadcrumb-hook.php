@@ -23,10 +23,12 @@ function breadcrumb_main_items(){
     $breadcrumb_items = apply_filters('breadcrumb_items_array', $breadcrumb_items);
 
     ?>
-    <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+    <ul >
         <?php
 
         $i = 1;
+
+        if(!empty($breadcrumb_items))
         foreach ($breadcrumb_items as $item_index => $item):
 
             do_action('breadcrumb_main_item_loop', $item);
@@ -50,11 +52,14 @@ function breadcrumb_main_item_loop($item){
     $breadcrumb_word_char_end = get_option('breadcrumb_word_char_end');
     $breadcrumb_separator = get_option('breadcrumb_separator','&raquo;');
 
-    $title = !empty($item['title']) ? $item['title'] : __('No title', 'breadcrumb');
-    $title = breadcrumb_shorten_string($title, $breadcrumb_word_char, $breadcrumb_word_char_count, $breadcrumb_word_char_end);
+    $title_original = !empty($item['title']) ? $item['title'] : __('No title', 'breadcrumb');
+    $title = apply_filters('breadcrumb_link_text', $title_original);
+
     $link = isset($item['link']) ? $item['link'] : '';
+    $link = apply_filters('breadcrumb_link_url', $link);
+
     ?>
-    <li ><a title="<?php echo $title; ?>" href="<?php echo $link; ?>"><span><?php echo $title; ?></span></a><span class="separator"><?php echo $breadcrumb_separator; ?></span></li>
+    <li ><a title="<?php echo $title_original; ?>" href="<?php echo $link; ?>"><span><?php echo $title; ?></span></a><span class="separator"><?php echo $breadcrumb_separator; ?></span></li>
     <?php
 
 }
@@ -65,7 +70,14 @@ add_action('breadcrumb_main', 'breadcrumb_main_schema');
 function breadcrumb_main_schema(){
     $breadcrumb_items = breadcrumb_trail_array_list();
 
+    $breadcrumb_items_count = count($breadcrumb_items);
+
+    //echo '<pre>'.var_export($breadcrumb_items_count, true).'</pre>';
+
     ?>
+
+
+
     <script type="application/ld+json">
         {
             "@context": "http://schema.org",
@@ -74,26 +86,35 @@ function breadcrumb_main_schema(){
             [
                 <?php
                 $i = 1;
+                if(!empty($breadcrumb_items))
                 foreach ($breadcrumb_items as $item):
                     $title = !empty($item['title']) ? $item['title'] : __('No title', 'breadcrumb');
                     $link = isset($item['link']) ? $item['link'] : '';
                     ?>
                     {
                         "@type": "ListItem",
-                        "position":<?php echo  $i; ?>,
-                        "item":{
+                        "position":<?php echo $i; ?>,
+                        "item":
+                        {
                             "@id": "<?php echo $link; ?>",
-                            "name": "<?php echo $title; ?>",
-                        },
-                    },
+                            "name": "<?php echo $title; ?>"
+                        }
+                    }<?php if($i < $breadcrumb_items_count) echo ','; ?>
                     <?php
                     $i++;
                 endforeach;
-
                 ?>
             ]
         }
     </script>
+
+
+
+
+
+
+
+
     <?php
 }
 
@@ -171,8 +192,6 @@ function breadcrumb_main_style_css(){
 
 
     <?php
-
-    //echo '<pre>'.var_export($breadcrumb_themes, true).'</pre>';
 
     $themes_css = breadcrumb_themes_css($breadcrumb_themes);
 

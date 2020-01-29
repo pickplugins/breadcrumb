@@ -4,7 +4,7 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.5.4
+	Stable tag: 1.5.5
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,39 +25,39 @@ Breadcrumb is awesome feature for visitors keep track their location, by this pl
 
 <strong>Plugin Features</strong><br />
 
-####Use via short-codes.
+**Use via short-codes**
 
 You can display breadcrumb anywhere via shortcodes.
 
-#### Display anywhere
+**Display anywhere**
 Breadcrumb display on home page, any post type, page, parent pages, author page, archive page, tag page, custom taxonomy page, search page, woocommerce shop, product pages.
 
-#### Custom front text
+**Custom front text**
 
 You can display custom prefix text before breadcrumb start.
 
-#### Custom separator text
+**Custom separator text**
 
 You can set custom separator text as you need and match with your theme. you can also hide the last separator if you want.
 
-#### Limit word link text
+**Limit word link text**
 You can limit word count or character count on link text and use set custom ending text.
 
-#### Hide "Home" text
+**Hide "Home" text**
 
 you can hide or display "Home" elements on breadcrumb
 
-#### Custom font size for link text
+**Custom font size for link text**
 you can set custom font size for link text
 
-#### Container padding margin
+**Container padding margin**
 
 Set custom margin and padding for breadcrumb container.
 
-#### Custom color
+**Custom color**
 you can set custom text color for link text, separator and link background color
 
-#### Override via filter hook
+**Override via filter hook**
 
 You can override breadcrumb element via filter hook.
 
@@ -102,8 +102,19 @@ use this short-code any where to display breadcrumb
 
 == Changelog ==
 
+	= 1.5.5 =
+    * 2020-01-30 - add - added action hook (breadcrumb_main) for breadcrumb area
+    * 2020-01-30 - add - added filter hook breadcrumb_items_array
+    * 2020-01-30 - add - added action hook breadcrumb_main_item_loop
+    * 2020-01-30 - add - added filter hook breadcrumb_link_text
+    * 2020-01-30 - add - added filter hook breadcrumb_link_url
+    * 2020-01-30 - add - added input field for add custom javascripts
+    * 2020-01-30 - add - added schema markup at bottom of breadcrumb.
+
+
+
 	= 1.5.4 =
-    * 2020-01-28 - fix - single post permlaink issue fixed
+    * 2020-01-28 - fix - single post permalink issue fixed
 
 	= 1.5.3 =
     * 03/07/2019 - add - Default text for empty title.
