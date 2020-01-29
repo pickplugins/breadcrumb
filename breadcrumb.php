@@ -33,7 +33,6 @@ class BreadcrumbMain{
 
 		require_once( breadcrumb_plugin_dir . 'includes/themes-css.php');
 		
-		require_once( breadcrumb_plugin_dir . 'includes/class-breadcrumb.php');
 		require_once( breadcrumb_plugin_dir . 'includes/class-shortcodes.php');
 		require_once( breadcrumb_plugin_dir . 'includes/class-settings.php');
 		

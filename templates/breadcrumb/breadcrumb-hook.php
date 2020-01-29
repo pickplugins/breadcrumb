@@ -118,7 +118,6 @@ function breadcrumb_main_style_css(){
 
     $breadcrumb_display_home = get_option('breadcrumb_display_home');
     $breadcrumb_home_text = get_option('breadcrumb_home_text');
-    $breadcrumb_custom_css = get_option('breadcrumb_custom_css');
     $breadcrumb_url_hash = get_option('breadcrumb_url_hash');
 
     $breadcrumb_separator = get_option('breadcrumb_separator','&raquo;');
@@ -162,18 +161,47 @@ function breadcrumb_main_style_css(){
         <?php
         if($breadcrumb_display_last_separator=='no'){
             ?>
-        .breadcrumb-container li:last-child .separator {
-            display: none;
-        }
-        <?php
+            .breadcrumb-container li:last-child .separator {
+                display: none;
+            }
+            <?php
     }
-    echo breadcrumb_custom_css($breadcrumb_themes, $breadcrumb_bg_color);
-    echo $breadcrumb_custom_css; ?>
+     ?>
     </style>
+
+
     <?php
+
+    //echo '<pre>'.var_export($breadcrumb_themes, true).'</pre>';
+
+    $themes_css = breadcrumb_themes_css($breadcrumb_themes);
+
+    echo $themes_css;
+
 
 }
 
 
 
+add_action('breadcrumb_main', 'breadcrumb_main_custom_scripts');
+
+function breadcrumb_main_custom_scripts(){
+
+    $breadcrumb_custom_js = get_option( 'breadcrumb_custom_js' );
+    $breadcrumb_custom_css = get_option('breadcrumb_custom_css');
+
+    ?>
+    <style type="text/css">
+        <?php
+        echo $breadcrumb_custom_css;
+        ?>
+    </style>
+
+    <script>
+        <?php
+        echo $breadcrumb_custom_js;
+        ?>
+    </script>
+    <?php
+}
 
