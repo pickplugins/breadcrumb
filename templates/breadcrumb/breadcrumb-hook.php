@@ -72,7 +72,6 @@ function breadcrumb_main_schema(){
             "@type": "BreadcrumbList",
             "itemListElement":
             [
-
                 <?php
                 $i = 1;
                 foreach ($breadcrumb_items as $item):
@@ -81,12 +80,11 @@ function breadcrumb_main_schema(){
                     ?>
                     {
                         "@type": "ListItem",
-                        "position": <?php echo  $i; ?>,
-                        "item":
-                        {
+                        "position":<?php echo  $i; ?>,
+                        "item":{
                             "@id": "<?php echo $link; ?>",
-                            "name": "<?php echo $title; ?>"
-                        }
+                            "name": "<?php echo $title; ?>",
+                        },
                     },
                     <?php
                     $i++;

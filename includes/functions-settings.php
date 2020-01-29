@@ -163,45 +163,6 @@ function breadcrumb_settings_tabs_content_options(){
         $settings_tabs_field->generate_field($args);
 
 
-
-
-        $args = array(
-            'id'		=> 'breadcrumb_hide_on_pages',
-            //'parent' => 'breadcrumb_options',
-            'title'		=> __('Hide breadcrumb on these pages','breadcrumb'),
-            'details'	=> __('You can hide breadcrumb on these pages.','breadcrumb'),
-            'type'		=> 'select',
-            'multiple'		=> true,
-            'value'		=> $breadcrumb_hide_on_pages,
-            'default'		=> array(),
-            'is_pro'=>true,
-            'pro_text'=>'Only in pro',
-            'args'		=> array(
-                'home'=>__('Homepage','breadcrumb'),
-                'front_page'=>__('Front page','breadcrumb'),
-                'blog_front_page'=>__('Posts page','breadcrumb'),
-
-
-            ),
-        );
-
-        $settings_tabs_field->generate_field($args);
-
-
-        $args = array(
-            'id'		=> 'breadcrumb_hide_on_page_by_id',
-            //'parent' => 'breadcrumb_options',
-            'title'		=> __('Hide on page by ID','breadcrumb'),
-            'details'	=> __('Page ids, use comma separate. ex: 12,15','breadcrumb'),
-            'type'		=> 'text',
-            'is_pro'=>true,
-            'pro_text'=>'Only in pro',
-            'value'		=> $breadcrumb_hide_on_page_by_id,
-            'default'		=> '',
-        );
-
-        $settings_tabs_field->generate_field($args);
-
         $args = array(
             'id'		=> 'breadcrumb_url_hash',
             //'parent' => 'breadcrumb_options',
@@ -267,7 +228,7 @@ function breadcrumb_settings_tabs_content_style(){
             'value'		=> $breadcrumb_themes,
             'default'		=> 'theme5',
             'width'		=> '350px',
-            'args'		=> array(
+            'args'		=> apply_filters('breadcrumb_theme_args', array(
 
                 'theme1'=>array('name'=>'theme1','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme1.png'),
                 'theme2'=>array('name'=>'theme1','thumb'=>breadcrumb_plugin_url.'assets/admin/images/theme2.png'),
@@ -291,7 +252,7 @@ function breadcrumb_settings_tabs_content_style(){
 
 
 
-            ),
+            )),
         );
 
         $settings_tabs_field->generate_field($args);
@@ -463,28 +424,50 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             ob_start();
             ?>
 
-            <p><?php echo __('Shortcode for php file', 'related-post'); ?></p>
-            <textarea onclick="this.select()">&#60;?php echo do_shortcode( '&#91;breadcrumb&#93;' ); ?&#62;</textarea>
-            <p class="description" ><?php echo __('Shortcode inside loop by dynamic post id you can use anywhere inside loop on .php files.', 'related-post'); ?></p>
+            <div class="copy-to-clipboard">
+                <input type="text" value="[breadcrumb]"> <span class="copied">Copied</span>
+                <p class="description">You can use this shortcode under post content</p>
+            </div>
 
-            <p><?php echo __('Short-code for content', 'related-post'); ?></p>
-            <textarea onclick="this.select()">[breadcrumb]</textarea>
 
-            <p class="description"><?php echo __('Short-code inside content for fixed post id you can use anywhere inside content.', 'related-post'); ?></p>
+            <div class="copy-to-clipboard">
+                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[breadcrumb'; echo "]"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
+                <p class="description">PHP Code, you can use under theme .php files.</p>
+            </div>
+
+
+
+            <style type="text/css">
+                .copy-to-clipboard {
+                }
+
+                .copy-to-clipboard .copied {
+                    display: none;
+                    background: #e5e5e5;
+                    padding: 4px 10px;
+                    line-height: normal;
+                }
+            </style>
+
+            <script>
+                jQuery(document).ready(function ($) {
+                    $(document).on('click', '.copy-to-clipboard input, .copy-to-clipboard textarea', function () {
+                        $(this).focus();
+                        $(this).select();
+                        document.execCommand('copy');
+                        $(this).parent().children('.copied').fadeIn().fadeOut(2000);
+                    })
+                })
+            </script>
             <?php
-
             $html = ob_get_clean();
-
             $args = array(
-                'id'		=> 'shortcodes',
-                'parent'		=> 'related_post_settings',
-                'title'		=> __('Shortcodes','related-post'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
-
+                'id' => 'breadcrumb_shortcodes',
+                'title' => __('Get shortcode', 'breadcrumb-pro'),
+                'details' => '',
+                'type' => 'custom_html',
+                'html' => $html,
             );
-
             $settings_tabs_field->generate_field($args);
 
 
