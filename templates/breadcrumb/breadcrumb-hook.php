@@ -22,23 +22,31 @@ function breadcrumb_main_items(){
 
     $breadcrumb_items = apply_filters('breadcrumb_items_array', $breadcrumb_items);
 
-    ?>
-    <ul >
+    if(!empty($breadcrumb_items)):
+        ?>
+        <ul>
         <?php
-
         $i = 1;
-
-        if(!empty($breadcrumb_items))
         foreach ($breadcrumb_items as $item_index => $item):
 
             do_action('breadcrumb_main_item_loop', $item);
 
             $i++;
         endforeach;
-
         ?>
-    </ul>
-    <?php
+        </ul>
+        <?php
+    else:
+        ?>
+        <style type="text/css">
+            .breadcrumb-container{
+                display: none;
+            }
+        </style>
+        <?php
+
+    endif;
+
 }
 
 
