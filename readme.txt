@@ -4,7 +4,7 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.5.5
+	Stable tag: 1.5.6
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,8 +13,6 @@
 == Description ==
 
 Breadcrumb is awesome feature for visitors keep track their location, by this plugin you can display Breadcrumb navigation anywhere your website via short-codes.
-
-
 
 ### Breadcrumb by http://pickplugins.com
 * [Buy Premium &raquo;](https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org)
@@ -26,39 +24,33 @@ Breadcrumb is awesome feature for visitors keep track their location, by this pl
 <strong>Plugin Features</strong><br />
 
 **Use via short-codes**
-
 You can display breadcrumb anywhere via shortcodes.
 
 **Display anywhere**
 Breadcrumb display on home page, any post type, page, parent pages, author page, archive page, tag page, custom taxonomy page, search page, woocommerce shop, product pages.
 
 **Custom front text**
-
 You can display custom prefix text before breadcrumb start.
 
 **Custom separator text**
-
 You can set custom separator text as you need and match with your theme. you can also hide the last separator if you want.
 
 **Limit word link text**
 You can limit word count or character count on link text and use set custom ending text.
 
 **Hide "Home" text**
-
 you can hide or display "Home" elements on breadcrumb
 
 **Custom font size for link text**
 you can set custom font size for link text
 
 **Container padding margin**
-
 Set custom margin and padding for breadcrumb container.
 
 **Custom color**
 you can set custom text color for link text, separator and link background color
 
 **Override via filter hook**
-
 You can override breadcrumb element via filter hook.
 
 
@@ -101,6 +93,9 @@ use this short-code any where to display breadcrumb
 
 
 == Changelog ==
+
+	= 1.5.6 =
+    * 2020-01-30 - add - hide breadcrumb css on empty arguments.
 
 	= 1.5.5 =
     * 2020-01-30 - add - added action hook (breadcrumb_main) for breadcrumb area

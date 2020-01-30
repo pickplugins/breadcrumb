@@ -575,9 +575,20 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
                     <th class="col-pro">Premium</th>
                 </tr>
                 </thead>
+                <tr>
+                    <td class="col-features">Hide on archives</td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features">Hide by post types</td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
 
                 <tr>
-                    <td class="col-features">Hide on page by ID</td>
+                    <td class="col-features">Hide by post ids</td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: breadcrumb\n"
-"POT-Creation-Date: 2020-01-30 04:10+0600\n"
-"PO-Revision-Date: 2020-01-30 04:10+0600\n"
+"POT-Creation-Date: 2020-01-31 01:14+0600\n"
+"PO-Revision-Date: 2020-01-31 01:14+0600\n"
 "Last-Translator: \n"
 "Language-Team: pickplugins\n"
 "Language: en\n"
@@ -215,29 +215,29 @@ msgstr ""
 msgid "Get shortcode"
 msgstr ""
 
-#: functions-settings.php:476 functions-settings.php:766
+#: functions-settings.php:476 functions-settings.php:777
 msgid ""
 "Ask question for free on our forum and get quick reply from our expert team "
 "members."
 msgstr ""
 
-#: functions-settings.php:477 functions-settings.php:767
+#: functions-settings.php:477 functions-settings.php:778
 msgid "Create support ticket"
 msgstr ""
 
-#: functions-settings.php:479 functions-settings.php:769
+#: functions-settings.php:479 functions-settings.php:780
 msgid "Read our documentation before asking your question."
 msgstr ""
 
-#: functions-settings.php:480 functions-settings.php:770
+#: functions-settings.php:480 functions-settings.php:781
 msgid "Documentation"
 msgstr ""
 
-#: functions-settings.php:482 functions-settings.php:772
+#: functions-settings.php:482 functions-settings.php:783
 msgid "Watch video tutorials."
 msgstr ""
 
-#: functions-settings.php:483 functions-settings.php:773
+#: functions-settings.php:483 functions-settings.php:784
 msgid "All tutorials"
 msgstr ""
 
@@ -265,11 +265,11 @@ msgid ""
 "version."
 msgstr ""
 
-#: functions-settings.php:566 functions-settings.php:668
+#: functions-settings.php:566 functions-settings.php:679
 msgid "Buy premium"
 msgstr ""
 
-#: functions-settings.php:682
+#: functions-settings.php:693
 msgid "Get pro version"
 msgstr ""
 
