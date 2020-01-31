@@ -19,16 +19,12 @@ function breadcrumb_settings_tabs_content_options(){
     $breadcrumb_home_text = get_option( 'breadcrumb_home_text' );
     $breadcrumb_url_hash = get_option( 'breadcrumb_url_hash' );
 
-    //$screen = get_current_screen();
-
-
-
     ?>
 
 
     <div class="section">
-        <div class="section-title">General Option</div>
-        <p class="description section-description">Set some basic option to get start.</p>
+        <div class="section-title"><?php echo __('General option','breadcrumb'); ?></div>
+        <p class="description section-description"><?php echo __('Set some basic option to get start.','breadcrumb'); ?></p>
 
         <?php
 
@@ -210,8 +206,8 @@ function breadcrumb_settings_tabs_content_style(){
 
     ?>
     <div class="section">
-        <div class="section-title">Choose style</div>
-        <p class="description section-description">Customize the breadcrumb.</p>
+        <div class="section-title"><?php echo __('Choose style','breadcrumb'); ?></div>
+        <p class="description section-description"><?php echo __('Customize the breadcrumb.','breadcrumb'); ?></p>
 
         <?php
 
@@ -358,8 +354,8 @@ function breadcrumb_settings_tabs_content_custom_scripts(){
 
     ?>
     <div class="section">
-        <div class="section-title">Custom scripts</div>
-        <p class="description section-description">Add your own scripts and style css.</p>
+        <div class="section-title"><?php echo __('Custom scripts','breadcrumb'); ?></div>
+        <p class="description section-description"><?php echo __('Add your own scripts and style css.','breadcrumb'); ?></p>
 
         <?php
 
@@ -413,8 +409,8 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
 
         ?>
         <div class="section">
-            <div class="section-title"><?php echo __('Get support', 'related-post'); ?></div>
-            <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'related-post'); ?></p>
+            <div class="section-title"><?php echo __('Get support', 'breadcrumb'); ?></div>
+            <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'breadcrumb'); ?></p>
 
             <?php
 
@@ -423,14 +419,14 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             ?>
 
             <div class="copy-to-clipboard">
-                <input type="text" value="[breadcrumb]"> <span class="copied">Copied</span>
-                <p class="description">You can use this shortcode under post content</p>
+                <input type="text" value="[breadcrumb]"> <span class="copied"><?php echo __('Copied','breadcrumb'); ?></span>
+                <p class="description"><?php echo __('You can use this shortcode under post content','breadcrumb'); ?></p>
             </div>
 
 
             <div class="copy-to-clipboard">
-                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[breadcrumb'; echo "]"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
-                <p class="description">PHP Code, you can use under theme .php files.</p>
+                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[breadcrumb'; echo "]"; echo '"); ?>'; ?></textarea> <span class="copied"><span class="copied"><?php echo __('Copied','breadcrumb'); ?></span>
+                <p class="description"><?php echo __('PHP Code, you can use under theme .php files.','breadcrumb'); ?></p>
             </div>
 
 
@@ -461,7 +457,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             $html = ob_get_clean();
             $args = array(
                 'id' => 'breadcrumb_shortcodes',
-                'title' => __('Get shortcode', 'breadcrumb-pro'),
+                'title' => __('Get shortcode', 'breadcrumb'),
                 'details' => '',
                 'type' => 'custom_html',
                 'html' => $html,
@@ -473,21 +469,25 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             ob_start();
             ?>
 
-            <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'related-post'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'related-post'); ?></a>
+            <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'breadcrumb'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'breadcrumb'); ?></a>
 
-            <p><?php echo __('Read our documentation before asking your question.', 'related-post'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/"><?php echo __('Documentation', 'related-post'); ?></a>
+            <p><?php echo __('Read our documentation before asking your question.', 'breadcrumb'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/"><?php echo __('Documentation', 'breadcrumb'); ?></a>
 
-            <p><?php echo __('Watch video tutorials.', 'related-post'); ?></p>
-            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'related-post'); ?></a>
+            <p><?php echo __('Watch video tutorials.', 'breadcrumb'); ?></p>
+            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'breadcrumb'); ?></a>
 
             <ul>
-                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb">Install & setup</a></li>
-                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2"> Limit link text</a></li>
-                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3">Customize home text</a></li>
-                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4">Breadcrumb install pro and setup</a></li>
-                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5">Hide breadcrumb on archives</a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><?php echo __('Install & setup','breadcrumb'); ?></a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2"><?php echo __('Limit link text','breadcrumb'); ?></a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3"><?php echo __('Customize home text','breadcrumb'); ?></a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4"><?php echo __('Install pro and setup','breadcrumb'); ?></a> [Premium]</li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5"><?php echo __('Hide on archives','breadcrumb'); ?></a> [Premium]</li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=l1LA5m6HaRQ&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=6"><?php echo __('Hide by post types','breadcrumb'); ?></a> [Premium]</li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7"><?php echo __('Hide by post ids','breadcrumb'); ?></a> [Premium]</li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8"><?php echo __('Change style','breadcrumb'); ?></a></li>
+
             </ul>
 
 
@@ -499,7 +499,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             $args = array(
                 'id'		=> 'get_support',
                 'parent'		=> 'related_post_settings',
-                'title'		=> __('Ask question','related-post'),
+                'title'		=> __('Ask question','breadcrumb'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
                 'html'		=> $html,
@@ -512,9 +512,9 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             ob_start();
             ?>
 
-            <p class="">We wish your 2 minutes to write your feedback about plugin. give us <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+            <p class=""><?php echo __('We wish your 2 minutes to write your feedback about plugin. give us 5 star.','breadcrumb'); ?> <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
 
-            <a target="_blank" href="https://wordpress.org/support/plugin/breadcrumb/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
+            <a target="_blank" href="https://wordpress.org/support/plugin/breadcrumb/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> <?php echo __('Write a review','breadcrumb'); ?></a>
 
 
             <?php
@@ -524,7 +524,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             $args = array(
                 'id'		=> 'reviews',
                 'parent'		=> 'related_post_settings',
-                'title'		=> __('Submit reviews','related-post'),
+                'title'		=> __('Submit reviews','breadcrumb'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
                 'html'		=> $html,
@@ -556,8 +556,8 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
 
         ?>
         <div class="section">
-            <div class="section-title"><?php echo __('Get Premium', 'related-post'); ?></div>
-            <p class="description section-description"><?php echo __('Thansk for using our plugin, if you looking for some advance feature please buy premium version.', 'related-post'); ?></p>
+            <div class="section-title"><?php echo __('Get Premium', 'breadcrumb'); ?></div>
+            <p class="description section-description"><?php echo __('Thanks for using our plugin, if you looking for some advance feature please buy premium version.', 'breadcrumb'); ?></p>
 
             <?php
 
@@ -565,82 +565,82 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
             ob_start();
             ?>
 
-            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'related-post'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'related-post'); ?></a>
+            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'breadcrumb'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'breadcrumb'); ?></a>
 
-            <h2>See the differences</h2>
+            <h2><?php echo __('See the differences','breadcrumb'); ?></h2>
 
             <table class="pro-features">
                 <thead>
                 <tr>
-                    <th class="col-features">Features</th>
-                    <th class="col-free">Free</th>
-                    <th class="col-pro">Premium</th>
+                    <th class="col-features"><?php echo __('Features','breadcrumb'); ?></th>
+                    <th class="col-free"><?php echo __('Free','breadcrumb'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium','breadcrumb'); ?></th>
                 </tr>
                 </thead>
                 <tr>
-                    <td class="col-features">Hide on archives</td>
+                    <td class="col-features"><?php echo __('Hide on archives','breadcrumb'); ?></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features">Hide by post types</td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-features">Hide by post ids</td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features">Extra ready 10 themes</td>
+                    <td class="col-features"><?php echo __('Hide by post types','breadcrumb'); ?></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
 
                 <tr>
-                    <td class="col-features">Breadcrumb front text</td>
+                    <td class="col-features"><?php echo __('Hide by post ids','breadcrumb'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Extra ready 10 themes','breadcrumb'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Breadcrumb front text','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features">Breadcrumb separator text</td>
+                    <td class="col-features"><?php echo __('Breadcrumb separator text','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features">Display or hide last separator</td>
+                    <td class="col-features"><?php echo __('Display or hide last separator','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features">Breadcrumb link text limit</td>
+                    <td class="col-features"><?php echo __('Breadcrumb link text limit','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features">Ending character</td>
+                    <td class="col-features"><?php echo __('Ending character','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features">Display "Home" on breadcrumb</td>
+                    <td class="col-features"><?php echo __('Display "Home" on breadcrumb','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features">Custom home text</td>
+                    <td class="col-features"><?php echo __('Custom home text','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -648,38 +648,36 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
 
 
                 <tr>
-                    <td class="col-features">Breadcrumb text font size</td>
+                    <td class="col-features"><?php echo __('Breadcrumb text font size','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features">Breadcrumb link background color</td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features">Breadcrumb link color</td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features">Breadcrumb separator color
-
-                    </td>
+                    <td class="col-features"><?php echo __('Breadcrumb link background color','breadcrumb'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <th class="col-features">Features</th>
-                    <th class="col-free">Free</th>
-                    <th class="col-pro">Premium</th>
+                    <td class="col-features"><?php echo __('Breadcrumb link color','breadcrumb'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features">Buy now</td>
+                    <td class="col-features"><?php echo __('Breadcrumb separator color','breadcrumb'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <th class="col-features"><?php echo __('Features','breadcrumb'); ?></th>
+                    <th class="col-free"><?php echo __('Free','breadcrumb'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium','breadcrumb'); ?></th>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Buy now','breadcrumb'); ?></td>
                     <td> </td>
-                    <td><a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'related-post'); ?></a></td>
+                    <td><a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'breadcrumb'); ?></a></td>
                 </tr>
 
             </table>
@@ -693,7 +691,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
             $args = array(
                 'id'		=> 'get_pro',
                 'parent'		=> 'related_post_settings',
-                'title'		=> __('Get pro version','related-post'),
+                'title'		=> __('Get pro version','breadcrumb'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
                 'html'		=> $html,
@@ -776,29 +774,31 @@ if(!function_exists('breadcrumb_settings_tabs_right_panel_options')) {
     function breadcrumb_settings_tabs_right_panel_options($tab){
 
         ?>
-        <h3>Help & Support</h3>
-        <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'related-post'); ?></p>
-        <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'related-post'); ?></a>
+        <h3><?php echo __('Help & Support','breadcrumb'); ?></h3>
+        <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'breadcrumb'); ?></p>
+        <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'breadcrumb'); ?></a>
 
-        <p><?php echo __('Read our documentation before asking your question.', 'related-post'); ?></p>
-        <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/"><?php echo __('Documentation', 'related-post'); ?></a>
+        <p><?php echo __('Read our documentation before asking your question.', 'breadcrumb'); ?></p>
+        <a class="button" href="https://www.pickplugins.com/documentation/breadcrumb/"><?php echo __('Documentation', 'breadcrumb'); ?></a>
 
-        <p><?php echo __('Watch video tutorials.', 'related-post'); ?></p>
-        <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'related-post'); ?></a>
+        <p><?php echo __('Watch video tutorials.', 'breadcrumb'); ?></p>
+        <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'breadcrumb'); ?></a>
 
         <ul>
-            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb">Install & setup</a></li>
-            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2"> Limit link text</a></li>
-            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3">Customize home text</a></li>
-            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4">Breadcrumb install pro and setup</a></li>
-            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5">Hide breadcrumb on archives</a></li>
-
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><?php echo __('Install & setup','breadcrumb'); ?></a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2"><?php echo __('Limit link text','breadcrumb'); ?></a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3"><?php echo __('Customize home text','breadcrumb'); ?></a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4"><?php echo __('Install pro and setup','breadcrumb'); ?></a> [Premium]</li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5"><?php echo __('Hide on archives','breadcrumb'); ?></a> [Premium]</li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=l1LA5m6HaRQ&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=6"><?php echo __('Hide by post types','breadcrumb'); ?></a> [Premium]</li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7"><?php echo __('Hide by post ids','breadcrumb'); ?></a> [Premium]</li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8"><?php echo __('Change style','breadcrumb'); ?></a></li>
 
         </ul>
 
-        <h3>Submit reviews</h3>
+        <h3><?php echo __('Submit reviews','breadcrumb'); ?></h3>
 
-        <p class="">We wish your 2 minutes to write your feedback about plugin. give us <br/><span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+        <p class=""><?php echo __('We wish your 2 minutes to write your feedback about plugin. give us','breadcrumb'); ?> <br/><span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
 
         <a target="_blank" href="https://wordpress.org/support/plugin/breadcrumb/reviews/#new-post" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
 

@@ -11,28 +11,28 @@ $breadcrumb_settings_tab = array();
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'options',
-    'title' => sprintf(__('%s Options','related-post'),'<i class="fas fa-laptop-code"></i>'),
+    'title' => sprintf(__('%s Options','breadcrumb'),'<i class="fas fa-laptop-code"></i>'),
     'priority' => 1,
     'active' => ($current_tab == 'options') ? true : false,
 );
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'style',
-    'title' => sprintf(__('%s Style','related-post'),'<i class="fas fa-palette"></i>'),
+    'title' => sprintf(__('%s Style','breadcrumb'),'<i class="fas fa-palette"></i>'),
     'priority' => 2,
     'active' => ($current_tab == 'style') ? true : false,
 );
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'custom_scripts',
-    'title' => sprintf(__('%s Custom Scripts','related-post'),'<i class="fas fa-code"></i>'),
+    'title' => sprintf(__('%s Custom Scripts','breadcrumb'),'<i class="fas fa-code"></i>'),
     'priority' => 4,
     'active' => ($current_tab == 'custom_scripts') ? true : false,
 );
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'help_support',
-    'title' => sprintf(__('%s Help & Support','related-post'),'<i class="fas fa-hands-helping"></i>'),
+    'title' => sprintf(__('%s Help & Support','breadcrumb'),'<i class="fas fa-hands-helping"></i>'),
     'priority' => 5,
     'active' => ($current_tab == 'help_support') ? true : false,
 );
@@ -41,7 +41,7 @@ $breadcrumb_settings_tab[] = array(
 
 $breadcrumb_settings_tab[] = array(
     'id' => 'buy_pro',
-    'title' => sprintf(__('%s Buy Pro','related-post'),'<i class="fas fa-store"></i>'),
+    'title' => sprintf(__('%s Buy Pro','breadcrumb'),'<i class="fas fa-store"></i>'),
     'priority' => 8,
     'active' => ($current_tab == 'buy_pro') ? true : false,
 );
@@ -91,14 +91,14 @@ wp_enqueue_script('settings-tabs');
                     do_action('breadcrumb_settings_save');
 
                     ?>
-                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'related-post' ); ?></strong></p></div>
+                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'breadcrumb' ); ?></strong></p></div>
 
                     <?php
                 }
             }
             ?>
 
-            <div class="settings-tabs-loading" style="">Loading...</div>
+            <div class="settings-tabs-loading" style=""><?php _e('Loading...', 'breadcrumb' ); ?></div>
             <div class="settings-tabs vertical has-right-panel" style="display: none">
                 <ul class="tab-navs">
                     <?php

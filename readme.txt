@@ -4,15 +4,15 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.5.7
+	Stable tag: 1.5.8
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-	Super light weight & easy Breadcrumb for wordpress site
+	Super light weight & easy breadcrumb navigation for wordpress site.
 
 == Description ==
 
-Breadcrumb is awesome feature for visitors keep track their location, by this plugin you can display Breadcrumb navigation anywhere your website via short-codes.
+Breadcrumb is easy and light-weight plugin to display breadcrumb navigation to your WordPress site, easy to customize and change style for breadcrumb. You can use filter hook and action hook to rewrite the plugin without editing the plugin code. This plugin almost working on all WordPress pages like archive, category, tags, custom taxonomies, custom post types, defult post, date, year, month, author and search page to display breadcrumb dynamically.
 
 ### Breadcrumb by http://pickplugins.com
 * [Buy Premium &raquo;](https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org)
@@ -21,7 +21,19 @@ Breadcrumb is awesome feature for visitors keep track their location, by this pl
 * [Documentation &raquo;](https://www.pickplugins.com/documentation/breadcrumb/?ref=wordpress.org)
 
 
-<strong>Plugin Features</strong><br />
+**Tutorials**
+
+* [Install & setup](https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb)
+* [Limit link text](https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2)
+* [Customize home text](https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3)
+* [Change style](https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8)
+* [Install pro and setup (Premium)](https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4)
+* [ Hide on archives (Premium)](https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5)
+* [ Hide by post types (Premium)](https://www.youtube.com/watch?v=l1LA5m6HaRQ&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=6)
+* [Hide by post ids (Premium)](https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7)
+
+
+###Plugin Features
 
 **Use via short-codes**
 You can display breadcrumb anywhere via shortcodes.
@@ -53,12 +65,24 @@ you can set custom text color for link text, separator and link background color
 **Override via filter hook**
 You can override breadcrumb element via filter hook.
 
+### Premium features
 
-<strong>Translation</strong>
+**Hide on archives**
+You can dynamically hide breadcrumb on archive pages like Front page, Home page, Blog, Author, Search, Year, Month, Date, Categories, Tags
+
+**Hide by post types**
+Hide breadcrumb based on different post types.
+
+**Hide by post ids**
+Hide breadcrumb based on post ids, you can use any post ids to hide breadcrumb to hide any specific post, Custom post types also supported.
+
+
+
+###Translation
 
 Plugin is translation ready default default-en.po file inlcuded under following directory
 
-breadcrumb\languages\
+`breadcrumb\languages\`
 
 you can add your own translation , if you need some help please feel free to contact.
 
@@ -93,6 +117,10 @@ use this short-code any where to display breadcrumb
 
 
 == Changelog ==
+
+	= 1.5.8 =
+    * 2020-01-31 - add - added more tutorials
+    * 2020-01-31 - fix - fixed translation issue for some string.
 
 	= 1.5.7 =
     * 2020-01-31 - add - added tutorials link on help section

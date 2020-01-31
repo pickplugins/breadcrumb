@@ -47,7 +47,7 @@ function breadcrumb_trail_array_list(){
 
         $array_list[1] = array(
             'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
-            'title' => __('Blog'),
+            'title' => __('Blog','breadcrumb'),
             'location' => 'is_home',
         );
 
@@ -132,7 +132,7 @@ function breadcrumb_trail_array_list(){
 
             $array_list[1] = array(
                 'link'=> '#',
-                'title' => 'Post preview',
+                'title' => __('Post preview','breadcrumb'),
                 'location' => 'post',
             );
 
@@ -224,7 +224,7 @@ function breadcrumb_trail_array_list(){
 
                     $array_list[$item_count] = array(
                         'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
-                        'title' => 'Archives',
+                        'title' => __('Archives','breadcrumb'),
                         'location' => 'is_singular',
                     );
                 }elseif ($item == '%category%'){
@@ -544,7 +544,7 @@ function breadcrumb_trail_array_list(){
 
         $array_list[1] = array(
             'link'=> '#',
-            'title' => __('Tag'),
+            'title' => __('Tag','breadcrumb'),
             'location' => 'is_tag',
         );
 
@@ -570,7 +570,7 @@ function breadcrumb_trail_array_list(){
 
         $array_list[1] = array(
             'link'=> '#',
-            'title' => __('Author'),
+            'title' => __('Author','breadcrumb'),
             'location' => 'is_author',
         );
 
@@ -596,7 +596,7 @@ function breadcrumb_trail_array_list(){
 
         $array_list[1] = array(
             'link'=>  '#',
-            'title' => 'Search',
+            'title' => __('Search','breadcrumb'),
             'location' => 'is_search',
         );
 
@@ -618,7 +618,7 @@ function breadcrumb_trail_array_list(){
 
         $array_list[1] = array(
             'link'=> '#',
-            'title' => __('Year'),
+            'title' => __('Year','breadcrumb'),
             'location' => 'is_year',
         );
 
@@ -638,7 +638,7 @@ function breadcrumb_trail_array_list(){
             );
         $array_list[1] = array(
             'link'=> '#',
-            'title' => __('Month'),
+            'title' => __('Month','breadcrumb'),
             'location' => 'is_month',
         );
 
@@ -661,7 +661,7 @@ function breadcrumb_trail_array_list(){
 
         $array_list[1] = array(
             'link'=> '#',
-            'title' => __('Date'),
+            'title' => __('Date','breadcrumb'),
             'location' => 'is_date',
         );
 
