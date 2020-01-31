@@ -9,7 +9,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 function breadcrumb_trail_array_list(){
 
     $breadcrumb_home_text = get_option('breadcrumb_home_text', __('Home','breadcrumb'));
-    $breadcrumb_display_home = get_option('breadcrumb_display_home');
+    $breadcrumb_display_home = get_option('breadcrumb_display_home', 'yes');
     $breadcrumb_url_hash = get_option('breadcrumb_url_hash');
 
     $home_url = get_bloginfo('url');

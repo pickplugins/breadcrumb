@@ -482,10 +482,13 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
             <p><?php echo __('Watch video tutorials.', 'related-post'); ?></p>
             <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'related-post'); ?></a>
 
-<!--            <ul>-->
-<!--                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>-->
-<!---->
-<!--            </ul>-->
+            <ul>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb">Install & setup</a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2"> Limit link text</a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3">Customize home text</a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4">Breadcrumb install pro and setup</a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5">Hide breadcrumb on archives</a></li>
+            </ul>
 
 
 
@@ -783,9 +786,15 @@ if(!function_exists('breadcrumb_settings_tabs_right_panel_options')) {
         <p><?php echo __('Watch video tutorials.', 'related-post'); ?></p>
         <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'related-post'); ?></a>
 
-<!--        <ul>-->
-<!--            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>-->
-<!--        </ul>-->
+        <ul>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HTbEIOEcc0c&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb">Install & setup</a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=jc1EzF_5kxs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=2"> Limit link text</a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=91fC7hOl6W0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=3">Customize home text</a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=B3xpe9BZWWI&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=4">Breadcrumb install pro and setup</a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=xdPiM7UlNTs&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=5">Hide breadcrumb on archives</a></li>
+
+
+        </ul>
 
         <h3>Submit reviews</h3>
 
