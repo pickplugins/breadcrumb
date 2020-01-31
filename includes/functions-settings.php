@@ -170,7 +170,77 @@ function breadcrumb_settings_tabs_content_options(){
         $settings_tabs_field->generate_field($args);
 
 
+        $posttypes_array = breadcrumb_posttypes_array();
 
+        //echo '<pre>'.var_export($posttypes_array, ture).'</pre>';
+
+        ob_start();
+        ?>
+
+        <div class="output_posttypes">
+
+            <?php
+
+            foreach ($posttypes_array as $postType => $postTypename):
+                ?>
+                <div class="item">
+                    <p><?php echo $postTypename; ?></p>
+                    <div class="elements">
+                        <span>Front text</span><span>Home</span><span>Post title</span><span>Post author</span><span>Post category</span><span>Post tag</span><span>Post date</span><span>Post month</span><span>Post year</span>
+                    </div>
+                    <div class="active-elements">
+                        <div class="element expandable">
+                            <div class="element-title header">Front text</div>
+                            <div class="element-options options">
+
+                                Hello options
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            endforeach;
+
+            ?>
+
+        </div>
+
+        <style type="text/css">
+            .output_posttypes{}
+            .output_posttypes .item{}
+            .output_posttypes .elements{}
+            .output_posttypes .elements span{
+                display: inline-block;
+                padding: 2px 10px;
+                margin: 5px 5px 5px 0;
+                background: #eaeaeabf;
+                cursor: pointer;
+                border-radius: 3px;
+                border: 1px solid #a7a7a7;
+            }
+            .output_posttypes .elements span:hover{
+                background: #dadada;
+            }
+
+        </style>
+
+        <?php
+
+        $html = ob_get_clean();
+
+        $args = array(
+            'id'		=> 'output_posttypes_args',
+//            'parent'		=> 'related_post_settings',
+            'title'		=> __('Post types','breadcrumb'),
+            'details'	=> '',
+            'type'		=> 'custom_html',
+            'html'		=> $html,
+
+        );
+
+        $settings_tabs_field->generate_field($args);
 
 
         ?>
@@ -498,7 +568,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
 
             $args = array(
                 'id'		=> 'get_support',
-                'parent'		=> 'related_post_settings',
+//                'parent'		=> 'related_post_settings',
                 'title'		=> __('Ask question','breadcrumb'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
@@ -523,7 +593,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
 
             $args = array(
                 'id'		=> 'reviews',
-                'parent'		=> 'related_post_settings',
+//                'parent'		=> 'related_post_settings',
                 'title'		=> __('Submit reviews','breadcrumb'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
@@ -690,7 +760,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
 
             $args = array(
                 'id'		=> 'get_pro',
-                'parent'		=> 'related_post_settings',
+//                'parent'		=> 'related_post_settings',
                 'title'		=> __('Get pro version','breadcrumb'),
                 'details'	=> '',
                 'type'		=> 'custom_html',

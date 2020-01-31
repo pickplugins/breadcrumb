@@ -733,6 +733,21 @@ function breadcrumb_link_text_limit($string){
 
 
 
-	
+function breadcrumb_posttypes_array(){
+
+    $post_types_array = array();
+    global $wp_post_types;
+
+    $post_types_all = get_post_types( '', 'names' );
+    foreach ( $post_types_all as $post_type ) {
+
+
+        $obj = $wp_post_types[$post_type];
+        $post_types_array[$post_type] = $obj->labels->singular_name;
+    }
+
+
+    return $post_types_array;
+}
 	
 	
