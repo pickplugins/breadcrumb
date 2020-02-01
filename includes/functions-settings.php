@@ -35,7 +35,7 @@ function breadcrumb_settings_tabs_content_options(){
             'details'	=> __('Display custom text before breadcrumb.','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_text,
-            'default'		=> __('You are here', 'breadcrumb'),
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -48,7 +48,7 @@ function breadcrumb_settings_tabs_content_options(){
             'details'	=> __('You can display custom separator. ex: <code>&raquo;</code>','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_separator,
-            'default'		=> '&raquo;',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -105,7 +105,7 @@ function breadcrumb_settings_tabs_content_options(){
             'details'	=> __('Set custom limit value, number only.','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_word_char_count,
-            'default'		=> '5',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -117,7 +117,7 @@ function breadcrumb_settings_tabs_content_options(){
             'details'	=> __('Set custom Ending character, ex: ...','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_word_char_end,
-            'default'		=> '...',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -151,7 +151,7 @@ function breadcrumb_settings_tabs_content_options(){
             'details'	=> __('You can set custom text for "Home"','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_home_text,
-            'default'		=> __('Home','breadcrumb'),
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -164,7 +164,7 @@ function breadcrumb_settings_tabs_content_options(){
             'details'	=> __('If you want to keep # on current url, otherwise keep empty','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_url_hash,
-            'default'		=> '#',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -173,6 +173,55 @@ function breadcrumb_settings_tabs_content_options(){
         $posttypes_array = breadcrumb_posttypes_array();
 
         //echo '<pre>'.var_export($posttypes_array, ture).'</pre>';
+
+        $breadcrumb_tags = breadcrumb_tags();
+        $breadcrumb_tag_options = array();
+
+        foreach ($breadcrumb_tags as $tagIndex => $tag):
+
+            ob_start();
+
+            do_action('breadcrumb_tag_options_'.$tagIndex);
+
+            $breadcrumb_tag_options[$tagIndex] = ob_get_clean();
+
+        endforeach;
+
+        $breadcrumb_tag_options = json_encode($breadcrumb_tag_options);
+
+        ?>
+        <script>
+            jQuery(document).ready(function($){
+                breadcrumb_tag_options = <?php echo $breadcrumb_tag_options; ?>;
+
+                //console.log(breadcrumb_tag_options.front_text);
+
+
+                $(document).on('click','.breadcrumb-tags span',function(){
+                    tag_id = $(this).attr('tag_id');
+                    input_name = $(this).attr('input_name');
+
+                    tag_options_html = breadcrumb_tag_options[tag_id]
+                    var res = tag_options_html.replace("{input_name}", input_name);
+
+                    $(this).parent().parent().children('.elements').append(res);
+
+                })
+            })
+
+
+        </script>
+        <?php
+
+        $breadcrumb_options = get_option('breadcrumb_options');
+
+
+        $permalinks = isset($breadcrumb_options['permalinks']) ? $breadcrumb_options['permalinks'] : array();
+
+        //echo '<pre>'.var_export($permalinks, ture).'</pre>';
+
+
+
 
         ob_start();
         ?>
@@ -183,21 +232,41 @@ function breadcrumb_settings_tabs_content_options(){
 
             foreach ($posttypes_array as $postType => $postTypename):
                 ?>
+
+
                 <div class="item">
                     <p><?php echo $postTypename; ?></p>
-                    <div class="elements">
-                        <span>Front text</span><span>Home</span><span>Post title</span><span>Post author</span><span>Post category</span><span>Post tag</span><span>Post date</span><span>Post month</span><span>Post year</span>
+                    <div class="breadcrumb-tags">
+                        <?php
+
+                        if(!empty($breadcrumb_tags))
+                        foreach ($breadcrumb_tags as $tag_id => $tag):
+                            $tag_name = isset($tag['name']) ? $tag['name'] : '';
+                            $input_name = 'breadcrumb_options[permalinks]'.'['.$postType.']';
+
+                            ?>
+                            <span input_name="<?php echo $input_name; ?>" tag_id="<?php echo $tag_id; ?>"><?php echo $tag_name; ?></span>
+                            <?php
+                        endforeach;
+                        ?>
                     </div>
-                    <div class="active-elements">
-                        <div class="element expandable">
-                            <div class="element-title header">Front text</div>
-                            <div class="element-options options">
+                    <div class="elements expandable sortable">
 
-                                Hello options
+                        <?php
+                        $post_permalinks = isset($permalinks[$postType]) ? $permalinks[$postType] : array();
+                        $args = array('input_name'=> 'breadcrumb_options[permalinks]'.'['.$postType.']');
+                        //echo '<pre>'.var_export($post_permalinks, ture).'</pre>';
+
+                        if(!empty($post_permalinks))
+                        foreach ($post_permalinks as $permalink_tag => $permalink){
+                            do_action('breadcrumb_tag_options_'.$permalink_tag, $args);
+                        }
 
 
-                            </div>
-                        </div>
+
+
+                        ?>
+
                     </div>
                 </div>
                 <?php
@@ -210,8 +279,8 @@ function breadcrumb_settings_tabs_content_options(){
         <style type="text/css">
             .output_posttypes{}
             .output_posttypes .item{}
-            .output_posttypes .elements{}
-            .output_posttypes .elements span{
+            .output_posttypes .breadcrumb-tags{}
+            .output_posttypes .breadcrumb-tags span{
                 display: inline-block;
                 padding: 2px 10px;
                 margin: 5px 5px 5px 0;
@@ -220,7 +289,7 @@ function breadcrumb_settings_tabs_content_options(){
                 border-radius: 3px;
                 border: 1px solid #a7a7a7;
             }
-            .output_posttypes .elements span:hover{
+            .output_posttypes .breadcrumb-tags span:hover{
                 background: #dadada;
             }
 
@@ -240,7 +309,7 @@ function breadcrumb_settings_tabs_content_options(){
 
         );
 
-        $settings_tabs_field->generate_field($args);
+        //$settings_tabs_field->generate_field($args);
 
 
         ?>
@@ -328,7 +397,7 @@ function breadcrumb_settings_tabs_content_style(){
             'details'	=> __('Set custom font size','breadcrumb'),
             'type'		=> 'text',
             'value'		=> $breadcrumb_font_size,
-            'default'		=> '14px',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -341,7 +410,7 @@ function breadcrumb_settings_tabs_content_style(){
             'type'		=> 'text',
             'placeholder'		=> '10px',
             'value'		=> $breadcrumb_padding,
-            'default'		=> '10px',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -356,7 +425,7 @@ function breadcrumb_settings_tabs_content_style(){
             'type'		=> 'text',
             'placeholder'		=> '10px',
             'value'		=> $breadcrumb_margin,
-            'default'		=> '10px',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -368,7 +437,7 @@ function breadcrumb_settings_tabs_content_style(){
             'details'	=> __('Choose custom background color for links','breadcrumb'),
             'type'		=> 'colorpicker',
             'value'		=> $breadcrumb_bg_color,
-            'default'		=> '#278df4',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -380,7 +449,7 @@ function breadcrumb_settings_tabs_content_style(){
             'details'	=> __('Choose custom link color','breadcrumb'),
             'type'		=> 'colorpicker',
             'value'		=> $breadcrumb_link_color,
-            'default'		=> '#ffffff',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -393,7 +462,7 @@ function breadcrumb_settings_tabs_content_style(){
             'details'	=> __('Choose custom separator color','breadcrumb'),
             'type'		=> 'colorpicker',
             'value'		=> $breadcrumb_separator_color,
-            'default'		=> '#727272',
+            'default'		=> '',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -889,6 +958,9 @@ add_action('breadcrumb_settings_save', 'breadcrumb_settings_save');
 if(!function_exists('breadcrumb_settings_save')) {
     function breadcrumb_settings_save(){
 
+        $breadcrumb_options = isset($_POST['breadcrumb_options']) ? stripslashes_deep($_POST['breadcrumb_options']) : array();
+        update_option('breadcrumb_options', $breadcrumb_options);
+
         $breadcrumb_text = sanitize_text_field($_POST['breadcrumb_text']);
         update_option('breadcrumb_text', $breadcrumb_text);
 
@@ -944,6 +1016,8 @@ if(!function_exists('breadcrumb_settings_save')) {
 
         $breadcrumb_custom_js = stripslashes_deep($_POST['breadcrumb_custom_js']);
         update_option('breadcrumb_custom_js', $breadcrumb_custom_js);
+
+
 
 
     }

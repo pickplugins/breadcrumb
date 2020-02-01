@@ -6,34 +6,19 @@ add_action('breadcrumb_main', 'breadcrumb_main_items');
 
 function breadcrumb_main_items(){
     $breadcrumb_items = breadcrumb_trail_array_list();
-    $breadcrumb_text = get_option('breadcrumb_text', __('You are here','breadcrumb'));
-
-    if(!empty($breadcrumb_text)){
-
-        $array_list[0] = array(
-            'link'=> '#',
-            'title' => $breadcrumb_text,
-            'location' => 'is_singular',
-        );
-
-        $breadcrumb_items = array_merge($array_list, $breadcrumb_items);
-
-    }
 
     $breadcrumb_items = apply_filters('breadcrumb_items_array', $breadcrumb_items);
+
+    //echo '<pre>'.var_export($breadcrumb_items, true).'</pre>';
 
     if(!empty($breadcrumb_items)):
         ?>
         <ul>
-        <?php
-        $i = 1;
-        foreach ($breadcrumb_items as $item_index => $item):
-
-            do_action('breadcrumb_main_item_loop', $item);
-
-            $i++;
-        endforeach;
-        ?>
+            <?php
+            foreach ($breadcrumb_items as $item_index => $item):
+                do_action('breadcrumb_main_item_loop', $item);
+            endforeach;
+            ?>
         </ul>
         <?php
     else:

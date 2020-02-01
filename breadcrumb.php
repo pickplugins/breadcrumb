@@ -3,7 +3,7 @@
 Plugin Name: Breadcrumb
 Plugin URI: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/
 Description: Awesome Breadcrumb for wordpress.
-Version: 1.5.8
+Version: 1.5.9
 WC requires at least: 3.0.0
 WC tested up to: 3.6
 Author: PickPlugins
@@ -23,7 +23,7 @@ class BreadcrumbMain{
 		define('breadcrumb_plugin_url', plugins_url('/', __FILE__)  );
 		define('breadcrumb_plugin_dir', plugin_dir_path( __FILE__ ) );
 		define('breadcrumb_plugin_name', 'Breadcrumb' );
-		define('breadcrumb_plugin_version', '1.5.8' );
+		define('breadcrumb_plugin_version', '1.5.9' );
 
 
         require_once( breadcrumb_plugin_dir . 'includes/class-settings-tabs.php');
@@ -34,9 +34,10 @@ class BreadcrumbMain{
 		
 		require_once( breadcrumb_plugin_dir . 'includes/class-shortcodes.php');
 		require_once( breadcrumb_plugin_dir . 'includes/class-settings.php');
-		
-		
-		add_action( 'wp_enqueue_scripts', array( $this, '_front_scripts' ) );
+        require_once( breadcrumb_plugin_dir . 'includes/functions-hooks.php');
+
+
+        add_action( 'wp_enqueue_scripts', array( $this, '_front_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, '_admin_scripts' ) );
 		add_filter('widget_text', 'do_shortcode');
 		add_action( 'plugins_loaded', array( $this, 'breadcrumb_load_textdomain' ));

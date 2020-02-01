@@ -2,13 +2,454 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+function breadcrumb_tags(){
 
+    $tags['front_text'] = array('name' => __('Front text','breadcrumb'));
+    $tags['home'] = array('name' => __('Home','breadcrumb'));
+    $tags['post_title'] = array('name' => __('Post title','breadcrumb'));
+    $tags['post_author'] = array('name' => __('Post author','breadcrumb'));
+    $tags['post_category'] = array('name' => __('Post category','breadcrumb'));
+    $tags['post_tag'] = array('name' => __('Post tag','breadcrumb'));
+    $tags['post_date'] = array('name' => __('Post date','breadcrumb'));
+    $tags['post_month'] = array('name' => __('Post month','breadcrumb'));
+    $tags['post_year'] = array('name' => __('Post year','breadcrumb'));
+    $tags['post_id'] = array('name' => __('Post ID','breadcrumb'));
+
+
+    return apply_filters('breadcrumb_tags', $tags);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+add_action('breadcrumb_tag_options_post_id', 'breadcrumb_tag_options_post_id');
+
+function breadcrumb_tag_options_post_id($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post ID','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_id]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_post_year', 'breadcrumb_tag_options_post_year');
+
+function breadcrumb_tag_options_post_year($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post year','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_year]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_post_month', 'breadcrumb_tag_options_post_month');
+
+function breadcrumb_tag_options_post_month($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post month','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_month]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+add_action('breadcrumb_tag_options_post_date', 'breadcrumb_tag_options_post_date');
+
+function breadcrumb_tag_options_post_date($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post date','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_date]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+add_action('breadcrumb_tag_options_post_tag', 'breadcrumb_tag_options_post_tag');
+
+function breadcrumb_tag_options_post_tag($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post tag','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_tag]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+add_action('breadcrumb_tag_options_front_text', 'breadcrumb_tag_options_front_text');
+
+function breadcrumb_tag_options_front_text($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Front text','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[front_text]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+
+add_action('breadcrumb_tag_options_home', 'breadcrumb_tag_options_home');
+
+function breadcrumb_tag_options_home($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Home','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[home]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+add_action('breadcrumb_tag_options_post_title', 'breadcrumb_tag_options_post_title');
+
+function breadcrumb_tag_options_post_title($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post title','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_title]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_post_author', 'breadcrumb_tag_options_post_author');
+
+function breadcrumb_tag_options_post_author($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post author','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_author]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+add_action('breadcrumb_tag_options_post_category', 'breadcrumb_tag_options_post_category');
+
+function breadcrumb_tag_options_post_category($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Post category','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[post_category]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
 
 
 
 function breadcrumb_trail_array_list(){
 
     $breadcrumb_home_text = get_option('breadcrumb_home_text', __('Home','breadcrumb'));
+    $breadcrumb_text = get_option('breadcrumb_text', __('You are here','breadcrumb'));
+
     $breadcrumb_display_home = get_option('breadcrumb_display_home', 'yes');
     $breadcrumb_url_hash = get_option('breadcrumb_url_hash');
 
@@ -17,39 +458,43 @@ function breadcrumb_trail_array_list(){
     $array_list = array();
     $active_plugins = get_option('active_plugins');
 
+
+    $array_list[] = array(
+        'link'=> '#',
+        'title' => $breadcrumb_text,
+    );
+
+
+
     if(is_front_page() && is_home()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_front_page is_home',
 
             );
 
     }elseif( is_front_page()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_front_page',
             );
 
     }elseif( is_home()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_home',
             );
 
-        $array_list[1] = array(
-            'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
-            'title' => __('Blog','breadcrumb'),
-            'location' => 'is_home',
-        );
+            $array_list[] = array(
+                'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
+                'title' => __('Blog','breadcrumb'),
+            );
 
 
     }else if(is_attachment()){
@@ -58,71 +503,64 @@ function breadcrumb_trail_array_list(){
         $current_attachment_link = get_attachment_link($current_attachment_id);
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_home',
             );
 
-        $array_list[1] = array(
-            'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $current_attachment_link,
-            'title' => get_the_title(),
-            'location' => 'is_attachment',
-        );
+            $array_list[] = array(
+                'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $current_attachment_link,
+                'title' => get_the_title(),
+            );
 
     }
     else if(in_array( 'woocommerce/woocommerce.php', (array) $active_plugins ) && is_woocommerce() && is_shop()){
         $shop_page_id = wc_get_page_id('shop');
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_page',
             );
 
-        $array_list[1] = array(
-            'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($shop_page_id),
-            'title' => get_the_title($shop_page_id),
-            'location' => 'is_page',
-        );
+            $array_list[] = array(
+                'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($shop_page_id),
+                'title' => get_the_title($shop_page_id),
+            );
     }
 
 
     else if(is_page()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_page',
             );
 
 
-        global $post;
-        $home = get_page(get_option('page_on_front'));
+            global $post;
+            $home = get_page(get_option('page_on_front'));
 
-        $j = 1;
+            $j = 2;
 
-        for ($i = count($post->ancestors)-1; $i >= 0; $i--) {
-            if (($home->ID) != ($post->ancestors[$i])){
+            for ($i = count($post->ancestors)-1; $i >= 0; $i--) {
+                if (($home->ID) != ($post->ancestors[$i])){
 
-                $array_list[$j] = array(
-                    'link'=>get_permalink($post->ancestors[$i]),
-                    'title' => get_the_title($post->ancestors[$i]),
-                    'location' => 'is_page',
-                );
+                    $array_list[] = array(
+                        'link'=>get_permalink($post->ancestors[$i]),
+                        'title' => get_the_title($post->ancestors[$i]),
+                    );
+                }
+
+                $j++;
             }
 
-            $j++;
-        }
 
-
-        $array_list[$j] = array(
-            'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash :  get_permalink($post->ID),
-            'title' => get_the_title($post->ID),
-            'location' => 'is_page',
-        );
+            $array_list[] = array(
+                'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash :  get_permalink($post->ID),
+                'title' => get_the_title($post->ID),
+            );
 
     }
 
@@ -130,10 +568,9 @@ function breadcrumb_trail_array_list(){
 
         if ( is_preview() ) {
 
-            $array_list[1] = array(
+            $array_list[] = array(
                 'link'=> '#',
                 'title' => __('Post preview','breadcrumb'),
-                'location' => 'post',
             );
 
 
@@ -162,10 +599,9 @@ function breadcrumb_trail_array_list(){
 
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_singular',
             );
 
 
@@ -173,59 +609,52 @@ function breadcrumb_trail_array_list(){
 
         if(!empty($permalink_structure) && get_post_type()=='post'){
 
-            $item_count = 1;
+            $item_count = 2;
             foreach ($permalink_items as $item):
 
 
                 if($item == '%year%'){
 
-                    $array_list[$item_count] = array(
+                    $array_list[] = array(
                         'link'=> $get_year_link,
                         'title' => $post_date_year,
-                        'location' => 'is_singular',
                     );
 
                 }elseif ($item == '%monthnum%'){
 
-                    $array_list[$item_count] = array(
+                    $array_list[] = array(
                         'link'=> $get_month_link,
                         'title' => $post_date_month,
-                        'location' => 'is_singular',
                     );
                 }elseif ($item == '%day%'){
 
-                    $array_list[$item_count] = array(
+                    $array_list[] = array(
                         'link'=> $get_day_link,
                         'title' => $post_date_day,
-                        'location' => 'is_singular',
                     );
                 }elseif ($item == '%author%'){
 
-                    $array_list[1] = array(
+                    $array_list[] = array(
                         'link'=> $author_posts_url,
                         'title' => $author_name,
-                        'location' => 'is_singular',
                     );
                 }elseif ($item == '%post_id%'){
 
-                    $array_list[$item_count] = array(
+                    $array_list[] = array(
                         'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
                         'title' => get_the_title($post->ID),
-                        'location' => 'is_singular',
                     );
                 }elseif ($item == '%postname%'){
 
-                    $array_list[$item_count] = array(
+                    $array_list[] = array(
                         'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
                         'title' => get_the_title($post->ID),
-                        'location' => 'is_singular',
                     );
                 }elseif ($item == 'archives'){
 
-                    $array_list[$item_count] = array(
+                    $array_list[] = array(
                         'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
                         'title' => __('Archives','breadcrumb'),
-                        'location' => 'is_singular',
                     );
                 }elseif ($item == '%category%'){
 
@@ -248,6 +677,7 @@ function breadcrumb_trail_array_list(){
                         $term_link = get_term_link( $term_id , $taxonomy);
 
 
+
                         $parents_id  = get_ancestors( $term_id, $taxonomy );
 
                         $parents_id = array_reverse($parents_id);
@@ -258,15 +688,20 @@ function breadcrumb_trail_array_list(){
                             $parent_term_link = get_term_link( $id , $taxonomy);
                             $paren_term_name = get_term_by('id', $id, $taxonomy);
 
-                            $array_list[$i] = array(
+                            $array_list[] = array(
                                 'link'=> $parent_term_link,
                                 'title' => $paren_term_name->name,
-                                'location' => 'is_singular',
                             );
 
 
                             $i++;
                         }
+
+                        $array_list[] = array(
+                            'link'=> $term_link,
+                            'title' => $term_name,
+                        );
+
                     }else{
 
                         $term_data = get_term_by('slug',$category_string, $taxonomy);
@@ -277,10 +712,9 @@ function breadcrumb_trail_array_list(){
                         if(!empty($term_id)):
                             $term_link = get_term_link( $term_id , $taxonomy);
 
-                            $array_list[$item_count] = array(
+                            $array_list[] = array(
                                 'link'=> $term_link,
                                 'title' => $term_name,
-                                'location' => 'is_singular',
                             );
                         endif;
 
@@ -309,10 +743,9 @@ function breadcrumb_trail_array_list(){
 
             if(in_array('shop',$permalink_items)){
 
-                $array_list[1] = array(
+                $array_list[] = array(
                     'link'=> get_permalink($shop_page_id),
                     'title' => get_the_title($shop_page_id),
-                    'location' => 'product',
                 );
 
 
@@ -342,26 +775,24 @@ function breadcrumb_trail_array_list(){
 
                     $parents_id = array_reverse($parents_id);
 
-                    $i = 2;
+                    $i = 3;
                     foreach($parents_id as $id){
 
                         $parent_term_link = get_term_link( $id , $taxonomy);
                         $paren_term_name = get_term_by('id', $id, $taxonomy);
 
-                        $array_list[$i] = array(
+                        $array_list[] = array(
                             'link'=> $parent_term_link,
                             'title' => $paren_term_name->name,
-                            'location' => 'is_singular',
                         );
 
 
                         $i++;
                     }
 
-                    $array_list[$i] = array(
+                    $array_list[] = array(
                         'link'=> $term_link,
                         'title' => $term_name,
-                        'location' => 'is_singular',
                     );
 
                 }else{
@@ -374,16 +805,14 @@ function breadcrumb_trail_array_list(){
                     if(!empty($term_id)):
                         $term_link = get_term_link( $term_id , $taxonomy);
 
-                        $array_list[2] = array(
+                        $array_list[] = array(
                             'link'=> $term_link,
                             'title' => $term_name,
-                            'location' => 'is_singular',
                         );
 
-                        $array_list[3] = array(
+                        $array_list[] = array(
                             'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
                             'title' => get_the_title($post->ID),
-                            'location' => 'is_singular',
                         );
                     endif;
 
@@ -395,10 +824,9 @@ function breadcrumb_trail_array_list(){
             }
 
             $array_list_count = count($array_list);
-            $array_list[$array_list_count] = array(
+            $array_list[] = array(
                 'link'=>!empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
                 'title' => get_the_title($post->ID),
-                'location' => 'is_singular',
             );
 
 
@@ -406,22 +834,19 @@ function breadcrumb_trail_array_list(){
 //            $array_list[3] = array(
 //                'link'=>get_permalink($post->ID),
 //                'title' => get_the_title($post->ID),
-//                'location' => 'is_singular',
 //            );
 
 
         }else{
 
-            $array_list[1] = array(
+            $array_list[] = array(
                 'link'=> '#',
                 'title' => get_post_type(),
-                'location' => 'is_singular',
             );
 
-            $array_list[2] = array(
+            $array_list[] = array(
                 'link'=>!empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_permalink($post->ID),
                 'title' => get_the_title($post->ID),
-                'location' => 'is_singular',
             );
         }
     }else if( is_tax()){
@@ -437,32 +862,29 @@ function breadcrumb_trail_array_list(){
         $parents_id = array_reverse($parents_id);
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_tax',
             );
 
-        $i = 1;
+        $i = 2;
         foreach($parents_id as $id){
 
             $parent_term_link = get_term_link( $id , $taxonomy);
             $paren_term_name = get_term_by('id', $id, $taxonomy);
 
-            $array_list[$i] = array(
+            $array_list[] = array(
                 'link'=> $parent_term_link,
                 'title' => $paren_term_name->name,
-                'location' => 'is_tax',
             );
 
 
             $i++;
         }
 
-        $array_list[$i] = array(
+        $array_list[] = array(
             'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $term_link,
             'title' => $term_name,
-            'location' => 'is_tax',
         );
 
 
@@ -484,39 +906,35 @@ function breadcrumb_trail_array_list(){
         $parents_id = array_reverse($parents_id);
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_category',
             );
 
-        $array_list[1] = array(
+        $array_list[] = array(
             'link'=> '#',
             'title' => $taxonomy,
-            'location' => 'is_category',
         );
 
 
-        $i = 2;
+        $i = 3;
         foreach($parents_id as $id){
 
             $parent_term_link = get_term_link( $id , $taxonomy);
             $paren_term_name = get_term_by('id', $id, $taxonomy);
 
-            $array_list[$i] = array(
+            $array_list[] = array(
                 'link'=> $parent_term_link,
                 'title' => $paren_term_name->name,
-                'location' => 'is_category',
             );
 
 
             $i++;
         }
 
-        $array_list[$i] = array(
+        $array_list[] = array(
             'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $term_link,
             'title' => $term_name,
-            'location' => 'is_category',
         );
 
 
@@ -536,23 +954,20 @@ function breadcrumb_trail_array_list(){
         $current_tag_link = get_tag_link($current_tag_id);;
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_tag',
             );
 
-        $array_list[1] = array(
+        $array_list[] = array(
             'link'=> '#',
             'title' => __('Tag','breadcrumb'),
-            'location' => 'is_tag',
         );
 
 
-        $array_list[2] = array(
+        $array_list[] = array(
             'link'=>  !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $current_tag_link,
             'title' => $current_tag_name,
-            'location' => 'is_tag',
         );
     }
 
@@ -561,24 +976,21 @@ function breadcrumb_trail_array_list(){
     else if(is_author()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_author',
             );
 
 
-        $array_list[1] = array(
-            'link'=> '#',
-            'title' => __('Author','breadcrumb'),
-            'location' => 'is_author',
-        );
+            $array_list[] = array(
+                'link'=> '#',
+                'title' => __('Author','breadcrumb'),
+            );
 
-        $array_list[2] = array(
-            'link'=>  !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_author_posts_url( get_the_author_meta( "ID" ) ),
-            'title' => get_the_author(),
-            'location' => 'is_author',
-        );
+            $array_list[] = array(
+                'link'=>  !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : get_author_posts_url( get_the_author_meta( "ID" ) ),
+                'title' => get_the_author(),
+            );
 
 
 
@@ -588,103 +1000,89 @@ function breadcrumb_trail_array_list(){
 
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_search',
             );
 
-        $array_list[1] = array(
+        $array_list[] = array(
             'link'=>  '#',
             'title' => __('Search','breadcrumb'),
-            'location' => 'is_search',
         );
 
 
-        $array_list[2] = array(
+        $array_list[] = array(
             'link'=>  '#',
             'title' => $current_query,
-            'location' => 'is_search',
         );
 
     }else if(is_year()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_year',
             );
 
-        $array_list[1] = array(
+        $array_list[] = array(
             'link'=> '#',
             'title' => __('Year','breadcrumb'),
-            'location' => 'is_year',
         );
 
-        $array_list[2] = array(
+        $array_list[] = array(
             'link'=>  '#',
             'title' => get_the_date('Y'),
-            'location' => 'is_search',
         );
 
     }else if(is_month()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_month',
             );
-        $array_list[1] = array(
+        $array_list[] = array(
             'link'=> '#',
             'title' => __('Month','breadcrumb'),
-            'location' => 'is_month',
         );
 
 
-        $array_list[2] = array(
+        $array_list[] = array(
             'link'=>  '#',
             'title' => get_the_date('F'),
-            'location' => 'is_month',
         );
 
     }
     else if(is_date()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_date',
             );
 
-        $array_list[1] = array(
+        $array_list[] = array(
             'link'=> '#',
             'title' => __('Date','breadcrumb'),
-            'location' => 'is_date',
         );
 
-        $array_list[2] = array(
+        $array_list[] = array(
             'link'=>  '#',
             'title' => get_the_date(),
-            'location' => 'is_date',
         );
     }
     elseif(is_404()){
 
         if($breadcrumb_display_home == 'yes')
-            $array_list[0] = array(
+            $array_list[] = array(
                 'link'=> $home_url,
                 'title' => $breadcrumb_home_text,
-                'location' => 'is_404',
             );
 
-        $array_list[1] = array(
-            'link'=>  '#',
-            'title' => __('404', 'breadcrumb'),
-            'location' => 'is_404',
-        );
+            $array_list[] = array(
+                'link'=>  '#',
+                'title' => __('404', 'breadcrumb'),
+            );
 
     }
 
