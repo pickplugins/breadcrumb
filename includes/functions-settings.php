@@ -658,6 +658,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
                 <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=l1LA5m6HaRQ&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=6"><?php echo __('Hide by post types','breadcrumb'); ?></a> [Premium]</li>
                 <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7"><?php echo __('Hide by post ids','breadcrumb'); ?></a> [Premium]</li>
                 <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8"><?php echo __('Change style','breadcrumb'); ?></a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HgFRmOqi-yk&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=9"><?php echo __('Build your own breadcrumb','breadcrumb'); ?></a></li>
 
             </ul>
 
@@ -964,6 +965,7 @@ if(!function_exists('breadcrumb_settings_tabs_right_panel_options')) {
             <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=l1LA5m6HaRQ&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=6"><?php echo __('Hide by post types','breadcrumb'); ?></a> [Premium]</li>
             <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7"><?php echo __('Hide by post ids','breadcrumb'); ?></a> [Premium]</li>
             <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8"><?php echo __('Change style','breadcrumb'); ?></a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HgFRmOqi-yk&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=9"><?php echo __('Build your own breadcrumb','breadcrumb'); ?></a></li>
 
         </ul>
 
