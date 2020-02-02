@@ -1,32 +1,62 @@
 <?php
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
-//add_filter('breadcrumb_items_array', 'breadcrumb_items_override_permalinks');
+add_filter('breadcrumb_items_array', 'breadcrumb_items_override_permalinks');
 
 function breadcrumb_items_override_permalinks($breadcrumb_items){
 
     $breadcrumb_options = get_option('breadcrumb_options');
     $permalinks = isset($breadcrumb_options['permalinks']) ? $breadcrumb_options['permalinks'] : array();
 
-
+    //echo '<pre>'.var_export($breadcrumb_items, true).'</pre>';
 
     if(is_singular('post')){
 
         $post_id = get_the_id();
-        $breadcrumb_items = array();
+        $breadcrumb_items_new = array();
+        $breadcrumb_items_latest = array();
+
         $post_permalinks = isset($permalinks['post']) ? $permalinks['post'] : array();
 
+        //echo '<pre>'.var_export($breadcrumb_items, true).'</pre>';
 
+        $i = 0;
         if(!empty($post_permalinks))
         foreach ($post_permalinks as $permalinkIndex => $permalink):
-            $breadcrumb_items_new[] = apply_filters('breadcrumb_permalink_'.$permalinkIndex, $breadcrumb_items);
 
+            //echo '<pre>'.var_export($permalinkIndex, true).'</pre>';
+
+            $breadcrumb_items_new[$i] = apply_filters('breadcrumb_permalink_'.$permalinkIndex, array());
+
+            //echo '<pre>'.var_export($breadcrumb_items_new, true).'</pre>';
+
+            if(!empty($breadcrumb_items_new[$i][0]) && is_array($breadcrumb_items_new[$i][0])):
+
+                foreach ($breadcrumb_items_new[$i] as $item):
+                    //echo '<pre>'.var_export($item, true).'</pre>';
+                    $breadcrumb_items_latest[] = $item;
+                endforeach;
+
+                //echo '<pre>'.var_export($breadcrumb_items_new[$i][0], true).'</pre>';
+            else:
+                //echo '<pre>'.var_export($breadcrumb_items_new[$i], true).'</pre>';
+                $breadcrumb_items_latest[] = $breadcrumb_items_new[$i];
+            endif;
+
+            $i++;
         endforeach;
+        return $breadcrumb_items_latest;
+    }elseif(is_singular('post')){
+
+        
+
+    }else{
+        return $breadcrumb_items;
     }
 
-    //echo '<pre>'.var_export($permalinks['post'], true).'</pre>';
 
-    return $breadcrumb_items_new;
+    //echo '<pre>'.var_export($breadcrumb_items_latest, true).'</pre>';
+
 
 }
 
@@ -77,9 +107,15 @@ add_filter('breadcrumb_permalink_post_author', 'breadcrumb_permalink_post_author
 function breadcrumb_permalink_post_author($breadcrumb_items){
 
     $post_id = get_the_id();
+
+    $post = get_post($post_id);
+    $author_id = $post->post_author;
+    $author_posts_url = get_author_posts_url($author_id);
+    $author_name = get_the_author_meta('display_name', $author_id);
+
     return array(
-        'link'=> get_permalink($post_id),
-        'title' => get_the_title($post_id),
+        'link'=> $author_posts_url,
+        'title' => $author_name,
     );
 
 }
@@ -90,10 +126,12 @@ add_filter('breadcrumb_permalink_post_category', 'breadcrumb_permalink_post_cate
 function breadcrumb_permalink_post_category($breadcrumb_items){
     $category_string = get_query_var('category_name');
     $category_arr = array();
+    $breadcrumb_items = array();
+
     $taxonomy = 'category';
     $array_list = array();
 
-    //echo '<pre>'.var_export($category_string, true).'</pre>';
+    echo '<pre>'.var_export($category_string, true).'</pre>';
 
     if(strpos( $category_string, '/' )){
 
@@ -107,10 +145,7 @@ function breadcrumb_permalink_post_category($breadcrumb_items){
         $term_name = $term_data->name;
         $term_link = get_term_link( $term_id , $taxonomy);
 
-        $breadcrumb_items_new[] = array(
-            'link'=> $term_link,
-            'title' => $term_name,
-        );
+
 
 
         $parents_id  = get_ancestors( $term_id, $taxonomy );
@@ -131,10 +166,15 @@ function breadcrumb_permalink_post_category($breadcrumb_items){
             );
         }
 
+        $breadcrumb_items_new[] = array(
+            'link'=> $term_link,
+            'title' => $term_name,
+        );
+
         //echo '<pre>'.var_export($breadcrumb_items, true).'</pre>';
 
 
-        //$breadcrumb_items = $breadcrumb_items_new;
+        $breadcrumb_items = $breadcrumb_items_new;
 
     }else{
 
@@ -183,9 +223,15 @@ add_filter('breadcrumb_permalink_post_date', 'breadcrumb_permalink_post_date');
 function breadcrumb_permalink_post_date($breadcrumb_items){
 
     $post_id = get_the_id();
+
+    $post_date_year = get_the_time('Y');
+    $post_date_month = get_the_time('m');
+    $post_date_day = get_the_time('d');
+    $get_day_link = get_day_link($post_date_year, $post_date_month, $post_date_day);
+
     return array(
-        'link'=> get_permalink($post_id),
-        'title' => get_the_title($post_id),
+        'link'=> $get_day_link,
+        'title' => $post_date_day,
     );
 
 }
@@ -196,9 +242,13 @@ add_filter('breadcrumb_permalink_post_month', 'breadcrumb_permalink_post_month')
 function breadcrumb_permalink_post_month($breadcrumb_items){
     $post_id = get_the_id();
 
+    $post_date_year = get_the_time('Y');
+    $post_date_month = get_the_time('m');
+    $get_month_link = get_month_link($post_date_year,$post_date_month);
+
     return array(
-        'link'=> get_permalink($post_id),
-        'title' => get_the_title($post_id),
+        'link'=> $get_month_link,
+        'title' => $post_date_month,
     );
 
 }
@@ -209,9 +259,13 @@ add_filter('breadcrumb_permalink_post_year', 'breadcrumb_permalink_post_year');
 function breadcrumb_permalink_post_year($breadcrumb_items){
 
     $post_id = get_the_id();
+
+    $post_date_year = get_the_time('Y');
+    $get_year_link = get_year_link($post_date_year);
+
     return array(
-        'link'=> get_permalink($post_id),
-        'title' => get_the_title($post_id),
+        'link'=> $get_year_link,
+        'title' => $post_date_year,
     );
 
 }
@@ -225,7 +279,7 @@ function breadcrumb_permalink_post_id($breadcrumb_items){
 
     return array(
         'link'=> get_permalink($post_id),
-        'title' => get_the_title($post_id),
+        'title' => $post_id,
     );
 
 }

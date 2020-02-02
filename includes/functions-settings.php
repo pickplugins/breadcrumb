@@ -309,7 +309,7 @@ function breadcrumb_settings_tabs_content_options(){
 
         );
 
-        //$settings_tabs_field->generate_field($args);
+        $settings_tabs_field->generate_field($args);
 
 
         ?>

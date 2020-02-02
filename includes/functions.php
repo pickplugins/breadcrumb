@@ -1136,7 +1136,7 @@ function breadcrumb_posttypes_array(){
     $post_types_array = array();
     global $wp_post_types;
 
-    $post_types_all = get_post_types( '', 'names' );
+    $post_types_all = get_post_types( array('public'=>true), 'names' );
     foreach ( $post_types_all as $post_type ) {
 
 
