@@ -17,9 +17,17 @@ $breadcrumb_settings_tab[] = array(
 );
 
 $breadcrumb_settings_tab[] = array(
+    'id' => 'builder',
+    'title' => sprintf(__('%s Builder','breadcrumb'),'<i class="fas fa-pencil-ruler"></i>'),
+    'priority' => 2,
+    'active' => ($current_tab == 'builder') ? true : false,
+);
+
+
+$breadcrumb_settings_tab[] = array(
     'id' => 'style',
     'title' => sprintf(__('%s Style','breadcrumb'),'<i class="fas fa-palette"></i>'),
-    'priority' => 2,
+    'priority' => 3,
     'active' => ($current_tab == 'style') ? true : false,
 );
 
@@ -42,7 +50,7 @@ $breadcrumb_settings_tab[] = array(
 $breadcrumb_settings_tab[] = array(
     'id' => 'buy_pro',
     'title' => sprintf(__('%s Buy Pro','breadcrumb'),'<i class="fas fa-store"></i>'),
-    'priority' => 8,
+    'priority' => 6,
     'active' => ($current_tab == 'buy_pro') ? true : false,
 );
 

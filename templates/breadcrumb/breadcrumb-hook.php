@@ -9,7 +9,7 @@ function breadcrumb_main_items(){
 
     $breadcrumb_items = apply_filters('breadcrumb_items_array', $breadcrumb_items);
 
-    echo '<pre>'.var_export($breadcrumb_items, true).'</pre>';
+    //echo '<pre>'.var_export($breadcrumb_items, true).'</pre>';
 
     if(!empty($breadcrumb_items)):
         ?>

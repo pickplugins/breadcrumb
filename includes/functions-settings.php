@@ -170,25 +170,57 @@ function breadcrumb_settings_tabs_content_options(){
         $settings_tabs_field->generate_field($args);
 
 
-        $posttypes_array = breadcrumb_posttypes_array();
 
-        //echo '<pre>'.var_export($posttypes_array, ture).'</pre>';
+        ?>
 
-        $breadcrumb_tags = breadcrumb_tags();
-        $breadcrumb_tag_options = array();
 
-        foreach ($breadcrumb_tags as $tagIndex => $tag):
+    </div>
+    <?php
 
-            ob_start();
+}
 
-            do_action('breadcrumb_tag_options_'.$tagIndex);
 
-            $breadcrumb_tag_options[$tagIndex] = ob_get_clean();
+
+add_action('breadcrumb_settings_tabs_content_builder','breadcrumb_settings_tabs_content_builder');
+
+function breadcrumb_settings_tabs_content_builder(){
+
+    $settings_tabs_field = new settings_tabs_field();
+    $breadcrumb_options = get_option('breadcrumb_options');
+    $permalinks = isset($breadcrumb_options['permalinks']) ? $breadcrumb_options['permalinks'] : array();
+
+
+    $posttypes_array = breadcrumb_posttypes_array();
+
+    //echo '<pre>'.var_export($posttypes_array, ture).'</pre>';
+
+    $breadcrumb_tags = breadcrumb_tags();
+    $breadcrumb_tag_options = array();
+
+    foreach ($breadcrumb_tags as $tagGroupIndex => $tags):
+        foreach ($tags as $tagIndex => $tag):
+
+        ob_start();
+
+        do_action('breadcrumb_tag_options_'.$tagIndex);
+
+        $breadcrumb_tag_options[$tagIndex] = ob_get_clean();
 
         endforeach;
+    endforeach;
 
-        $breadcrumb_tag_options = json_encode($breadcrumb_tag_options);
+    $breadcrumb_tag_options = json_encode($breadcrumb_tag_options);
 
+
+        ?>
+    <div class="section">
+        <div class="section-title"><?php echo __('Breadcrumb builder','breadcrumb'); ?></div>
+        <p class="description section-description"><?php echo __('Build your own breadcrumb.','breadcrumb'); ?></p>
+
+        <?php
+
+
+        ob_start();
         ?>
         <script>
             jQuery(document).ready(function($){
@@ -201,7 +233,7 @@ function breadcrumb_settings_tabs_content_options(){
                     tag_id = $(this).attr('tag_id');
                     input_name = $(this).attr('input_name');
 
-                    tag_options_html = breadcrumb_tag_options[tag_id]
+                    tag_options_html = breadcrumb_tag_options[tag_id];
                     var res = tag_options_html.replace("{input_name}", input_name);
 
                     $(this).parent().parent().children('.elements').append(res);
@@ -211,21 +243,6 @@ function breadcrumb_settings_tabs_content_options(){
 
 
         </script>
-        <?php
-
-        $breadcrumb_options = get_option('breadcrumb_options');
-
-
-        $permalinks = isset($breadcrumb_options['permalinks']) ? $breadcrumb_options['permalinks'] : array();
-
-        //echo '<pre>'.var_export($permalinks, ture).'</pre>';
-
-
-
-
-        ob_start();
-        ?>
-
         <div class="output_posttypes">
 
             <?php
@@ -235,19 +252,19 @@ function breadcrumb_settings_tabs_content_options(){
 
 
                 <div class="item">
-                    <p><?php echo $postTypename; ?></p>
+                    <p style="font-weight: bold;"><?php echo $postTypename; ?></p>
                     <div class="breadcrumb-tags">
                         <?php
 
-                        if(!empty($breadcrumb_tags))
-                        foreach ($breadcrumb_tags as $tag_id => $tag):
-                            $tag_name = isset($tag['name']) ? $tag['name'] : '';
-                            $input_name = 'breadcrumb_options[permalinks]'.'['.$postType.']';
+                        if(!empty($breadcrumb_tags[$postType]))
+                            foreach ($breadcrumb_tags[$postType] as $tag_id => $tag):
+                                $tag_name = isset($tag['name']) ? $tag['name'] : '';
+                                $input_name = 'breadcrumb_options[permalinks]'.'['.$postType.']';
 
-                            ?>
-                            <span input_name="<?php echo $input_name; ?>" tag_id="<?php echo $tag_id; ?>"><?php echo $tag_name; ?></span>
+                                ?>
+                                <span input_name="<?php echo $input_name; ?>" tag_id="<?php echo $tag_id; ?>"><?php echo $tag_name; ?></span>
                             <?php
-                        endforeach;
+                            endforeach;
                         ?>
                     </div>
                     <div class="elements expandable sortable">
@@ -257,10 +274,17 @@ function breadcrumb_settings_tabs_content_options(){
                         $args = array('input_name'=> 'breadcrumb_options[permalinks]'.'['.$postType.']');
                         //echo '<pre>'.var_export($post_permalinks, ture).'</pre>';
 
-                        if(!empty($post_permalinks))
-                        foreach ($post_permalinks as $permalink_tag => $permalink){
-                            do_action('breadcrumb_tag_options_'.$permalink_tag, $args);
-                        }
+                        if(!empty($post_permalinks)):
+                            foreach ($post_permalinks as $permalink_tag => $permalink){
+                                do_action('breadcrumb_tag_options_'.$permalink_tag, $args);
+                            }
+                        else:
+                            ?>
+                            <div class="empty-element">
+                                <?php echo sprintf(__('%s Click to add tags.','breadcrumb'), '<i class="far fa-hand-point-up"></i>') ?>
+                            </div>
+                            <?php
+                        endif;
 
 
 
@@ -269,7 +293,7 @@ function breadcrumb_settings_tabs_content_options(){
 
                     </div>
                 </div>
-                <?php
+            <?php
             endforeach;
 
             ?>
@@ -292,6 +316,13 @@ function breadcrumb_settings_tabs_content_options(){
             .output_posttypes .breadcrumb-tags span:hover{
                 background: #dadada;
             }
+            .output_posttypes .empty-element{
+                padding: 10px 10px;
+                background: #f1f1f1;
+                border: 1px dashed #999;
+                margin-top: 15px;
+            }
+
 
         </style>
 
@@ -315,13 +346,14 @@ function breadcrumb_settings_tabs_content_options(){
         ?>
 
 
+
     </div>
+
+
     <?php
 
+
 }
-
-
-
 
 
 

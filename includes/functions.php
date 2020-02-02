@@ -4,16 +4,46 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 function breadcrumb_tags(){
 
-    $tags['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['post_title'] = array('name' => __('Post title','breadcrumb'));
-    $tags['post_author'] = array('name' => __('Post author','breadcrumb'));
-    $tags['post_category'] = array('name' => __('Post category','breadcrumb'));
-    $tags['post_tag'] = array('name' => __('Post tag','breadcrumb'));
-    $tags['post_date'] = array('name' => __('Post date','breadcrumb'));
-    $tags['post_month'] = array('name' => __('Post month','breadcrumb'));
-    $tags['post_year'] = array('name' => __('Post year','breadcrumb'));
-    $tags['post_id'] = array('name' => __('Post ID','breadcrumb'));
+    $tags['post']['front_text'] = array('name' => __('Front text','breadcrumb'));
+    $tags['post']['home'] = array('name' => __('Home','breadcrumb'));
+    $tags['post']['post_title'] = array('name' => __('Post title','breadcrumb'));
+    $tags['post']['post_author'] = array('name' => __('Post author','breadcrumb'));
+    $tags['post']['post_category'] = array('name' => __('Post category','breadcrumb'));
+    $tags['post']['post_tag'] = array('name' => __('Post tag','breadcrumb'));
+    $tags['post']['post_date'] = array('name' => __('Post date','breadcrumb'));
+    $tags['post']['post_month'] = array('name' => __('Post month','breadcrumb'));
+    $tags['post']['post_year'] = array('name' => __('Post year','breadcrumb'));
+    $tags['post']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+
+    $tags['page']['front_text'] = array('name' => __('Front text','breadcrumb'));
+    $tags['page']['home'] = array('name' => __('Home','breadcrumb'));
+    $tags['page']['post_title'] = array('name' => __('Post title','breadcrumb'));
+    $tags['page']['post_author'] = array('name' => __('Post author','breadcrumb'));
+    $tags['page']['post_date'] = array('name' => __('Post date','breadcrumb'));
+    $tags['page']['post_month'] = array('name' => __('Post month','breadcrumb'));
+    $tags['page']['post_year'] = array('name' => __('Post year','breadcrumb'));
+    $tags['page']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+
+    $tags['attachment']['front_text'] = array('name' => __('Front text','breadcrumb'));
+    $tags['attachment']['home'] = array('name' => __('Home','breadcrumb'));
+    $tags['attachment']['post_title'] = array('name' => __('Post title','breadcrumb'));
+    $tags['attachment']['post_author'] = array('name' => __('Post author','breadcrumb'));
+    $tags['attachment']['post_date'] = array('name' => __('Post date','breadcrumb'));
+    $tags['attachment']['post_month'] = array('name' => __('Post month','breadcrumb'));
+    $tags['attachment']['post_year'] = array('name' => __('Post year','breadcrumb'));
+    $tags['attachment']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+
+    $tags['product']['front_text'] = array('name' => __('Front text','breadcrumb'));
+    $tags['product']['home'] = array('name' => __('Home','breadcrumb'));
+    $tags['product']['post_title'] = array('name' => __('Post title','breadcrumb'));
+    $tags['product']['post_author'] = array('name' => __('Post author','breadcrumb'));
+    $tags['product']['product_cat'] = array('name' => __('Product category','breadcrumb'));
+    $tags['product']['product_tag'] = array('name' => __('Product tag','breadcrumb'));
+    $tags['product']['post_date'] = array('name' => __('Post date','breadcrumb'));
+    $tags['product']['post_month'] = array('name' => __('Post month','breadcrumb'));
+    $tags['product']['post_year'] = array('name' => __('Post year','breadcrumb'));
+    $tags['product']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+    $tags['product']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
 
 
     return apply_filters('breadcrumb_tags', $tags);
@@ -442,6 +472,142 @@ function breadcrumb_tag_options_post_category($parameters){
     <?php
 
 }
+
+
+
+
+add_action('breadcrumb_tag_options_product_cat', 'breadcrumb_tag_options_product_cat');
+
+function breadcrumb_tag_options_product_cat($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Product category','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[product_cat]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_product_tag', 'breadcrumb_tag_options_product_tag');
+
+function breadcrumb_tag_options_product_tag($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Product tag','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[product_tag]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+
+add_action('breadcrumb_tag_options_wc_shop', 'breadcrumb_tag_options_wc_shop');
+
+function breadcrumb_tag_options_wc_shop($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Shop','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[wc_shop]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+
+
 
 
 
