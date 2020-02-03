@@ -4,7 +4,7 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.5.10
+	Stable tag: 1.5.11
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -122,8 +122,13 @@ use this short-code any where to display breadcrumb
 
 == Changelog ==
 
+	= 1.5.11 =
+    * 2020-02-03 - add - breadcrumb builder var_export category issue fixed.
+    * 2020-02-03 - add - breadcrumb builder tag output issue fixed.
+    * 2020-02-03 - add - added more tutorials
+
 	= 1.5.10 =
-    * 2020-02-03 - added - breadcrumb builder added.
+    * 2020-02-03 - add - breadcrumb builder added.
 
 	= 1.5.9 =
     * 2020-02-02 - fix - parent-child category issue fixed.

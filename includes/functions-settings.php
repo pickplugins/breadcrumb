@@ -659,6 +659,7 @@ if(!function_exists('breadcrumb_settings_tabs_content_help_support')) {
                 <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7"><?php echo __('Hide by post ids','breadcrumb'); ?></a> [Premium]</li>
                 <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8"><?php echo __('Change style','breadcrumb'); ?></a></li>
                 <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HgFRmOqi-yk&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=9"><?php echo __('Build your own breadcrumb','breadcrumb'); ?></a></li>
+                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=KjyBEhzH-N8&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=10"><?php echo __('Customize breadcrumb items','breadcrumb'); ?></a></li>
 
             </ul>
 
@@ -925,16 +926,8 @@ if(!function_exists('breadcrumb_settings_tabs_content_buy_pro')) {
 
 
 
-
-
-
-
-
-
-
-
-
 add_action('breadcrumb_settings_tabs_right_panel_options', 'breadcrumb_settings_tabs_right_panel_options');
+add_action('breadcrumb_settings_tabs_right_panel_builder', 'breadcrumb_settings_tabs_right_panel_options');
 add_action('breadcrumb_settings_tabs_right_panel_style', 'breadcrumb_settings_tabs_right_panel_options');
 add_action('breadcrumb_settings_tabs_right_panel_custom_scripts', 'breadcrumb_settings_tabs_right_panel_options');
 add_action('breadcrumb_settings_tabs_right_panel_help_support', 'breadcrumb_settings_tabs_right_panel_options');
@@ -966,6 +959,7 @@ if(!function_exists('breadcrumb_settings_tabs_right_panel_options')) {
             <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=LJg_d7UUTEA&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=7"><?php echo __('Hide by post ids','breadcrumb'); ?></a> [Premium]</li>
             <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=7mYp27fzXY0&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=8"><?php echo __('Change style','breadcrumb'); ?></a></li>
             <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=HgFRmOqi-yk&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=9"><?php echo __('Build your own breadcrumb','breadcrumb'); ?></a></li>
+            <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=KjyBEhzH-N8&list=PL0QP7T2SN94bnUjguNbBXAjW1yJjjeLtb&index=10"><?php echo __('Customize breadcrumb items','breadcrumb'); ?></a></li>
 
         </ul>
 
