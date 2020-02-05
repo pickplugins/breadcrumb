@@ -18,6 +18,7 @@ function breadcrumb_settings_tabs_content_options(){
     $breadcrumb_display_home = get_option( 'breadcrumb_display_home' );
     $breadcrumb_home_text = get_option( 'breadcrumb_home_text' );
     $breadcrumb_url_hash = get_option( 'breadcrumb_url_hash' );
+    $breadcrumb_hide_wc_breadcrumb = get_option( 'breadcrumb_hide_wc_breadcrumb' );
 
     ?>
 
@@ -169,6 +170,25 @@ function breadcrumb_settings_tabs_content_options(){
 
         $settings_tabs_field->generate_field($args);
 
+
+        $args = array(
+            'id'		=> 'breadcrumb_hide_wc_breadcrumb',
+            //'parent' => 'breadcrumb_options',
+            'title'		=> __('Hide WooCommerce breadcrumb','breadcrumb'),
+            'details'	=> __('Display or hide WooCommerce default breadcrumb','breadcrumb'),
+            'type'		=> 'select',
+            'value'		=> $breadcrumb_hide_wc_breadcrumb,
+            'default'		=> 'no',
+            'args'		=> array(
+                'no'=>__('No','breadcrumb'),
+                'yes'=>__('Yes','breadcrumb'),
+
+
+
+            ),
+        );
+
+        $settings_tabs_field->generate_field($args);
 
 
         ?>
@@ -1038,6 +1058,8 @@ if(!function_exists('breadcrumb_settings_save')) {
         $breadcrumb_url_hash = sanitize_text_field($_POST['breadcrumb_url_hash']);
         update_option('breadcrumb_url_hash', $breadcrumb_url_hash);
 
+        $breadcrumb_hide_wc_breadcrumb = sanitize_text_field($_POST['breadcrumb_hide_wc_breadcrumb']);
+        update_option('breadcrumb_hide_wc_breadcrumb', $breadcrumb_hide_wc_breadcrumb);
 
         $breadcrumb_custom_css = stripslashes_deep($_POST['breadcrumb_custom_css']);
         update_option('breadcrumb_custom_css', $breadcrumb_custom_css);

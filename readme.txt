@@ -4,7 +4,7 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.5.11
+	Stable tag: 1.5.12
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,10 @@ use this short-code any where to display breadcrumb
 
 
 == Changelog ==
+
+	= 1.5.12 =
+    * 2020-02-05 - add - added option to remove WooCommerce default breadcrumb.
+
 
 	= 1.5.11 =
     * 2020-02-03 - add - breadcrumb builder var_export category issue fixed.

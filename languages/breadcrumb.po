@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: breadcrumb\n"
-"POT-Creation-Date: 2020-02-03 01:02+0600\n"
-"PO-Revision-Date: 2020-02-03 01:02+0600\n"
+"POT-Creation-Date: 2020-02-05 11:28+0600\n"
+"PO-Revision-Date: 2020-02-05 11:28+0600\n"
 "Last-Translator: \n"
 "Language-Team: pickplugins\n"
 "Language: en\n"
@@ -33,393 +33,407 @@ msgstr ""
 msgid "Breadcrumb"
 msgstr ""
 
-#: functions-hooks.php:179 functions.php:617
+#: functions-hooks.php:143 functions.php:617
 msgid "You are here"
 msgstr ""
 
-#: functions-hooks.php:192 functions.php:8 functions.php:19 functions.php:28
+#: functions-hooks.php:156 functions.php:8 functions.php:19 functions.php:28
 #: functions.php:37 functions.php:324 functions.php:616
 msgid "Home"
 msgstr ""
 
-#: functions-settings.php:26
+#: functions-settings.php:27
 msgid "General option"
 msgstr ""
 
-#: functions-settings.php:27
+#: functions-settings.php:28
 msgid "Set some basic option to get start."
 msgstr ""
 
-#: functions-settings.php:34 functions-settings.php:779
+#: functions-settings.php:35 functions-settings.php:800
 msgid "Breadcrumb front text"
 msgstr ""
 
-#: functions-settings.php:35
+#: functions-settings.php:36
 msgid "Display custom text before breadcrumb."
 msgstr ""
 
-#: functions-settings.php:47 functions-settings.php:785
+#: functions-settings.php:48 functions-settings.php:806
 msgid "Breadcrumb separator text"
 msgstr ""
 
-#: functions-settings.php:48
+#: functions-settings.php:49
 msgid "You can display custom separator. ex: <code>&raquo;</code>"
 msgstr ""
 
-#: functions-settings.php:63
+#: functions-settings.php:64
 msgid "Display last separator"
 msgstr ""
 
-#: functions-settings.php:64
+#: functions-settings.php:65
 msgid "Display or hide last separator."
 msgstr ""
 
-#: functions-settings.php:69 functions-settings.php:135
+#: functions-settings.php:70 functions-settings.php:136
+#: functions-settings.php:183
 msgid "No"
 msgstr ""
 
-#: functions-settings.php:70 functions-settings.php:136
+#: functions-settings.php:71 functions-settings.php:137
+#: functions-settings.php:184
 msgid "Yes"
 msgstr ""
 
-#: functions-settings.php:84
+#: functions-settings.php:85
 msgid "Breadcrumb link text limit by?"
 msgstr ""
 
-#: functions-settings.php:85
+#: functions-settings.php:86
 msgid "You can limit link text by word or character"
 msgstr ""
 
-#: functions-settings.php:90
+#: functions-settings.php:91
 msgid "Word"
 msgstr ""
 
-#: functions-settings.php:91
+#: functions-settings.php:92
 msgid "Character"
 msgstr ""
 
-#: functions-settings.php:104
+#: functions-settings.php:105
 msgid "Limit count"
 msgstr ""
 
-#: functions-settings.php:105
+#: functions-settings.php:106
 msgid "Set custom limit value, number only."
 msgstr ""
 
-#: functions-settings.php:116 functions-settings.php:803
+#: functions-settings.php:117 functions-settings.php:824
 msgid "Ending character"
 msgstr ""
 
-#: functions-settings.php:117
+#: functions-settings.php:118
 msgid "Set custom Ending character, ex: ..."
 msgstr ""
 
-#: functions-settings.php:129
+#: functions-settings.php:130
 msgid "Display \"Home\" on breadcrumb?"
 msgstr ""
 
-#: functions-settings.php:130
+#: functions-settings.php:131
 msgid "You can hide or display Home on breadcrumb."
 msgstr ""
 
-#: functions-settings.php:150 functions-settings.php:815
+#: functions-settings.php:151 functions-settings.php:836
 msgid "Custom home text"
 msgstr ""
 
-#: functions-settings.php:151
+#: functions-settings.php:152
 msgid "You can set custom text for \"Home\""
 msgstr ""
 
-#: functions-settings.php:163
+#: functions-settings.php:164
 msgid "Current URL hash"
 msgstr ""
 
-#: functions-settings.php:164
+#: functions-settings.php:165
 msgid "If you want to keep # on current url, otherwise keep empty"
 msgstr ""
 
-#: functions-settings.php:217
+#: functions-settings.php:177
+msgid "Hide WooCommerce breadcrumb"
+msgstr ""
+
+#: functions-settings.php:178
+msgid "Display or hide WooCommerce default breadcrumb"
+msgstr ""
+
+#: functions-settings.php:237
 msgid "Breadcrumb builder"
 msgstr ""
 
-#: functions-settings.php:218
+#: functions-settings.php:238
 msgid "Build your own breadcrumb."
 msgstr ""
 
-#: functions-settings.php:284
+#: functions-settings.php:304
 #, php-format
 msgid "%s Click to add tags."
 msgstr ""
 
-#: functions-settings.php:336
+#: functions-settings.php:356
 msgid "Post types"
 msgstr ""
 
-#: functions-settings.php:380
+#: functions-settings.php:400
 msgid "Choose style"
 msgstr ""
 
-#: functions-settings.php:381
+#: functions-settings.php:401
 msgid "Customize the breadcrumb."
 msgstr ""
 
-#: functions-settings.php:390
+#: functions-settings.php:410
 msgid "Breadcrumb Themes"
 msgstr ""
 
-#: functions-settings.php:391
+#: functions-settings.php:411
 msgid "Choose breadcrumb theme"
 msgstr ""
 
-#: functions-settings.php:428
+#: functions-settings.php:448
 msgid "Breadcrumb font size"
 msgstr ""
 
-#: functions-settings.php:429
+#: functions-settings.php:449
 msgid "Set custom font size"
 msgstr ""
 
-#: functions-settings.php:440
+#: functions-settings.php:460
 msgid "Breadcrumb container padding"
 msgstr ""
 
-#: functions-settings.php:441
+#: functions-settings.php:461
 msgid "Put custom padding size for breadcrumb container."
 msgstr ""
 
-#: functions-settings.php:455
+#: functions-settings.php:475
 msgid "Breadcrumb container margin"
 msgstr ""
 
-#: functions-settings.php:456
+#: functions-settings.php:476
 msgid "Put custom margin size for breadcrumb container."
 msgstr ""
 
-#: functions-settings.php:468 functions-settings.php:828
+#: functions-settings.php:488 functions-settings.php:849
 msgid "Breadcrumb link background color"
 msgstr ""
 
-#: functions-settings.php:469
+#: functions-settings.php:489
 msgid "Choose custom background color for links"
 msgstr ""
 
-#: functions-settings.php:480 functions-settings.php:834
+#: functions-settings.php:500 functions-settings.php:855
 msgid "Breadcrumb link color"
 msgstr ""
 
-#: functions-settings.php:481
+#: functions-settings.php:501
 msgid "Choose custom link color"
 msgstr ""
 
-#: functions-settings.php:493 functions-settings.php:839
+#: functions-settings.php:513 functions-settings.php:860
 msgid "Breadcrumb separator color"
 msgstr ""
 
-#: functions-settings.php:494
+#: functions-settings.php:514
 msgid "Choose custom separator color"
 msgstr ""
 
-#: functions-settings.php:528
+#: functions-settings.php:548
 msgid "Custom scripts"
 msgstr ""
 
-#: functions-settings.php:529
+#: functions-settings.php:549
 msgid "Add your own scripts and style css."
 msgstr ""
 
-#: functions-settings.php:536
+#: functions-settings.php:556
 msgid "Custom CSS"
 msgstr ""
 
-#: functions-settings.php:537
+#: functions-settings.php:557
 msgid ""
 "Add your own CSS, do not use &lt;style>&lt;/style> tag. its recommend to use "
 "<code>!important</code> to override."
 msgstr ""
 
-#: functions-settings.php:549
+#: functions-settings.php:569
 msgid "Custom JS"
 msgstr ""
 
-#: functions-settings.php:550
+#: functions-settings.php:570
 msgid "Add your own JS, do not use &lt;script>&lt;/script> tag."
 msgstr ""
 
-#: functions-settings.php:583
+#: functions-settings.php:603
 msgid "Get support"
 msgstr ""
 
-#: functions-settings.php:584
+#: functions-settings.php:604
 msgid "Use following to get help and support from our expert team."
 msgstr ""
 
-#: functions-settings.php:593 functions-settings.php:599
+#: functions-settings.php:613 functions-settings.php:619
 msgid "Copied"
 msgstr ""
 
-#: functions-settings.php:594
+#: functions-settings.php:614
 msgid "You can use this shortcode under post content"
 msgstr ""
 
-#: functions-settings.php:600
+#: functions-settings.php:620
 msgid "PHP Code, you can use under theme .php files."
 msgstr ""
 
-#: functions-settings.php:631
+#: functions-settings.php:651
 msgid "Get shortcode"
 msgstr ""
 
-#: functions-settings.php:643 functions-settings.php:950
+#: functions-settings.php:663 functions-settings.php:963
 msgid ""
 "Ask question for free on our forum and get quick reply from our expert team "
 "members."
 msgstr ""
 
-#: functions-settings.php:644 functions-settings.php:951
+#: functions-settings.php:664 functions-settings.php:964
 msgid "Create support ticket"
 msgstr ""
 
-#: functions-settings.php:646 functions-settings.php:953
+#: functions-settings.php:666 functions-settings.php:966
 msgid "Read our documentation before asking your question."
 msgstr ""
 
-#: functions-settings.php:647 functions-settings.php:954
+#: functions-settings.php:667 functions-settings.php:967
 msgid "Documentation"
 msgstr ""
 
-#: functions-settings.php:649 functions-settings.php:956
+#: functions-settings.php:669 functions-settings.php:969
 msgid "Watch video tutorials."
 msgstr ""
 
-#: functions-settings.php:650 functions-settings.php:957
+#: functions-settings.php:670 functions-settings.php:970
 msgid "All tutorials"
 msgstr ""
 
-#: functions-settings.php:653 functions-settings.php:960
+#: functions-settings.php:673 functions-settings.php:973
 msgid "Install & setup"
 msgstr ""
 
-#: functions-settings.php:654 functions-settings.php:961
+#: functions-settings.php:674 functions-settings.php:974
 msgid "Limit link text"
 msgstr ""
 
-#: functions-settings.php:655 functions-settings.php:962
+#: functions-settings.php:675 functions-settings.php:975
 msgid "Customize home text"
 msgstr ""
 
-#: functions-settings.php:656 functions-settings.php:963
+#: functions-settings.php:676 functions-settings.php:976
 msgid "Install pro and setup"
 msgstr ""
 
-#: functions-settings.php:657 functions-settings.php:754
-#: functions-settings.php:964
+#: functions-settings.php:677 functions-settings.php:775
+#: functions-settings.php:977
 msgid "Hide on archives"
 msgstr ""
 
-#: functions-settings.php:658 functions-settings.php:759
-#: functions-settings.php:965
+#: functions-settings.php:678 functions-settings.php:780
+#: functions-settings.php:978
 msgid "Hide by post types"
 msgstr ""
 
-#: functions-settings.php:659 functions-settings.php:766
-#: functions-settings.php:966
+#: functions-settings.php:679 functions-settings.php:787
+#: functions-settings.php:979
 msgid "Hide by post ids"
 msgstr ""
 
-#: functions-settings.php:660 functions-settings.php:967
+#: functions-settings.php:680 functions-settings.php:980
 msgid "Change style"
 msgstr ""
 
-#: functions-settings.php:661 functions-settings.php:968
+#: functions-settings.php:681 functions-settings.php:981
 msgid "Build your own breadcrumb"
 msgstr ""
 
-#: functions-settings.php:674
+#: functions-settings.php:682 functions-settings.php:982
+msgid "Customize breadcrumb items"
+msgstr ""
+
+#: functions-settings.php:695
 msgid "Ask question"
 msgstr ""
 
-#: functions-settings.php:687
+#: functions-settings.php:708
 msgid ""
 "We wish your 2 minutes to write your feedback about plugin. give us 5 star."
 msgstr ""
 
-#: functions-settings.php:689
+#: functions-settings.php:710
 msgid "Write a review"
 msgstr ""
 
-#: functions-settings.php:699 functions-settings.php:972
+#: functions-settings.php:720 functions-settings.php:986
 msgid "Submit reviews"
 msgstr ""
 
-#: functions-settings.php:731
+#: functions-settings.php:752
 msgid "Get Premium"
 msgstr ""
 
-#: functions-settings.php:732
+#: functions-settings.php:753
 msgid ""
 "Thanks for using our plugin, if you looking for some advance feature please "
 "buy premium version."
 msgstr ""
 
-#: functions-settings.php:740
+#: functions-settings.php:761
 msgid ""
 "If you love our plugin and want more feature please consider to buy pro "
 "version."
 msgstr ""
 
-#: functions-settings.php:741 functions-settings.php:852
+#: functions-settings.php:762 functions-settings.php:873
 msgid "Buy premium"
 msgstr ""
 
-#: functions-settings.php:743
+#: functions-settings.php:764
 msgid "See the differences"
 msgstr ""
 
-#: functions-settings.php:748 functions-settings.php:845
+#: functions-settings.php:769 functions-settings.php:866
 msgid "Features"
 msgstr ""
 
-#: functions-settings.php:749 functions-settings.php:846
+#: functions-settings.php:770 functions-settings.php:867
 msgid "Free"
 msgstr ""
 
-#: functions-settings.php:750 functions-settings.php:847
+#: functions-settings.php:771 functions-settings.php:868
 msgid "Premium"
 msgstr ""
 
-#: functions-settings.php:772
+#: functions-settings.php:793
 msgid "Extra ready 10 themes"
 msgstr ""
 
-#: functions-settings.php:791
+#: functions-settings.php:812
 msgid "Display or hide last separator"
 msgstr ""
 
-#: functions-settings.php:797
+#: functions-settings.php:818
 msgid "Breadcrumb link text limit"
 msgstr ""
 
-#: functions-settings.php:809
+#: functions-settings.php:830
 msgid "Display \"Home\" on breadcrumb"
 msgstr ""
 
-#: functions-settings.php:823
+#: functions-settings.php:844
 msgid "Breadcrumb text font size"
 msgstr ""
 
-#: functions-settings.php:850
+#: functions-settings.php:871
 msgid "Buy now"
 msgstr ""
 
-#: functions-settings.php:866
+#: functions-settings.php:887
 msgid "Get pro version"
 msgstr ""
 
-#: functions-settings.php:949
+#: functions-settings.php:962
 msgid "Help & Support"
 msgstr ""
 
-#: functions-settings.php:974
+#: functions-settings.php:988
 msgid "We wish your 2 minutes to write your feedback about plugin. give us"
 msgstr ""
 

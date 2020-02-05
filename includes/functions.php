@@ -1313,5 +1313,18 @@ function breadcrumb_posttypes_array(){
 
     return $post_types_array;
 }
-	
-	
+
+
+
+
+add_action( 'init', 'woo_remove_wc_breadcrumbs' );
+function woo_remove_wc_breadcrumbs() {
+
+    $breadcrumb_hide_wc_breadcrumb = get_option('breadcrumb_hide_wc_breadcrumb');
+
+    if($breadcrumb_hide_wc_breadcrumb == 'yes'){
+        remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+    }
+
+
+}
