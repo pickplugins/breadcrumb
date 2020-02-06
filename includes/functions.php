@@ -1317,8 +1317,8 @@ function breadcrumb_posttypes_array(){
 
 
 
-add_action( 'init', 'woo_remove_wc_breadcrumbs' );
-function woo_remove_wc_breadcrumbs() {
+add_action( 'init', 'breadcrumb_remove_wc_breadcrumbs' );
+function breadcrumb_remove_wc_breadcrumbs() {
 
     $breadcrumb_hide_wc_breadcrumb = get_option('breadcrumb_hide_wc_breadcrumb');
 

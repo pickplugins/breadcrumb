@@ -35,7 +35,7 @@ class class_breadcrumb_shortcodes  {
 
         $breadcrumb_themes = !empty($themes) ? $themes : $breadcrumb_themes;
 
-        include( breadcrumb_plugin_dir . 'templates/breadcrumb/breadcrumb-hook.php');
+        include_once( breadcrumb_plugin_dir . 'templates/breadcrumb/breadcrumb-hook.php');
 
 
         ob_start();
