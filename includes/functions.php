@@ -2,6 +2,59 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+function breadcrumb_pages_objects(){
+
+    // post-types
+
+    $post_types = array();
+    global $wp_post_types;
+    $post_types_all = get_post_types( array('public'=>true), 'names' );
+    foreach ( $post_types_all as $post_type ){
+
+        $obj = $wp_post_types[$post_type];
+        $post_type_name = isset($obj->labels->singular_name) ? $obj->labels->singular_name : '';
+        $objects[$post_type] = array('name' => $post_type_name);
+
+        $post_types[] = $post_type;
+    }
+
+    $taxonomies = get_object_taxonomies( $post_types );
+
+    // Taxonomies
+    foreach ( $taxonomies as $taxonomy ){
+
+        $taxonomyData = get_taxonomy($taxonomy);
+        $taxonomy_name = isset($taxonomyData->labels->name) ? $taxonomyData->labels->name : '';
+        $taxonomy_public = isset($taxonomyData->public) ? $taxonomyData->public : '';
+
+        if($taxonomy_public){
+            $objects[$taxonomy] = array('name' => $taxonomy_name);
+        }
+    }
+
+
+    //archives
+    $objects['front_page'] = array('name' => __('Front page','breadcrumb'));
+    $objects['home'] = array('name' => __('Home','breadcrumb'));
+    $objects['blog'] = array('name' => __('Blog','breadcrumb'));
+    $objects['author'] = array('name' => __('Author','breadcrumb'));
+    $objects['search'] = array('name' => __('Search','breadcrumb'));
+    $objects['year'] = array('name' => __('Year','breadcrumb'));
+    $objects['month'] = array('name' => __('Month','breadcrumb'));
+    $objects['date'] = array('name' => __('Date','breadcrumb'));
+
+    //WooCommmerce
+    $objects['wc_shop'] = array('name' => __('Shop','breadcrumb'));
+
+    $objects['privacy_policy'] = array('name' => __('Privacy policy','breadcrumb'));
+    $objects['404'] = array('name' => __('404','breadcrumb'));
+
+
+    return apply_filters('breadcrumb_pages_objects', $objects);
+}
+
+
+
 function breadcrumb_tags(){
 
     $tags['post']['front_text'] = array('name' => __('Front text','breadcrumb'));

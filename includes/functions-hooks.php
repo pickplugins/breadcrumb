@@ -454,3 +454,46 @@ function breadcrumb_permalink_post_id($breadcrumb_items){
     );
 
 }
+
+
+//add_filter('the_title','related_post_display_auto');
+
+
+function related_post_display_auto($title) {
+
+    $post_types = get_option( 'breadcrumb_display_auto_post_types' );
+    $breadcrumb_posttitle_positions = get_option( 'breadcrumb_display_auto_post_title_positions' );
+
+
+    $html = '';
+    $post_id = get_the_ID();
+    $post_type = get_post_type( $post_id );
+
+
+    if( in_array($post_type, $post_types) && in_the_loop()){
+
+        echo '<pre>'.var_export($post_types, true).'</pre>';
+        echo '<pre>'.var_export($breadcrumb_posttitle_positions, true).'</pre>';
+
+        ob_start();
+
+        echo do_shortcode('[breadcrumbgh]');
+
+        $html .= ob_get_clean();
+
+        //if( in_array('before', $breadcrumb_posttitle_positions)){
+        //$html .= do_shortcode('[breadcrumb]');
+        //}
+
+        $html .= $title;
+
+    }else{
+        $html .= $title;
+    }
+
+
+
+
+    return $html;
+
+}
