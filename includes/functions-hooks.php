@@ -8,6 +8,7 @@ function breadcrumb_items_override_permalinks($breadcrumb_items){
     $breadcrumb_options = get_option('breadcrumb_options');
     $permalinks = isset($breadcrumb_options['permalinks']) ? $breadcrumb_options['permalinks'] : array();
 
+
     if(is_singular('post') && !empty($permalinks['post'])){
 
         $post_id = get_the_id();
@@ -122,6 +123,35 @@ function breadcrumb_items_override_permalinks($breadcrumb_items){
                 $i++;
             endforeach;
         return $breadcrumb_items_latest;
+    }else if(is_search()){
+
+        $breadcrumb_items_new = array();
+        $breadcrumb_items_latest = array();
+
+        $search_permalinks = isset($permalinks['search']) ? $permalinks['search'] : array();
+
+        $i = 0;
+        if(!empty($search_permalinks))
+            foreach ($search_permalinks as $permalinkIndex => $permalink):
+
+                $breadcrumb_items_new[$i] = apply_filters('breadcrumb_permalink_'.$permalinkIndex, array());
+
+                if(!empty($breadcrumb_items_new[$i][0]) && is_array($breadcrumb_items_new[$i][0])):
+
+                    foreach ($breadcrumb_items_new[$i] as $item):
+                        $breadcrumb_items_latest[] = $item;
+                    endforeach;
+
+                else:
+                    $breadcrumb_items_latest[] = $breadcrumb_items_new[$i];
+                endif;
+
+                $i++;
+            endforeach;
+
+
+        return $breadcrumb_items_latest;
+
     }
 
 
@@ -456,6 +486,17 @@ function breadcrumb_permalink_post_id($breadcrumb_items){
 }
 
 
+add_filter('breadcrumb_permalink_search_word', 'breadcrumb_permalink_search_word');
+
+function breadcrumb_permalink_search_word($breadcrumb_items){
+
+    $current_query = sanitize_text_field(get_query_var('s'));
+    return array(
+        'link'=> '#',
+        'title' => $current_query,
+    );
+
+}
 //add_filter('the_title','related_post_display_auto');
 
 
@@ -472,8 +513,8 @@ function related_post_display_auto($title) {
 
     if( in_array($post_type, $post_types) && in_the_loop()){
 
-        echo '<pre>'.var_export($post_types, true).'</pre>';
-        echo '<pre>'.var_export($breadcrumb_posttitle_positions, true).'</pre>';
+        //echo '<pre>'.var_export($post_types, true).'</pre>';
+        //echo '<pre>'.var_export($breadcrumb_posttitle_positions, true).'</pre>';
 
         ob_start();
 

@@ -757,6 +757,405 @@ function breadcrumb_tag_options_wc_shop($parameters){
 
 
 
+add_action('breadcrumb_tag_options_term_title', 'breadcrumb_tag_options_term_title');
+
+function breadcrumb_tag_options_term_title($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Term title','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[product_cat]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+add_action('breadcrumb_tag_options_term_parent', 'breadcrumb_tag_options_term_parent');
+
+function breadcrumb_tag_options_term_parent($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Term parent','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[term_parent]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+add_action('breadcrumb_tag_options_term_ancestors', 'breadcrumb_tag_options_term_ancestors');
+
+function breadcrumb_tag_options_term_ancestors($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Term ancestors','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[term_ancestors]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_404_text', 'breadcrumb_tag_options_404_text');
+
+function breadcrumb_tag_options_404_text($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Term ancestors','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[404_text]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_date_text', 'breadcrumb_tag_options_date_text');
+
+function breadcrumb_tag_options_date_text($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Archive date','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[date_text]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+add_action('breadcrumb_tag_options_month_text', 'breadcrumb_tag_options_month_text');
+
+function breadcrumb_tag_options_month_text($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Archive month','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[month_text]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+add_action('breadcrumb_tag_options_year_text', 'breadcrumb_tag_options_year_text');
+
+function breadcrumb_tag_options_year_text($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Archive year','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[year_text]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+
+
+add_action('breadcrumb_tag_options_search_word', 'breadcrumb_tag_options_search_word');
+
+function breadcrumb_tag_options_search_word($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Search word','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[search_word]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+add_action('breadcrumb_tag_options_author_name', 'breadcrumb_tag_options_author_name');
+
+function breadcrumb_tag_options_author_name($parameters){
+    $settings_tabs_field = new settings_tabs_field();
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
+
+
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Author name','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $prefix_text = '';
+            $args = array(
+                'id'		=> 'prefix_text',
+                'parent' => $input_name.'[author_name]',
+                'title'		=> __('Prefix text','breadcrumb'),
+                'details'	=> __('Add prefix text.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $prefix_text,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
