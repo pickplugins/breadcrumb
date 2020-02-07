@@ -319,7 +319,7 @@ function breadcrumb_settings_tabs_content_builder(){
 
                 $post_type_name = isset($postTypeData['name'])? $postTypeData['name'] : '';
 
-                //echo '<pre>'.var_export($post_type_name, ture).'</pre>';
+                //echo '<pre>'.var_export($postType, ture).'</pre>';
 
                 if(empty($post_type_name)) continue;
 
