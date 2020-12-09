@@ -10,7 +10,9 @@ function breadcrumb_settings_tabs_content_options(){
     $settings_tabs_field = new settings_tabs_field();
 
     $breadcrumb_text = get_option( 'breadcrumb_text' );
-    $breadcrumb_separator = get_option( 'breadcrumb_separator' );
+    $breadcrumb_front_link = get_option( 'breadcrumb_front_link' );
+
+  $breadcrumb_separator = get_option( 'breadcrumb_separator' );
     $breadcrumb_display_last_separator = get_option( 'breadcrumb_display_last_separator' );
     $breadcrumb_word_char = get_option( 'breadcrumb_word_char' );
     $breadcrumb_word_char_count = get_option( 'breadcrumb_word_char_count' );
@@ -42,6 +44,20 @@ function breadcrumb_settings_tabs_content_options(){
         );
 
         $settings_tabs_field->generate_field($args);
+
+
+        $args = array(
+          'id'		=> 'breadcrumb_front_link',
+          //'parent' => 'breadcrumb_options',
+          'title'		=> __('Front text link','breadcrumb'),
+          'details'	=> __('Custom text front text.','breadcrumb'),
+          'type'		=> 'text',
+          'value'		=> $breadcrumb_front_link,
+          'default'		=> '#',
+        );
+
+        $settings_tabs_field->generate_field($args);
+
 
 
         $args = array(
@@ -1074,6 +1090,9 @@ if(!function_exists('breadcrumb_settings_save')) {
 
         $breadcrumb_text = sanitize_text_field($_POST['breadcrumb_text']);
         update_option('breadcrumb_text', $breadcrumb_text);
+
+        $breadcrumb_front_link = sanitize_text_field($_POST['breadcrumb_front_link']);
+        update_option('breadcrumb_front_link', $breadcrumb_front_link);
 
         $breadcrumb_separator = sanitize_text_field($_POST['breadcrumb_separator']);
         update_option('breadcrumb_separator', $breadcrumb_separator);
