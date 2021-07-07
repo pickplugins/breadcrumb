@@ -8,6 +8,7 @@ function breadcrumb_items_override_permalinks($breadcrumb_items){
     $breadcrumb_options = get_option('breadcrumb_options');
     $permalinks = isset($breadcrumb_options['permalinks']) ? $breadcrumb_options['permalinks'] : array();
 
+    echo '<pre>'.var_export($permalinks, true).'</pre>';
 
 
     if(is_singular('post') && !empty($permalinks['post'])){

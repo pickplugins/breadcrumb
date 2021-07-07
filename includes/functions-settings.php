@@ -10,9 +10,7 @@ function breadcrumb_settings_tabs_content_options(){
     $settings_tabs_field = new settings_tabs_field();
 
     $breadcrumb_text = get_option( 'breadcrumb_text' );
-    $breadcrumb_front_link = get_option( 'breadcrumb_front_link' );
-
-  $breadcrumb_separator = get_option( 'breadcrumb_separator' );
+    $breadcrumb_separator = get_option( 'breadcrumb_separator' );
     $breadcrumb_display_last_separator = get_option( 'breadcrumb_display_last_separator' );
     $breadcrumb_word_char = get_option( 'breadcrumb_word_char' );
     $breadcrumb_word_char_count = get_option( 'breadcrumb_word_char_count' );
@@ -23,6 +21,9 @@ function breadcrumb_settings_tabs_content_options(){
     $breadcrumb_hide_wc_breadcrumb = get_option( 'breadcrumb_hide_wc_breadcrumb' );
 //    $breadcrumb_display_auto_post_types = get_option( 'breadcrumb_display_auto_post_types' );
 //    $breadcrumb_display_auto_post_title_positions = get_option( 'breadcrumb_display_auto_post_title_positions' );
+
+
+    var_dump($breadcrumb_home_text);
 
     ?>
 
@@ -44,20 +45,6 @@ function breadcrumb_settings_tabs_content_options(){
         );
 
         $settings_tabs_field->generate_field($args);
-
-
-        $args = array(
-          'id'		=> 'breadcrumb_front_link',
-          //'parent' => 'breadcrumb_options',
-          'title'		=> __('Front text link','breadcrumb'),
-          'details'	=> __('Custom text front text.','breadcrumb'),
-          'type'		=> 'text',
-          'value'		=> $breadcrumb_front_link,
-          'default'		=> '#',
-        );
-
-        $settings_tabs_field->generate_field($args);
-
 
 
         $args = array(
@@ -106,6 +93,7 @@ function breadcrumb_settings_tabs_content_options(){
             'value'		=> $breadcrumb_word_char,
             'default'		=> 'word',
             'args'		=> array(
+                'none'=>__('None','breadcrumb'),
                 'word'=>__('Word','breadcrumb'),
                 'character'=>__('Character','breadcrumb'),
 
@@ -275,7 +263,7 @@ function breadcrumb_settings_tabs_content_builder(){
     $breadcrumb_pages_objects = breadcrumb_pages_objects();
 
 
-
+    $page_views = breadcrumb_page_views();
     //echo '<pre>'.var_export($breadcrumb_pages_objects, ture).'</pre>';
 
     $breadcrumb_tags = breadcrumb_tags();
@@ -331,7 +319,17 @@ function breadcrumb_settings_tabs_content_builder(){
 
             <?php
 
-            foreach ($breadcrumb_pages_objects as $postType => $postTypeData):
+    foreach ($page_views as $view_type => $view) {
+
+        ?>
+        <h2><?php echo ucfirst(str_replace('_',' ', $view_type)); ?></h2>
+        <hr>
+        <?php
+
+
+
+
+    foreach ($view as $postType => $postTypeData):
 
                 $post_type_name = isset($postTypeData['name'])? $postTypeData['name'] : '';
 
@@ -384,7 +382,7 @@ function breadcrumb_settings_tabs_content_builder(){
                 </div>
             <?php
             endforeach;
-
+}
             ?>
 
         </div>
@@ -1085,16 +1083,13 @@ add_action('breadcrumb_settings_save', 'breadcrumb_settings_save');
 if(!function_exists('breadcrumb_settings_save')) {
     function breadcrumb_settings_save(){
 
-        $breadcrumb_options = isset($_POST['breadcrumb_options']) ? stripslashes_deep($_POST['breadcrumb_options']) : array();
+        $breadcrumb_options = isset($_POST['breadcrumb_options']) ? breadcrumb_recursive_sanitize_arr($_POST['breadcrumb_options']) : array();
         update_option('breadcrumb_options', $breadcrumb_options);
 
-        $breadcrumb_text = sanitize_text_field($_POST['breadcrumb_text']);
+        $breadcrumb_text = wp_kses_post($_POST['breadcrumb_text']);
         update_option('breadcrumb_text', $breadcrumb_text);
 
-        $breadcrumb_front_link = sanitize_text_field($_POST['breadcrumb_front_link']);
-        update_option('breadcrumb_front_link', $breadcrumb_front_link);
-
-        $breadcrumb_separator = sanitize_text_field($_POST['breadcrumb_separator']);
+        $breadcrumb_separator = wp_kses_post($_POST['breadcrumb_separator']);
         update_option('breadcrumb_separator', $breadcrumb_separator);
 
         $breadcrumb_display_last_separator = sanitize_text_field($_POST['breadcrumb_display_last_separator']);
@@ -1106,7 +1101,7 @@ if(!function_exists('breadcrumb_settings_save')) {
         $breadcrumb_word_char_count = sanitize_text_field($_POST['breadcrumb_word_char_count']);
         update_option('breadcrumb_word_char_count', $breadcrumb_word_char_count);
 
-        $breadcrumb_word_char_end = sanitize_text_field($_POST['breadcrumb_word_char_end']);
+        $breadcrumb_word_char_end = wp_kses_post($_POST['breadcrumb_word_char_end']);
         update_option('breadcrumb_word_char_end', $breadcrumb_word_char_end);
 
 
@@ -1134,7 +1129,7 @@ if(!function_exists('breadcrumb_settings_save')) {
         $breadcrumb_display_home = sanitize_text_field($_POST['breadcrumb_display_home']);
         update_option('breadcrumb_display_home', $breadcrumb_display_home);
 
-        $breadcrumb_home_text = sanitize_text_field($_POST['breadcrumb_home_text']);
+        $breadcrumb_home_text = wp_kses_post($_POST['breadcrumb_home_text']);
         update_option('breadcrumb_home_text', $breadcrumb_home_text);
 
         $breadcrumb_url_hash = sanitize_text_field($_POST['breadcrumb_url_hash']);
@@ -1143,18 +1138,11 @@ if(!function_exists('breadcrumb_settings_save')) {
         $breadcrumb_hide_wc_breadcrumb = sanitize_text_field($_POST['breadcrumb_hide_wc_breadcrumb']);
         update_option('breadcrumb_hide_wc_breadcrumb', $breadcrumb_hide_wc_breadcrumb);
 
-//        $breadcrumb_display_auto_post_types = stripslashes_deep($_POST['breadcrumb_display_auto_post_types']);
-//        update_option('breadcrumb_display_auto_post_types', $breadcrumb_display_auto_post_types);
-//
-//        $breadcrumb_display_auto_post_title_positions = stripslashes_deep($_POST['breadcrumb_display_auto_post_title_positions']);
-//        update_option('breadcrumb_display_auto_post_title_positions', $breadcrumb_display_auto_post_title_positions);
 
-
-
-        $breadcrumb_custom_css = stripslashes_deep($_POST['breadcrumb_custom_css']);
+        $breadcrumb_custom_css = wp_filter_nohtml_kses($_POST['breadcrumb_custom_css']);
         update_option('breadcrumb_custom_css', $breadcrumb_custom_css);
 
-        $breadcrumb_custom_js = stripslashes_deep($_POST['breadcrumb_custom_js']);
+        $breadcrumb_custom_js = wp_filter_nohtml_kses($_POST['breadcrumb_custom_js']);
         update_option('breadcrumb_custom_js', $breadcrumb_custom_js);
 
 

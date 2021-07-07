@@ -55,52 +55,143 @@ function breadcrumb_pages_objects(){
     return apply_filters('breadcrumb_pages_objects', $objects);
 }
 
+function breadcrumb_posttypes_tags($tags){
+
+    $post_types_array = array();
+    global $wp_post_types;
+
+    $post_types_all = get_post_types( array('public'=> true), 'names' );
+
+//    unset($post_types_all['post']);
+//    unset($post_types_all['page']);
+//    unset($post_types_all['attachment']);
+//    unset($post_types_all['product']);
+
+    foreach ( $post_types_all as $post_type ) {
+
+
+        $obj = $wp_post_types[$post_type];
+        $post_types_array[$post_type] = $obj->labels->singular_name;
+
+
+
+        $tags[$post_type]['front_text'] = array('name' => __('Front text','breadcrumb'));
+        $tags[$post_type]['home'] = array('name' => __('Home','breadcrumb'));
+        $tags[$post_type]['post_title'] = array('name' => __('Post title','breadcrumb'));
+        $tags[$post_type]['post_author'] = array('name' => __('Post author','breadcrumb'));
+//        $tags['post']['post_category'] = array('name' => __('Post category','breadcrumb'));
+//        $tags['post']['post_tag'] = array('name' => __('Post tag','breadcrumb'));
+        $tags[$post_type]['post_date'] = array('name' => __('Post date','breadcrumb'));
+        $tags[$post_type]['post_month'] = array('name' => __('Post month','breadcrumb'));
+        $tags[$post_type]['post_year'] = array('name' => __('Post year','breadcrumb'));
+        $tags[$post_type]['post_id'] = array('name' => __('Post ID','breadcrumb'));
+
+
+    }
+
+    //echo "<pre>".var_export($tags, true)."</pre>";
+
+    return $tags;
+}
+
+add_filter('breadcrumb_tags', 'breadcrumb_posttypes_tags');
+
+
+function breadcrumb_taxonomy_terms_tags($tags){
+
+    $post_types = get_post_types( array('public'=> true), 'names' );
+
+    //$taxonomies = get_taxonomies();
+    $taxonomies = get_object_taxonomies( $post_types );
+
+    //echo "<pre>".var_export($taxonomies, true)."</pre>";
+
+
+    foreach ($taxonomies as $taxonomy){
+
+//        if(!is_taxonomy_viewable($taxonomy)){
+//            continue;
+//        }
+
+        $tags[$taxonomy]['front_text'] = array('name' => __('Front text','breadcrumb'));
+        $tags[$taxonomy]['home'] = array('name' => __('Home','breadcrumb'));
+        $tags[$taxonomy]['term_title'] = array('name' => __('Term title','breadcrumb'));
+
+        if(is_taxonomy_hierarchical($taxonomy)){
+            $tags[$taxonomy]['term_parent'] = array('name' => __('Term parent','breadcrumb'));
+            $tags[$taxonomy]['term_ancestors'] = array('name' => __('Term ancestors','breadcrumb'));
+        }
+
+
+
+
+    }
+
+
+    return $tags;
+
+}
+
+
+
+add_filter('breadcrumb_tags', 'breadcrumb_taxonomy_terms_tags');
+
+
+
+
+
+
+
+
+
+
+//add_shortcode('breadcrumb_posttypes_tags', 'breadcrumb_taxonomy_terms_tags');
 
 
 function breadcrumb_tags(){
 
-    $tags['post']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['post']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['post']['post_title'] = array('name' => __('Post title','breadcrumb'));
-    $tags['post']['post_author'] = array('name' => __('Post author','breadcrumb'));
-    $tags['post']['post_category'] = array('name' => __('Post category','breadcrumb'));
-    $tags['post']['post_tag'] = array('name' => __('Post tag','breadcrumb'));
-    $tags['post']['post_date'] = array('name' => __('Post date','breadcrumb'));
-    $tags['post']['post_month'] = array('name' => __('Post month','breadcrumb'));
-    $tags['post']['post_year'] = array('name' => __('Post year','breadcrumb'));
-    $tags['post']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+//    $tags['post']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['post']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['post']['post_title'] = array('name' => __('Post title','breadcrumb'));
+//    $tags['post']['post_author'] = array('name' => __('Post author','breadcrumb'));
+//    $tags['post']['post_category'] = array('name' => __('Post category','breadcrumb'));
+//    $tags['post']['post_tag'] = array('name' => __('Post tag','breadcrumb'));
+//    $tags['post']['post_date'] = array('name' => __('Post date','breadcrumb'));
+//    $tags['post']['post_month'] = array('name' => __('Post month','breadcrumb'));
+//    $tags['post']['post_year'] = array('name' => __('Post year','breadcrumb'));
+//    $tags['post']['post_id'] = array('name' => __('Post ID','breadcrumb'));
 
-    $tags['page']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['page']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['page']['post_title'] = array('name' => __('Post title','breadcrumb'));
-    $tags['page']['post_author'] = array('name' => __('Post author','breadcrumb'));
-    $tags['page']['post_date'] = array('name' => __('Post date','breadcrumb'));
-    $tags['page']['post_month'] = array('name' => __('Post month','breadcrumb'));
-    $tags['page']['post_year'] = array('name' => __('Post year','breadcrumb'));
-    $tags['page']['post_id'] = array('name' => __('Post ID','breadcrumb'));
-    $tags['page']['post_ancestors'] = array('name' => __('Post ancestors','breadcrumb'));
+//    $tags['page']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['page']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['page']['post_title'] = array('name' => __('Post title','breadcrumb'));
+//    $tags['page']['post_author'] = array('name' => __('Post author','breadcrumb'));
+//    $tags['page']['post_date'] = array('name' => __('Post date','breadcrumb'));
+//    $tags['page']['post_month'] = array('name' => __('Post month','breadcrumb'));
+//    $tags['page']['post_year'] = array('name' => __('Post year','breadcrumb'));
+//    $tags['page']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+//    $tags['page']['post_ancestors'] = array('name' => __('Post ancestors','breadcrumb'));
 
 
-    $tags['attachment']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['attachment']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['attachment']['post_title'] = array('name' => __('Post title','breadcrumb'));
-    $tags['attachment']['post_author'] = array('name' => __('Post author','breadcrumb'));
-    $tags['attachment']['post_date'] = array('name' => __('Post date','breadcrumb'));
-    $tags['attachment']['post_month'] = array('name' => __('Post month','breadcrumb'));
-    $tags['attachment']['post_year'] = array('name' => __('Post year','breadcrumb'));
-    $tags['attachment']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+//    $tags['attachment']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['attachment']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['attachment']['post_title'] = array('name' => __('Post title','breadcrumb'));
+//    $tags['attachment']['post_author'] = array('name' => __('Post author','breadcrumb'));
+//    $tags['attachment']['post_date'] = array('name' => __('Post date','breadcrumb'));
+//    $tags['attachment']['post_month'] = array('name' => __('Post month','breadcrumb'));
+//    $tags['attachment']['post_year'] = array('name' => __('Post year','breadcrumb'));
+//    $tags['attachment']['post_id'] = array('name' => __('Post ID','breadcrumb'));
 
-    $tags['product']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['product']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['product']['post_title'] = array('name' => __('Post title','breadcrumb'));
-    $tags['product']['post_author'] = array('name' => __('Post author','breadcrumb'));
-    $tags['product']['product_cat'] = array('name' => __('Product category','breadcrumb'));
-    $tags['product']['product_tag'] = array('name' => __('Product tag','breadcrumb'));
-    $tags['product']['post_date'] = array('name' => __('Post date','breadcrumb'));
-    $tags['product']['post_month'] = array('name' => __('Post month','breadcrumb'));
-    $tags['product']['post_year'] = array('name' => __('Post year','breadcrumb'));
-    $tags['product']['post_id'] = array('name' => __('Post ID','breadcrumb'));
-    $tags['product']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
+//    $tags['product']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['product']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['product']['post_title'] = array('name' => __('Post title','breadcrumb'));
+//    $tags['product']['post_author'] = array('name' => __('Post author','breadcrumb'));
+//    $tags['product']['product_cat'] = array('name' => __('Product category','breadcrumb'));
+//    $tags['product']['product_tag'] = array('name' => __('Product tag','breadcrumb'));
+//    $tags['product']['post_date'] = array('name' => __('Post date','breadcrumb'));
+//    $tags['product']['post_month'] = array('name' => __('Post month','breadcrumb'));
+//    $tags['product']['post_year'] = array('name' => __('Post year','breadcrumb'));
+//    $tags['product']['post_id'] = array('name' => __('Post ID','breadcrumb'));
+//    $tags['product']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
 
 
 
@@ -175,28 +266,28 @@ function breadcrumb_tags(){
     $tags['wc_shop']['post_year'] = array('name' => __('Post year','breadcrumb'));
     $tags['wc_shop']['post_id'] = array('name' => __('Post ID','breadcrumb'));
 
-    $tags['category']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['category']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['category']['term_title'] = array('name' => __('Category title','breadcrumb'));
-    $tags['category']['term_parent'] = array('name' => __('Category parent','breadcrumb'));
-    $tags['category']['term_ancestors'] = array('name' => __('Category ancestors','breadcrumb'));
+//    $tags['category']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['category']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['category']['term_title'] = array('name' => __('Category title','breadcrumb'));
+//    $tags['category']['term_parent'] = array('name' => __('Category parent','breadcrumb'));
+//    $tags['category']['term_ancestors'] = array('name' => __('Category ancestors','breadcrumb'));
 
 
-    $tags['post_tag']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['post_tag']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['post_tag']['term_title'] = array('name' => __('Tag title','breadcrumb'));
+//    $tags['post_tag']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['post_tag']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['post_tag']['term_title'] = array('name' => __('Tag title','breadcrumb'));
 
-    $tags['product_cat']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['product_cat']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['product_cat']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
-    $tags['product_cat']['term_title'] = array('name' => __('Category title','breadcrumb'));
-    $tags['product_cat']['term_parent'] = array('name' => __('Category parent','breadcrumb'));
-    $tags['product_cat']['term_ancestors'] = array('name' => __('Category ancestors','breadcrumb'));
-
-    $tags['product_tag']['front_text'] = array('name' => __('Front text','breadcrumb'));
-    $tags['product_tag']['home'] = array('name' => __('Home','breadcrumb'));
-    $tags['product_tag']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
-    $tags['product_tag']['term_title'] = array('name' => __('Tag title','breadcrumb'));
+//    $tags['product_cat']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['product_cat']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['product_cat']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
+//    $tags['product_cat']['term_title'] = array('name' => __('Category title','breadcrumb'));
+//    $tags['product_cat']['term_parent'] = array('name' => __('Category parent','breadcrumb'));
+//    $tags['product_cat']['term_ancestors'] = array('name' => __('Category ancestors','breadcrumb'));
+//
+//    $tags['product_tag']['front_text'] = array('name' => __('Front text','breadcrumb'));
+//    $tags['product_tag']['home'] = array('name' => __('Home','breadcrumb'));
+//    $tags['product_tag']['wc_shop'] = array('name' => __('Shop','breadcrumb'));
+//    $tags['product_tag']['term_title'] = array('name' => __('Tag title','breadcrumb'));
 
 
 
@@ -208,7 +299,66 @@ function breadcrumb_tags(){
 }
 
 
+function breadcrumb_page_views(){
 
+    $views = array();
+    $post_types_array = array();
+    global $wp_post_types;
+    $post_types_all = get_post_types( array('public'=> true), 'names' );
+
+    /*Post, Page & Custom post types*/
+
+    if(!empty($post_types_all))
+    foreach ( $post_types_all as $post_type ) {
+
+        $obj = $wp_post_types[$post_type];
+        $post_types_array[$post_type] = $obj->labels->singular_name;
+        $views['post_types'][$post_type] = array('name' => $obj->labels->singular_name, 'id' => $post_type );
+    }
+
+
+    /*taxonomies & terms pages*/
+    $taxonomies = get_object_taxonomies( $post_types_all );
+
+    if(!empty($taxonomies))
+    foreach ($taxonomies as $taxonomy){
+
+        //echo '<pre>'.var_export($taxonomy, true).'</pre>';
+
+        $taxonomy_data = get_taxonomy($taxonomy);
+        $taxonomy_public = $taxonomy_data->public;
+
+        if($taxonomy_public)
+        $views['taxonomies'][$taxonomy] = array('name' => $taxonomy_data->label, 'id' => $taxonomy);
+
+
+    }
+
+    /*Archives pages*/
+    $views['archives']['author'] = array('name' => 'Author', 'id' => 'author');
+    $views['archives']['date'] = array('name' => 'Date', 'id' => 'date');
+    $views['archives']['month'] = array('name' => 'Month', 'id' => 'month');
+    $views['archives']['year'] = array('name' => 'Year', 'id' => 'year');
+
+    /*front page, home, blog, 404 page*/
+    $views['others']['front_page'] = array('name' => 'Front page', 'id' => 'front_page');
+    $views['others']['home'] = array('name' => 'Home', 'id' => 'home');
+    $views['others']['blog'] = array('name' => 'Blog', 'id' => 'blog');
+    $views['others']['404'] = array('name' => '404', 'id' => '404');
+
+    $views['others']['privacy_policy'] = array('name' => 'Privacy policy', 'id' => 'privacy_policy');
+    $views['others']['wc_shop'] = array('name' => 'WooCommerce Shop', 'id' => 'wc_shop');
+    //$views['others']['year'] = array('name' => 'Year', 'id' => 'year');
+
+
+
+    //echo '<pre>'.var_export($views, true).'</pre>';
+
+    $views = apply_filters('breadcrumb_page_views', $views);
+
+    return $views;
+
+}
 
 
 
@@ -480,8 +630,6 @@ function breadcrumb_tag_options_front_text($parameters){
             <?php
 
             $prefix_text = '';
-
-
             $args = array(
                 'id'		=> 'prefix_text',
                 'parent' => $input_name.'[front_text]',
@@ -493,10 +641,6 @@ function breadcrumb_tag_options_front_text($parameters){
             );
 
             $settings_tabs_field->generate_field($args);
-
-
-
-
 
             ?>
 
@@ -512,7 +656,6 @@ function breadcrumb_tag_options_front_text($parameters){
 add_action('breadcrumb_tag_options_home', 'breadcrumb_tag_options_home');
 
 function breadcrumb_tag_options_home($parameters){
-
     $settings_tabs_field = new settings_tabs_field();
     $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
 
@@ -681,7 +824,6 @@ function breadcrumb_tag_options_post_category($parameters){
 add_action('breadcrumb_tag_options_product_cat', 'breadcrumb_tag_options_product_cat');
 
 function breadcrumb_tag_options_product_cat($parameters){
-
     $settings_tabs_field = new settings_tabs_field();
     $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}'
 
@@ -1199,15 +1341,9 @@ function breadcrumb_trail_array_list(){
 
     $breadcrumb_home_text = get_option('breadcrumb_home_text', __('Home','breadcrumb'));
     $breadcrumb_text = get_option('breadcrumb_text', __('You are here','breadcrumb'));
-    $breadcrumb_front_link = get_option( 'breadcrumb_front_link' );
 
     $breadcrumb_display_home = get_option('breadcrumb_display_home', 'yes');
     $breadcrumb_url_hash = get_option('breadcrumb_url_hash');
-
-    $breadcrumb_front_link = !empty($breadcrumb_front_link) ? $breadcrumb_front_link : '#';
-
-    //var_dump($breadcrumb_front_link);
-
 
     $home_url = get_bloginfo('url');
 
@@ -1215,8 +1351,9 @@ function breadcrumb_trail_array_list(){
     $active_plugins = get_option('active_plugins');
 
 
+
     $array_list[] = array(
-        'link'=> $breadcrumb_front_link,
+        'link'=> '#',
         'title' => $breadcrumb_text,
     );
 
@@ -1227,7 +1364,7 @@ function breadcrumb_trail_array_list(){
         if($breadcrumb_display_home == 'yes')
             $array_list[] = array(
                 'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
-                'title' => $breadcrumb_home_text,
+                'title' => ($breadcrumb_home_text),
 
             );
 
@@ -1236,7 +1373,7 @@ function breadcrumb_trail_array_list(){
         if($breadcrumb_display_home == 'yes')
             $array_list[] = array(
                 'link'=> !empty($breadcrumb_url_hash) ? $breadcrumb_url_hash : $home_url,
-                'title' => $breadcrumb_home_text,
+                'title' => ($breadcrumb_home_text),
             );
 
     }elseif( is_home()){
@@ -1244,7 +1381,7 @@ function breadcrumb_trail_array_list(){
         if($breadcrumb_display_home == 'yes')
             $array_list[] = array(
                 'link'=> $home_url,
-                'title' => $breadcrumb_home_text,
+                'title' => ($breadcrumb_home_text),
             );
 
             $array_list[] = array(
@@ -1261,7 +1398,7 @@ function breadcrumb_trail_array_list(){
         if($breadcrumb_display_home == 'yes')
             $array_list[] = array(
                 'link'=> $home_url,
-                'title' => $breadcrumb_home_text,
+                'title' => ($breadcrumb_home_text),
             );
 
             $array_list[] = array(
@@ -1874,7 +2011,12 @@ function breadcrumb_link_text_limit($string){
         }
     }elseif($limit_by == 'word'){
 
-        $string = wp_trim_words($string, $limit_count, $ending);
+        //$string = wp_trim_words($string, $limit_count, $ending);
+        $string =  force_balance_tags( html_entity_decode( wp_trim_words( htmlentities( $string ), $limit_count, $ending ) ) );
+;
+
+
+
         return $string;
     }else{
         return $string;
@@ -1917,4 +2059,21 @@ function breadcrumb_remove_wc_breadcrumbs() {
     }
 
 
+}
+
+
+
+
+function breadcrumb_recursive_sanitize_arr($array) {
+
+    foreach ( $array as $key => &$value ) {
+        if ( is_array( $value ) ) {
+            $value = breadcrumb_recursive_sanitize_arr($value);
+        }
+        else {
+            $value = sanitize_text_field( $value );
+        }
+    }
+
+    return $array;
 }
