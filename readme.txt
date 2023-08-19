@@ -3,7 +3,7 @@
 	Donate link: https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
-	Tested up to: 6.2
+	Tested up to: 6.3
 	Stable tag: 1.5.39
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@
 
 == Description ==
 
-Breadcrumb is easy and light-weight plugin to display breadcrumb navigation to your WordPress site, easy to customize and change style for breadcrumb. You can use filter hook and action hook to rewrite the plugin without editing the plugin code. This plugin almost working on all WordPress pages like archive, category, tags, custom taxonomies, custom post types, defult post, date, year, month, author and search page to display breadcrumb dynamically.
+Breadcrumb is easy and light-weight plugin to display breadcrumb navigation to your WordPress site, easy to customize and change style for breadcrumb. You can use filter hook and action hook to rewrite the plugin without editing the plugin code. This plugin almost working on all WordPress pages like archive, category, tags, custom taxonomies, custom post types, defult post, date, year, month, author and search page to display breadcrumb dynamically. ###
 
 ### Breadcrumb by http://pickplugins.com
 * [Buy Premium &raquo;](https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=wordpress.org)
