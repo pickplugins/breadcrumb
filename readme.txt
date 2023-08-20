@@ -4,7 +4,7 @@
 	Tags: breadcrumb, breadcrumbs, breadcrumb nav, trail, woocommerce breadcrumb
 	Requires at least: 3.8
 	Tested up to: 6.3
-	Stable tag: 1.5.39
+	Stable tag: 1.5.41
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,8 @@ use this short-code any where to display breadcrumb
 == Changelog ==
 
 
+	= 1.5.41 =
+    * 2023-08-20  - update - Display custom text as label on breadcrumb builder elements
 
 	= 1.5.39 =
     * 2023-08-19  - update - Multi item support added on breadcrumb builder
