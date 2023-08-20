@@ -672,7 +672,7 @@ function breadcrumb_tag_options_custom_text($parameters)
             <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
             <span class="sort"><i class="fas fa-sort"></i></span>
 
-            <span class="expand"><?php echo __('Custom text', 'breadcrumb'); ?></span>
+            <span class="expand"><?php echo __('Custom text', 'breadcrumb'); ?> - <?php echo esc_html($text); ?></span>
         </div>
         <div class="element-options options">
 
@@ -973,7 +973,7 @@ function breadcrumb_tag_options_post_term($parameters)
             <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
             <span class="sort"><i class="fas fa-sort"></i></span>
 
-            <span class="expand"><?php echo __('Post term(Category/Tag)', 'breadcrumb'); ?></span>
+            <span class="expand"><?php echo __('Post term(Category/Tag)', 'breadcrumb'); ?> - <?php echo esc_html($taxonomy); ?></span>
         </div>
         <div class="element-options options">
 
@@ -1089,7 +1089,7 @@ function breadcrumb_tag_options_category_ancestors($parameters)
             <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
             <span class="sort"><i class="fas fa-sort"></i></span>
 
-            <span class="expand"><?php echo __('Category Ancestors', 'breadcrumb'); ?></span>
+            <span class="expand"><?php echo __('Category Ancestors', 'breadcrumb'); ?> - <?php echo esc_html($taxonomy); ?></span>
         </div>
         <div class="element-options options">
 
