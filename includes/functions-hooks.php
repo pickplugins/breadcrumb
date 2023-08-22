@@ -473,13 +473,20 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
 
 add_filter('breadcrumb_permalink_front_text', 'breadcrumb_permalink_front_text');
 
-function breadcrumb_permalink_front_text($breadcrumb_items)
+function breadcrumb_permalink_front_text($args)
 {
 
+    $permalink = isset($args['permalink']) ? $args['permalink'] : [];
+    $text = isset($permalink['text']) ? $permalink['text'] : '';
+
+
     $breadcrumb_text = get_option('breadcrumb_text', __('You are here', 'breadcrumb'));
+
+    $text = !empty($text) ? $text : $breadcrumb_text;
+
     return array(
         'link' => '#',
-        'title' => $breadcrumb_text,
+        'title' => $text,
     );
 }
 
@@ -859,29 +866,36 @@ function breadcrumb_permalink_category_ancestors($args)
 
             //$terms = get_terms();
             $terms = get_the_terms($post_id, $taxonomy);
-            $term_data = isset($terms[0]) ? $terms[0] : '';
 
-            $term_id = isset($term_data->term_id) ? $term_data->term_id : '';
-            $term_name = isset($term_data->name) ? $term_data->name : '';
+            if (!is_wp_error($terms)) {
 
+                $term_data = isset($terms[0]) ? $terms[0] : '';
 
-
-            $parents_id  = get_ancestors($term_id, $taxonomy);
-            $parents_id = array_reverse($parents_id);
+                $term_id = isset($term_data->term_id) ? $term_data->term_id : '';
+                $term_name = isset($term_data->name) ? $term_data->name : '';
 
 
-            if (!empty($parents_id)) {
-                foreach ($parents_id as $id) {
 
-                    $parent_term_link = get_term_link($id, $taxonomy);
-                    $paren_term_name = get_term_by('id', $id, $taxonomy);
+                $parents_id  = get_ancestors($term_id, $taxonomy);
+                $parents_id = array_reverse($parents_id);
 
-                    $breadcrumb_items_new[] = array(
-                        'link' => $parent_term_link,
-                        'title' => $paren_term_name->name,
-                    );
+
+                if (!empty($parents_id)) {
+                    foreach ($parents_id as $id) {
+
+                        $parent_term_link = get_term_link($id, $taxonomy);
+                        $paren_term_name = get_term_by('id', $id, $taxonomy);
+
+                        $breadcrumb_items_new[] = array(
+                            'link' => $parent_term_link,
+                            'title' => $paren_term_name->name,
+                        );
+                    }
                 }
             }
+
+
+
 
 
 
@@ -980,20 +994,24 @@ function breadcrumb_permalink_post_term($args)
 
             //$terms = get_terms();
             $terms = get_the_terms($post_id, $taxonomy);
-            $term_data = isset($terms[0]) ? $terms[0] : '';
 
-            $term_id = isset($term_data->term_id) ? $term_data->term_id : '';
-            $term_name = isset($term_data->name) ? $term_data->name : '';
+            if (!is_wp_error($terms)) {
+                $term_data = isset($terms[0]) ? $terms[0] : '';
 
-            if (!empty($term_id)) :
-                $term_link = get_term_link($term_id, $taxonomy);
+                $term_id = isset($term_data->term_id) ? $term_data->term_id : '';
+                $term_name = isset($term_data->name) ? $term_data->name : '';
 
-                $breadcrumb_items_new = array(
-                    'link' => $term_link,
-                    'title' => $term_name,
-                );
-            endif;
-            $breadcrumb_items = array_merge($breadcrumb_items, $breadcrumb_items_new);
+                if (!empty($term_id)) :
+                    $term_link = get_term_link($term_id, $taxonomy);
+
+                    $breadcrumb_items_new = array(
+                        'link' => $term_link,
+                        'title' => $term_name,
+                    );
+                endif;
+
+                $breadcrumb_items = array_merge($breadcrumb_items, $breadcrumb_items_new);
+            }
         }
     }
 
