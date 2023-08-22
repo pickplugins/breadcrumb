@@ -855,9 +855,10 @@ function breadcrumb_permalink_category_ancestors($args)
                     'link' => $term_link,
                     'title' => $term_name,
                 );
-            endif;
 
-            $breadcrumb_items = array_merge($breadcrumb_items, $breadcrumb_items_new);
+                $breadcrumb_items = array_merge($breadcrumb_items, $breadcrumb_items_new);
+
+            endif;
         }
     } else {
 
@@ -1008,9 +1009,11 @@ function breadcrumb_permalink_post_term($args)
                         'link' => $term_link,
                         'title' => $term_name,
                     );
-                endif;
 
-                $breadcrumb_items = array_merge($breadcrumb_items, $breadcrumb_items_new);
+                    $breadcrumb_items = array_merge($breadcrumb_items, $breadcrumb_items_new);
+
+
+                endif;
             }
         }
     }
