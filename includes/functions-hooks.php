@@ -13,6 +13,7 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
 
     if (is_front_page() && is_home()) {
 
+
         $breadcrumb_items_new = array();
         $breadcrumb_items_latest = array();
 
@@ -47,6 +48,9 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
         $breadcrumb_items_new = array();
         $breadcrumb_items_latest = array();
 
+
+
+
         if (isset($permalinks['home']) && !empty($permalinks['home'])) {
             $post_type_permalinks = isset($permalinks['home']) ? $permalinks['home'] : array();
 
@@ -69,6 +73,9 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
 
                     $i++;
                 endforeach;
+
+
+
             return $breadcrumb_items_latest;
         } else {
             return $breadcrumb_items;
@@ -77,18 +84,30 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
         $breadcrumb_items_new = array();
         $breadcrumb_items_latest = array();
 
+
+
+
+
         if (isset($permalinks['blog']) && !empty($permalinks['blog'])) {
             $post_type_permalinks = isset($permalinks['blog']) ? $permalinks['blog'] : array();
+
+
 
             $i = 0;
             if (!empty($post_type_permalinks))
                 foreach ($post_type_permalinks as $permalinkIndex => $permalink) :
 
-                    $breadcrumb_items_new[$i] = apply_filters('breadcrumb_permalink_' . $permalinkIndex, array('permalink' => $permalink));
+                    $elementId = isset($permalink['elementId']) ? $permalink['elementId'] : '';
+
+
+
+                    $breadcrumb_items_new[$i] = apply_filters('breadcrumb_permalink_' . $elementId, array('permalink' => $permalink));
 
                     if (!empty($breadcrumb_items_new[$i][0]) && is_array($breadcrumb_items_new[$i][0])) :
 
                         foreach ($breadcrumb_items_new[$i] as $item) :
+
+
                             $breadcrumb_items_latest[] = $item;
                         endforeach;
 
@@ -98,6 +117,9 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
 
                     $i++;
                 endforeach;
+
+
+
             return $breadcrumb_items_latest;
         } else {
             return $breadcrumb_items;
@@ -165,6 +187,9 @@ function breadcrumb_items_override_permalinks($breadcrumb_items)
 
                     $i++;
                 endforeach;
+
+
+
             return $breadcrumb_items_latest;
         } else {
             return $breadcrumb_items;
