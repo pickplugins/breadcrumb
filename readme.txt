@@ -122,8 +122,7 @@ use this short-code any where to display breadcrumb
 
 == Changelog ==
 
-	= 1.5.44 =
-    * 2024-05-05  - 6.5 WP compatibility issue checekd
+
 
 	= 1.5.43 =
     * 2023-08-26  - update - WP-ML issue fixed.
